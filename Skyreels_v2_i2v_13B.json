@@ -1,158 +1,9 @@
 {
   "id": "4d0acb11-728e-47b4-8b03-a8236eb8cdcd",
   "revision": 0,
-  "last_node_id": 38,
+  "last_node_id": 39,
   "last_link_id": 57,
   "nodes": [
-    {
-      "id": 5,
-      "type": "TorchCompileModelWanVideo",
-      "pos": [
-        123.56151580810547,
-        861.0436401367188
-      ],
-      "size": [
-        468.5999755859375,
-        178
-      ],
-      "flags": {},
-      "order": 11,
-      "mode": 4,
-      "inputs": [
-        {
-          "name": "model",
-          "type": "MODEL",
-          "link": 4
-        }
-      ],
-      "outputs": [
-        {
-          "name": "MODEL",
-          "type": "MODEL",
-          "links": [
-            5
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfyui-kjnodes",
-        "ver": "0d909572e226a49cae540cfe436551e93836db20",
-        "Node name for S&R": "TorchCompileModelWanVideo",
-        "widget_ue_connectable": {}
-      },
-      "widgets_values": [
-        "inductor",
-        false,
-        "default",
-        false,
-        64,
-        false
-      ]
-    },
-    {
-      "id": 2,
-      "type": "ModelComputeDtype",
-      "pos": [
-        542.0238037109375,
-        607.440673828125
-      ],
-      "size": [
-        315,
-        58
-      ],
-      "flags": {},
-      "order": 7,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "model",
-          "type": "MODEL",
-          "link": 57
-        }
-      ],
-      "outputs": [
-        {
-          "name": "MODEL",
-          "type": "MODEL",
-          "links": [
-            2
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.3.29",
-        "Node name for S&R": "ModelComputeDtype",
-        "widget_ue_connectable": {}
-      },
-      "widgets_values": [
-        "fp16"
-      ]
-    },
-    {
-      "id": 6,
-      "type": "Power Lora Loader (rgthree)",
-      "pos": [
-        616.8136596679688,
-        864.1890869140625
-      ],
-      "size": [
-        340.20001220703125,
-        118
-      ],
-      "flags": {},
-      "order": 12,
-      "mode": 0,
-      "inputs": [
-        {
-          "dir": 3,
-          "name": "model",
-          "type": "MODEL",
-          "link": 5
-        },
-        {
-          "dir": 3,
-          "name": "clip",
-          "type": "CLIP",
-          "link": 56
-        }
-      ],
-      "outputs": [
-        {
-          "dir": 4,
-          "name": "MODEL",
-          "shape": 3,
-          "type": "MODEL",
-          "links": [
-            9
-          ]
-        },
-        {
-          "dir": 4,
-          "name": "CLIP",
-          "shape": 3,
-          "type": "CLIP",
-          "links": [
-            7,
-            8
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "rgthree-comfy",
-        "ver": "5dc53323e07a021038af9f2a4a06ebc071f7218c",
-        "Show Strengths": "Single Strength",
-        "widget_ue_connectable": {}
-      },
-      "widgets_values": [
-        {},
-        {
-          "type": "PowerLoraLoaderHeaderWidget"
-        },
-        {},
-        ""
-      ]
-    },
     {
       "id": 8,
       "type": "CLIPVisionLoader",
@@ -233,7 +84,7 @@
         78
       ],
       "flags": {},
-      "order": 8,
+      "order": 7,
       "mode": 0,
       "inputs": [
         {
@@ -372,154 +223,6 @@
       "bgcolor": "#653"
     },
     {
-      "id": 4,
-      "type": "WanVideoTeaCacheKJ",
-      "pos": [
-        122.21405029296875,
-        662.6173706054688
-      ],
-      "size": [
-        340.20001220703125,
-        154
-      ],
-      "flags": {},
-      "order": 10,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "model",
-          "type": "MODEL",
-          "link": 3
-        }
-      ],
-      "outputs": [
-        {
-          "name": "model",
-          "type": "MODEL",
-          "links": [
-            4
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfyui-kjnodes",
-        "ver": "0d909572e226a49cae540cfe436551e93836db20",
-        "Node name for S&R": "WanVideoTeaCacheKJ",
-        "widget_ue_connectable": {}
-      },
-      "widgets_values": [
-        0.20000000000000004,
-        0.15000000000000002,
-        1,
-        "offload_device",
-        "i2v_480"
-      ]
-    },
-    {
-      "id": 13,
-      "type": "ModelSamplingSD3",
-      "pos": [
-        1017.4718627929688,
-        710.9364013671875
-      ],
-      "size": [
-        315,
-        58
-      ],
-      "flags": {},
-      "order": 13,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "model",
-          "type": "MODEL",
-          "link": 9
-        }
-      ],
-      "outputs": [
-        {
-          "name": "MODEL",
-          "type": "MODEL",
-          "links": [
-            52
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.3.29",
-        "Node name for S&R": "ModelSamplingSD3",
-        "widget_ue_connectable": {}
-      },
-      "widgets_values": [
-        3
-      ]
-    },
-    {
-      "id": 36,
-      "type": "workflow>Wan Sampler Advanced",
-      "pos": [
-        1418.806884765625,
-        724.4302368164062
-      ],
-      "size": [
-        456.6621398925781,
-        584.1019897460938
-      ],
-      "flags": {},
-      "order": 17,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "MODEL",
-          "type": "MODEL",
-          "link": 52
-        },
-        {
-          "name": "positive",
-          "type": "CONDITIONING",
-          "link": 53
-        },
-        {
-          "name": "negative",
-          "type": "CONDITIONING",
-          "link": 54
-        },
-        {
-          "name": "latent_image",
-          "type": "LATENT",
-          "link": 55
-        }
-      ],
-      "outputs": [
-        {
-          "name": "output",
-          "type": "LATENT",
-          "links": [
-            51
-          ]
-        },
-        {
-          "name": "denoised_output",
-          "type": "LATENT",
-          "links": null
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "workflow>Wan Sampler Advanced",
-        "widget_ue_connectable": {}
-      },
-      "widgets_values": [
-        "euler",
-        42,
-        "fixed",
-        "beta",
-        20,
-        1,
-        8
-      ]
-    },
-    {
       "id": 37,
       "type": "CLIPLoaderGGUF",
       "pos": [
@@ -555,40 +258,6 @@
       ],
       "color": "#222",
       "bgcolor": "#000"
-    },
-    {
-      "id": 38,
-      "type": "UnetLoaderGGUF",
-      "pos": [
-        148.43508911132812,
-        512.5863647460938
-      ],
-      "size": [
-        270,
-        58
-      ],
-      "flags": {},
-      "order": 4,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "MODEL",
-          "type": "MODEL",
-          "links": [
-            57
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "ComfyUI-GGUF",
-        "ver": "b3ec875a68d94b758914fd48d30571d953bb7a54",
-        "Node name for S&R": "UnetLoaderGGUF",
-        "widget_ue_connectable": {}
-      },
-      "widgets_values": [
-        "Skywork-SkyReels-V2-I2V-1.3B-540P-Q8_0.gguf"
-      ]
     },
     {
       "id": 3,
@@ -642,7 +311,7 @@
         314
       ],
       "flags": {},
-      "order": 5,
+      "order": 4,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -670,48 +339,6 @@
         "IMG_2913.PNG",
         "image"
       ]
-    },
-    {
-      "id": 11,
-      "type": "CLIPTextEncode",
-      "pos": [
-        985.8385620117188,
-        818.8728637695312
-      ],
-      "size": [
-        400,
-        200
-      ],
-      "flags": {},
-      "order": 15,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "clip",
-          "type": "CLIP",
-          "link": 8
-        }
-      ],
-      "outputs": [
-        {
-          "name": "CONDITIONING",
-          "type": "CONDITIONING",
-          "links": [
-            16
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.3.29",
-        "Node name for S&R": "CLIPTextEncode",
-        "widget_ue_connectable": {}
-      },
-      "widgets_values": [
-        "Close-up shot of the attached woman. She slides her right hand from her right thigh to her breast and gives a moaning facial expression. her hand stops at breast ang gives it a firm press. Maintain her exact face throughout the video"
-      ],
-      "color": "#232",
-      "bgcolor": "#353"
     },
     {
       "id": 12,
@@ -757,74 +384,78 @@
       "bgcolor": "#533"
     },
     {
-      "id": 24,
-      "type": "VHS_VideoCombine",
+      "id": 38,
+      "type": "UnetLoaderGGUF",
       "pos": [
-        1972.376708984375,
-        716.375
+        148.43508911132812,
+        512.5863647460938
       ],
       "size": [
-        603.2583618164062,
-        334
+        270,
+        58
       ],
       "flags": {},
-      "order": 19,
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            57
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "ComfyUI-GGUF",
+        "ver": "b3ec875a68d94b758914fd48d30571d953bb7a54",
+        "Node name for S&R": "UnetLoaderGGUF",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "Skywork-SkyReels-V2-I2V-1.3B-540P-Q8_0.gguf"
+      ]
+    },
+    {
+      "id": 13,
+      "type": "ModelSamplingSD3",
+      "pos": [
+        1017.4718627929688,
+        710.9364013671875
+      ],
+      "size": [
+        315,
+        58
+      ],
+      "flags": {},
+      "order": 13,
       "mode": 0,
       "inputs": [
         {
-          "name": "images",
-          "type": "IMAGE",
-          "link": 35
-        },
-        {
-          "name": "audio",
-          "shape": 7,
-          "type": "AUDIO",
-          "link": null
-        },
-        {
-          "name": "meta_batch",
-          "shape": 7,
-          "type": "VHS_BatchManager",
-          "link": null
-        },
-        {
-          "name": "vae",
-          "shape": 7,
-          "type": "VAE",
-          "link": null
+          "name": "model",
+          "type": "MODEL",
+          "link": 9
         }
       ],
       "outputs": [
         {
-          "name": "Filenames",
-          "type": "VHS_FILENAMES",
-          "links": null
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            52
+          ]
         }
       ],
       "properties": {
-        "cnr_id": "comfyui-videohelpersuite",
-        "ver": "1.6.0",
-        "Node name for S&R": "VHS_VideoCombine",
+        "cnr_id": "comfy-core",
+        "ver": "0.3.29",
+        "Node name for S&R": "ModelSamplingSD3",
         "widget_ue_connectable": {}
       },
-      "widgets_values": {
-        "frame_rate": 16,
-        "loop_count": 0,
-        "filename_prefix": "Wan/videos/24/vid",
-        "format": "video/nvenc_h264-mp4",
-        "pix_fmt": "yuv420p",
-        "bitrate": 10,
-        "megabit": true,
-        "save_metadata": true,
-        "pingpong": false,
-        "save_output": true,
-        "videopreview": {
-          "hidden": false,
-          "paused": false,
-          "params": {}
-        }
-      }
+      "widgets_values": [
+        3.0000000000000004
+      ]
     },
     {
       "id": 15,
@@ -899,10 +530,393 @@
         "widget_ue_connectable": {}
       },
       "widgets_values": [
-        480,
-        832,
-        17,
+        544,
+        960,
+        49,
         1
+      ]
+    },
+    {
+      "id": 24,
+      "type": "VHS_VideoCombine",
+      "pos": [
+        1972.376708984375,
+        716.375
+      ],
+      "size": [
+        324.7755432128906,
+        885.8391723632812
+      ],
+      "flags": {},
+      "order": 19,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 35
+        },
+        {
+          "name": "audio",
+          "shape": 7,
+          "type": "AUDIO",
+          "link": null
+        },
+        {
+          "name": "meta_batch",
+          "shape": 7,
+          "type": "VHS_BatchManager",
+          "link": null
+        },
+        {
+          "name": "vae",
+          "shape": 7,
+          "type": "VAE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "Filenames",
+          "type": "VHS_FILENAMES",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-videohelpersuite",
+        "ver": "1.6.0",
+        "Node name for S&R": "VHS_VideoCombine",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": {
+        "frame_rate": 24,
+        "loop_count": 0,
+        "filename_prefix": "Wan/videos/24/vid",
+        "format": "video/h264-mp4",
+        "pix_fmt": "yuv420p",
+        "crf": 19,
+        "save_metadata": true,
+        "trim_to_audio": false,
+        "pingpong": false,
+        "save_output": false,
+        "videopreview": {
+          "hidden": false,
+          "paused": false,
+          "params": {
+            "filename": "vid_00004.mp4",
+            "subfolder": "Wan/videos/24",
+            "type": "temp",
+            "format": "video/h264-mp4",
+            "frame_rate": 24,
+            "workflow": "vid_00004.png",
+            "fullpath": "/Users/mohitsoni/Desktop/AI/ComfyUI/ComfyUI/temp/Wan/videos/24/vid_00004.mp4"
+          }
+        }
+      }
+    },
+    {
+      "id": 11,
+      "type": "CLIPTextEncode",
+      "pos": [
+        985.8385620117188,
+        818.8728637695312
+      ],
+      "size": [
+        400,
+        200
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 8
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            16
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.29",
+        "Node name for S&R": "CLIPTextEncode",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "Close-up shot of the attached woman giving a flying kiss and winking. Maintain her exact face throughout the video"
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 2,
+      "type": "ModelComputeDtype",
+      "pos": [
+        542.0238037109375,
+        607.440673828125
+      ],
+      "size": [
+        315,
+        58
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 57
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            2
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.29",
+        "Node name for S&R": "ModelComputeDtype",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "default"
+      ]
+    },
+    {
+      "id": 4,
+      "type": "WanVideoTeaCacheKJ",
+      "pos": [
+        122.21405029296875,
+        662.6173706054688
+      ],
+      "size": [
+        340.20001220703125,
+        154
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 3
+        }
+      ],
+      "outputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "links": [
+            4
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-kjnodes",
+        "ver": "0d909572e226a49cae540cfe436551e93836db20",
+        "Node name for S&R": "WanVideoTeaCacheKJ",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        0.020000000000000004,
+        0.15000000000000002,
+        0.9000000000000001,
+        "main_device",
+        "i2v_480"
+      ]
+    },
+    {
+      "id": 36,
+      "type": "workflow>Wan Sampler Advanced",
+      "pos": [
+        1419.8204345703125,
+        758.7017822265625
+      ],
+      "size": [
+        463.3641052246094,
+        262
+      ],
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "link": 52
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 53
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 54
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 55
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "LATENT",
+          "links": [
+            51
+          ]
+        },
+        {
+          "name": "denoised_output",
+          "type": "LATENT",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "workflow>Wan Sampler Advanced",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "euler",
+        11104304480,
+        "randomize",
+        "normal",
+        20,
+        1,
+        5
+      ]
+    },
+    {
+      "id": 5,
+      "type": "TorchCompileModelWanVideo",
+      "pos": [
+        66.25959014892578,
+        874.2469482421875
+      ],
+      "size": [
+        468.5999755859375,
+        178
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 4,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 4
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            5
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-kjnodes",
+        "ver": "0d909572e226a49cae540cfe436551e93836db20",
+        "Node name for S&R": "TorchCompileModelWanVideo",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        "inductor",
+        false,
+        "default",
+        false,
+        64,
+        false
+      ]
+    },
+    {
+      "id": 6,
+      "type": "Power Lora Loader (rgthree)",
+      "pos": [
+        598.2228393554688,
+        863.2479248046875
+      ],
+      "size": [
+        340.20001220703125,
+        142
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "name": "model",
+          "type": "MODEL",
+          "link": 5
+        },
+        {
+          "dir": 3,
+          "name": "clip",
+          "type": "CLIP",
+          "link": 56
+        }
+      ],
+      "outputs": [
+        {
+          "dir": 4,
+          "name": "MODEL",
+          "shape": 3,
+          "type": "MODEL",
+          "links": [
+            9
+          ]
+        },
+        {
+          "dir": 4,
+          "name": "CLIP",
+          "shape": 3,
+          "type": "CLIP",
+          "links": [
+            7,
+            8
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "5dc53323e07a021038af9f2a4a06ebc071f7218c",
+        "Show Strengths": "Single Strength",
+        "widget_ue_connectable": {}
+      },
+      "widgets_values": [
+        {},
+        {
+          "type": "PowerLoraLoaderHeaderWidget"
+        },
+        {
+          "on": false,
+          "lora": "Wan21_CausVid_bidirect2_T2V_1_3B_lora_rank32.safetensors",
+          "strength": 1,
+          "strengthTwo": null
+        },
+        {},
+        ""
       ]
     }
   ],
@@ -1104,10 +1118,10 @@
   "config": {},
   "extra": {
     "ds": {
-      "scale": 1.1000000000000003,
+      "scale": 0.9090909090909091,
       "offset": [
-        -211.4003122297911,
-        -408.83253594445785
+        -835.2421564769205,
+        -505.72649805826774
       ]
     },
     "frontendVersion": "1.23.4",
