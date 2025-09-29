@@ -1,8 +1,8 @@
 {
   "id": "5429f6c4-5473-4a60-868f-f2cfa7a79f14",
   "revision": 0,
-  "last_node_id": 370,
-  "last_link_id": 1220,
+  "last_node_id": 371,
+  "last_link_id": 1380,
   "nodes": [
     {
       "id": 225,
@@ -16,7 +16,7 @@
         46
       ],
       "flags": {},
-      "order": 20,
+      "order": 21,
       "mode": 0,
       "inputs": [
         {
@@ -66,7 +66,7 @@
         246
       ],
       "flags": {},
-      "order": 21,
+      "order": 22,
       "mode": 0,
       "inputs": [
         {
@@ -102,7 +102,7 @@
         46
       ],
       "flags": {},
-      "order": 30,
+      "order": 31,
       "mode": 0,
       "inputs": [
         {
@@ -154,7 +154,7 @@
       "flags": {
         "collapsed": true
       },
-      "order": 22,
+      "order": 23,
       "mode": 0,
       "inputs": [
         {
@@ -222,7 +222,7 @@
         137.44442749023438
       ],
       "flags": {},
-      "order": 29,
+      "order": 30,
       "mode": 0,
       "inputs": [
         {
@@ -268,7 +268,7 @@
         26
       ],
       "flags": {},
-      "order": 25,
+      "order": 26,
       "mode": 0,
       "inputs": [
         {
@@ -311,7 +311,7 @@
       "flags": {
         "collapsed": false
       },
-      "order": 28,
+      "order": 29,
       "mode": 0,
       "inputs": [
         {
@@ -400,7 +400,7 @@
         46
       ],
       "flags": {},
-      "order": 38,
+      "order": 39,
       "mode": 0,
       "inputs": [
         {
@@ -447,7 +447,7 @@
         106
       ],
       "flags": {},
-      "order": 23,
+      "order": 25,
       "mode": 0,
       "inputs": [
         {
@@ -571,7 +571,7 @@
         26
       ],
       "flags": {},
-      "order": 31,
+      "order": 32,
       "mode": 0,
       "inputs": [
         {
@@ -688,7 +688,7 @@
         166
       ],
       "flags": {},
-      "order": 19,
+      "order": 20,
       "mode": 0,
       "inputs": [
         {
@@ -901,7 +901,7 @@
         58
       ],
       "flags": {},
-      "order": 41,
+      "order": 42,
       "mode": 0,
       "inputs": [
         {
@@ -945,7 +945,7 @@
         85.6905746459961
       ],
       "flags": {},
-      "order": 26,
+      "order": 27,
       "mode": 0,
       "inputs": [
         {
@@ -989,7 +989,7 @@
         130
       ],
       "flags": {},
-      "order": 39,
+      "order": 40,
       "mode": 0,
       "inputs": [
         {
@@ -1095,7 +1095,7 @@
       "flags": {
         "collapsed": true
       },
-      "order": 35,
+      "order": 36,
       "mode": 0,
       "inputs": [
         {
@@ -1141,7 +1141,7 @@
         148.5639190673828
       ],
       "flags": {},
-      "order": 17,
+      "order": 18,
       "mode": 0,
       "inputs": [
         {
@@ -1187,7 +1187,7 @@
         190
       ],
       "flags": {},
-      "order": 18,
+      "order": 19,
       "mode": 0,
       "inputs": [
         {
@@ -1275,7 +1275,7 @@
         158.35504150390625
       ],
       "flags": {},
-      "order": 36,
+      "order": 37,
       "mode": 0,
       "inputs": [
         {
@@ -1405,7 +1405,7 @@
         66
       ],
       "flags": {},
-      "order": 42,
+      "order": 43,
       "mode": 0,
       "inputs": [
         {
@@ -1472,7 +1472,7 @@
         301.57904052734375
       ],
       "flags": {},
-      "order": 45,
+      "order": 46,
       "mode": 0,
       "inputs": [
         {
@@ -1508,7 +1508,7 @@
         26
       ],
       "flags": {},
-      "order": 43,
+      "order": 44,
       "mode": 0,
       "inputs": [
         {
@@ -1549,7 +1549,7 @@
         246
       ],
       "flags": {},
-      "order": 48,
+      "order": 49,
       "mode": 0,
       "inputs": [
         {
@@ -1609,7 +1609,7 @@
         122
       ],
       "flags": {},
-      "order": 54,
+      "order": 55,
       "mode": 0,
       "inputs": [
         {
@@ -1669,7 +1669,7 @@
         26
       ],
       "flags": {},
-      "order": 52,
+      "order": 53,
       "mode": 0,
       "inputs": [
         {
@@ -1753,7 +1753,7 @@
         349.60198974609375
       ],
       "flags": {},
-      "order": 57,
+      "order": 58,
       "mode": 0,
       "inputs": [
         {
@@ -1787,7 +1787,7 @@
         490
       ],
       "flags": {},
-      "order": 46,
+      "order": 47,
       "mode": 0,
       "inputs": [
         {
@@ -1853,7 +1853,7 @@
         26
       ],
       "flags": {},
-      "order": 40,
+      "order": 41,
       "mode": 0,
       "inputs": [
         {
@@ -1894,7 +1894,7 @@
         434.3851623535156
       ],
       "flags": {},
-      "order": 55,
+      "order": 56,
       "mode": 0,
       "inputs": [
         {
@@ -1927,12 +1927,12 @@
           {
             "name": "A",
             "selected": true,
-            "url": "/api/view?filename=rgthree.compare._temp_fqdbx_00005_.png&type=temp&subfolder=&rand=0.34536928521814625"
+            "url": "/api/view?filename=rgthree.compare._temp_lsxcc_00013_.png&type=temp&subfolder=&rand=0.3877372429066688"
           },
           {
             "name": "B",
             "selected": true,
-            "url": "/api/view?filename=rgthree.compare._temp_fqdbx_00006_.png&type=temp&subfolder=&rand=0.9617087940453815"
+            "url": "/api/view?filename=rgthree.compare._temp_lsxcc_00014_.png&type=temp&subfolder=&rand=0.9776154217832973"
           }
         ]
       ]
@@ -1949,7 +1949,7 @@
         46
       ],
       "flags": {},
-      "order": 37,
+      "order": 38,
       "mode": 0,
       "inputs": [
         {
@@ -1999,7 +1999,7 @@
         277.740966796875
       ],
       "flags": {},
-      "order": 33,
+      "order": 34,
       "mode": 0,
       "inputs": [
         {
@@ -2060,84 +2060,6 @@
       "bgcolor": "#535"
     },
     {
-      "id": 331,
-      "type": "easy int",
-      "pos": [
-        -594.4575805664062,
-        1107.363525390625
-      ],
-      "size": [
-        210,
-        67.80316925048828
-      ],
-      "flags": {},
-      "order": 11,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "int",
-          "type": "INT",
-          "links": [
-            702,
-            703
-          ]
-        }
-      ],
-      "title": "Height",
-      "properties": {
-        "cnr_id": "comfyui-easy-use",
-        "ver": "b6bb4a3055adc718ec98befee233f8b05c778465",
-        "Node name for S&R": "easy int",
-        "ue_properties": {
-          "version": "7.0.1",
-          "widget_ue_connectable": {}
-        }
-      },
-      "widgets_values": [
-        1280
-      ]
-    },
-    {
-      "id": 332,
-      "type": "easy int",
-      "pos": [
-        -601.9019165039062,
-        977.2891235351562
-      ],
-      "size": [
-        210,
-        67.80316925048828
-      ],
-      "flags": {},
-      "order": 12,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "int",
-          "type": "INT",
-          "links": [
-            700,
-            701
-          ]
-        }
-      ],
-      "title": "Width",
-      "properties": {
-        "cnr_id": "comfyui-easy-use",
-        "ver": "b6bb4a3055adc718ec98befee233f8b05c778465",
-        "Node name for S&R": "easy int",
-        "ue_properties": {
-          "version": "7.0.1",
-          "widget_ue_connectable": {}
-        }
-      },
-      "widgets_values": [
-        720
-      ]
-    },
-    {
       "id": 363,
       "type": "ImageUpscaleWithModel",
       "pos": [
@@ -2151,7 +2073,7 @@
       "flags": {
         "collapsed": false
       },
-      "order": 58,
+      "order": 59,
       "mode": 0,
       "inputs": [
         {
@@ -2202,7 +2124,7 @@
       "flags": {
         "collapsed": false
       },
-      "order": 13,
+      "order": 11,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -2242,7 +2164,7 @@
         898.927490234375
       ],
       "flags": {},
-      "order": 61,
+      "order": 62,
       "mode": 0,
       "inputs": [
         {
@@ -2277,7 +2199,7 @@
         46
       ],
       "flags": {},
-      "order": 47,
+      "order": 48,
       "mode": 0,
       "inputs": [
         {
@@ -2326,7 +2248,7 @@
         26
       ],
       "flags": {},
-      "order": 51,
+      "order": 52,
       "mode": 0,
       "inputs": [
         {
@@ -2365,7 +2287,7 @@
         146
       ],
       "flags": {},
-      "order": 53,
+      "order": 54,
       "mode": 0,
       "inputs": [
         {
@@ -2427,7 +2349,7 @@
         26
       ],
       "flags": {},
-      "order": 56,
+      "order": 57,
       "mode": 0,
       "inputs": [
         {
@@ -2470,7 +2392,7 @@
       "flags": {
         "collapsed": false
       },
-      "order": 59,
+      "order": 60,
       "mode": 0,
       "inputs": [
         {
@@ -2517,7 +2439,7 @@
         26
       ],
       "flags": {},
-      "order": 60,
+      "order": 61,
       "mode": 0,
       "inputs": [
         {
@@ -2547,34 +2469,6 @@
       "widgets_values": []
     },
     {
-      "id": 344,
-      "type": "Note",
-      "pos": [
-        174.5978546142578,
-        891.0132446289062
-      ],
-      "size": [
-        210,
-        88
-      ],
-      "flags": {},
-      "order": 14,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [],
-      "properties": {
-        "ue_properties": {
-          "version": "7.0.1",
-          "widget_ue_connectable": {}
-        }
-      },
-      "widgets_values": [
-        "148756871582322\n\nCamera used: iPhone\n\nGraceful at 5’9 with flowing blonde hair, a sculpted 34C-24-35 silhouette, she embodies Nordic elegance with a sensual edge.\n\nCinematic Relighting, Maintain her exact face, exact skin color, exact skin imperfections and exact skin tones exact skin texture. Add details to this face, improve skin details. The body is fully waxed without any body hair\n"
-      ],
-      "color": "#432",
-      "bgcolor": "#653"
-    },
-    {
       "id": 324,
       "type": "KSampler",
       "pos": [
@@ -2586,7 +2480,7 @@
         262
       ],
       "flags": {},
-      "order": 44,
+      "order": 45,
       "mode": 0,
       "inputs": [
         {
@@ -2653,7 +2547,7 @@
       "flags": {
         "collapsed": true
       },
-      "order": 50,
+      "order": 51,
       "mode": 0,
       "inputs": [
         {
@@ -2665,7 +2559,7 @@
         },
         {
           "label": "anything",
-          "name": "anything149",
+          "name": "anything157",
           "type": "*",
           "link": null
         }
@@ -2680,7 +2574,7 @@
           "group_restricted": 0,
           "color_restricted": 0,
           "widget_ue_connectable": {},
-          "next_input_index": 149
+          "next_input_index": 157
         }
       },
       "widgets_values": []
@@ -2751,7 +2645,7 @@
       "flags": {
         "collapsed": true
       },
-      "order": 34,
+      "order": 35,
       "mode": 0,
       "inputs": [
         {
@@ -2787,7 +2681,7 @@
       "flags": {
         "collapsed": false
       },
-      "order": 49,
+      "order": 50,
       "mode": 0,
       "inputs": [
         {
@@ -2824,7 +2718,7 @@
       "flags": {
         "collapsed": true
       },
-      "order": 15,
+      "order": 12,
       "mode": 4,
       "inputs": [],
       "outputs": [
@@ -2869,7 +2763,7 @@
       "flags": {
         "collapsed": true
       },
-      "order": 16,
+      "order": 13,
       "mode": 4,
       "inputs": [],
       "outputs": [
@@ -2902,50 +2796,138 @@
       ]
     },
     {
-      "id": 282,
-      "type": "CLIPTextEncode",
+      "id": 371,
+      "type": "Note",
       "pos": [
-        -1282.0457763671875,
-        435.58831787109375
+        -1241.779296875,
+        1156.3179931640625
       ],
       "size": [
-        465.20184326171875,
-        326.79345703125
+        566.3734741210938,
+        325.9739074707031
       ],
       "flags": {},
-      "order": 27,
+      "order": 14,
       "mode": 0,
-      "inputs": [
-        {
-          "name": "clip",
-          "type": "CLIP",
-          "link": 484
-        }
-      ],
-      "outputs": [
-        {
-          "name": "CONDITIONING",
-          "type": "CONDITIONING",
-          "slot_index": 0,
-          "links": [
-            369
-          ]
-        }
-      ],
+      "inputs": [],
+      "outputs": [],
       "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.3.27",
-        "Node name for S&R": "CLIPTextEncode",
         "ue_properties": {
           "version": "7.0.1",
           "widget_ue_connectable": {}
         }
       },
       "widgets_values": [
-        "Framing: From mid-waist upward, centered to highlight her bare waist and the wet drape of fabric.\nLighting: Bright daylight reflecting off rippling water, soft shimmer across her skin.\nExpression: Intensely seductive — lips parted, gaze heavy-lidded with a slow, inviting intensity.\n\nPrompt:\nThe woman emerges from shallow water, a deep crimson sari clinging wet against her body. The fabric wraps low across her hip, plastered against her bare waist and midriff, while the soaked pallu drapes diagonally across her chest, leaving her shoulder exposed. Droplets run down her stomach, catching the sunlight as strands of wet hair stick to her cheek and neck. One hand grips the edge of the sari near her hip, the other brushing back damp hair, her parted lips and smoldering gaze radiating raw, irresistible sensuality against the shimmering water backdrop.\n\nCamera used: iPhone\n\nGraceful at 5’9 with flowing blonde hair, a sculpted 34D-24-35 silhouette, she embodies Nordic elegance with a sensual edge.\n\nCinematic Relighting, Maintain her exact face, exact skin color, exact skin imperfections and exact skin tones exact skin texture. Add details to this face, improve skin details. The body is fully waxed without any body hair\n\n"
+        "2.0 MP (Flux maximum)\n\n1:1 exact 1448 x 1448, rounded 1408 x 1408\n\n3:2 exact 1773 x 1182, rounded 1728 x 1152\n\n4:3 exact 1672 x 1254, rounded 1664 x 1216\n\n16:9 exact 1936 x 1089, rounded 1920 x 1088\n\n21:9 exact 2212 x 948, rounded 2176 x 960\n\n1.0 MP (SDXL recommended)\n\nI ended up with familiar numbers I've used with SDXL, which gives me confidence in the calculations.\n\n1:1 exact 1024 x 1024\n\n3:2 exact 1254 x 836, rounded 1216 x 832\n\n4:3 exact 1182 x 887, rounded 1152 x 896\n\n16:9 exact 1365 x 768, rounded 1344 x 768\n\n21:9 exact 1564 x 670, rounded 1536 x 640\n\n0.1 MP (Flux minimum)\n\nHere the rounding gets tricky when trying to not go too much below or over the supported minimum pixel count while still staying close to correct aspect ratio. I tried to find good compromises.\n\n1:1 exact 323 x 323, rounded 320 x 320\n\n3:2 exact 397 x 264, rounded 384 x 256\n\n4:3 exact 374 x 280, rounded 448 x 320\n\n16:9 exact 432 x 243, rounded 448 x 256\n\n21:9 exact 495 x 212, rounded 576 x 256"
       ],
-      "color": "#232",
-      "bgcolor": "#353"
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 331,
+      "type": "easy int",
+      "pos": [
+        -594.4575805664062,
+        1107.363525390625
+      ],
+      "size": [
+        210,
+        67.80316925048828
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "int",
+          "type": "INT",
+          "links": [
+            702,
+            703
+          ]
+        }
+      ],
+      "title": "Height",
+      "properties": {
+        "cnr_id": "comfyui-easy-use",
+        "ver": "b6bb4a3055adc718ec98befee233f8b05c778465",
+        "Node name for S&R": "easy int",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {}
+        }
+      },
+      "widgets_values": [
+        1344
+      ]
+    },
+    {
+      "id": 332,
+      "type": "easy int",
+      "pos": [
+        -601.9019165039062,
+        977.2891235351562
+      ],
+      "size": [
+        210,
+        67.80316925048828
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "int",
+          "type": "INT",
+          "links": [
+            700,
+            701
+          ]
+        }
+      ],
+      "title": "Width",
+      "properties": {
+        "cnr_id": "comfyui-easy-use",
+        "ver": "b6bb4a3055adc718ec98befee233f8b05c778465",
+        "Node name for S&R": "easy int",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {}
+        }
+      },
+      "widgets_values": [
+        768
+      ]
+    },
+    {
+      "id": 344,
+      "type": "Note",
+      "pos": [
+        145.7259979248047,
+        895.2040405273438
+      ],
+      "size": [
+        261.8863220214844,
+        245.44813537597656
+      ],
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {}
+        }
+      },
+      "widgets_values": [
+        "148756871582322\n\nCamera used: iPhone\n\nGraceful at 5’9 with flowing blonde hair, a sculpted 34C-24-35 silhouette, she embodies Nordic elegance with a sensual edge.\n\nCinematic Relighting, Maintain her exact face, exact skin color, exact skin imperfections and exact skin tones exact skin texture. Add details to this face, improve skin details. The body is fully waxed without any body hair\n"
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
     },
     {
       "id": 333,
@@ -2959,7 +2941,7 @@
         85.6905746459961
       ],
       "flags": {},
-      "order": 32,
+      "order": 33,
       "mode": 0,
       "inputs": [
         {
@@ -2988,8 +2970,54 @@
       },
       "widgets_values": [
         "JD3s_Nudify_Kontext.safetensors",
-        0.8
+        0.75
       ]
+    },
+    {
+      "id": 282,
+      "type": "CLIPTextEncode",
+      "pos": [
+        -1282.0457763671875,
+        435.58831787109375
+      ],
+      "size": [
+        465.20184326171875,
+        326.79345703125
+      ],
+      "flags": {},
+      "order": 28,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 484
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "slot_index": 0,
+          "links": [
+            369
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "CLIPTextEncode",
+        "ue_properties": {
+          "version": "7.0.1",
+          "widget_ue_connectable": {}
+        }
+      },
+      "widgets_values": [
+        "Framing: From upper thighs upward, centered.\nLighting: Cool moonlight mixed with warm candlelight, creating contrast across her skin.\n\nPrompt:\nThe woman reclines on a low velvet chaise in a lavender silk skirt, the slit pulled high to expose the smooth line of her thigh and waist. Her matching bralette shimmers under the light, straps sliding from her shoulders as she arches back slightly. Her hair falls loosely over one side, catching the glow of the candles. With lips parted mid-breath and eyes fixed intently forward, she radiates an intoxicating blend of elegance and raw seduction.\n\nCamera used: iPhone\n\nGraceful at 5’9 with flowing blonde hair, a sculpted 34D-24-35 silhouette, she embodies Nordic elegance with a sensual edge.\n\nCinematic Relighting, Maintain her exact face, exact skin color, exact skin imperfections and exact skin tones exact skin texture. Add details to this face, improve skin details. The body is fully waxed without any body hair\n\n"
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
     }
   ],
   "links": [
@@ -3587,10 +3615,10 @@
   "config": {},
   "extra": {
     "ds": {
-      "scale": 0.4050263428741345,
+      "scale": 0.9730922334133293,
       "offset": [
-        1802.9867618195074,
-        1004.2690917068908
+        1502.3335802305614,
+        -357.8718804589332
       ]
     },
     "frontendVersion": "1.25.11",
@@ -3638,10 +3666,10 @@
       }
     ],
     "links_added_by_ue": [
-      1217,
-      1218,
-      1219,
-      1220
+      1377,
+      1378,
+      1379,
+      1380
     ]
   },
   "version": 0.4
