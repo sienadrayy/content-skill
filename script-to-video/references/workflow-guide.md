@@ -32,15 +32,23 @@ FINAL OUTPUT (in conversation):
    [8-10 image prompts]
    [8-10 video prompts]
 ↓
-AUTO-DELIVERY: SKILL sends to WhatsApp
+AUTO-DELIVERY: SKILL sends to WhatsApp (4 organized messages)
 ↓
-WhatsApp: Message sent to Instagram contact (+447876137368)
-   [Complete i2v prompts + formatting]
+WhatsApp Messages:
+   Message 1: "Image Prompts"
+   Message 2: [All 10 image prompts - single line between each, no labels]
+   Message 3: "Video Prompts"
+   Message 4: [All 10 video prompts - single line between each, no labels]
+↓
+Instagram contact (+447876137368) receives: ✅
+   - Clean, organized message structure
+   - Easy to copy/use with i2v model
+   - No formatting clutter
 ↓
 STATUS: ✅ Ready for i2v model
    - Display in chat
-   - WhatsApp message sent
-   - Team notified on Instagram contact
+   - 4 WhatsApp messages sent
+   - Team has clean prompts ready
 ```
 
 ## Response Types & Handling

@@ -120,9 +120,15 @@ READY FOR i2v MODEL → siena LoRA
 ```
 ✅ Prompts generated
 📱 Sending to Instagram contact on WhatsApp...
-✅ Message sent to +447876137368
 
-[Complete prompts delivered to WhatsApp]
+Message 1: "Image Prompts"
+Message 2: [All 10 image prompts, single line between each]
+Message 3: "Video Prompts"
+Message 4: [All 10 video prompts, single line between each]
+
+✅ Messages sent to +447876137368
+
+[Complete prompts delivered to WhatsApp - clean, organized format]
 ```
 
 ---
