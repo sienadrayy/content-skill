@@ -59,12 +59,35 @@
 
 ---
 
+### script-to-video Skill (2026-02-13)
+- **Location:** C:\Users\mohit\.openclaw\workspace\script-to-video/
+- **Packaged:** script-to-video.skill
+- **GitHub:** https://github.com/sienadrayy/content-skill
+- **Features:**
+  - Orchestrator skill that chains sensual-reels + i2v-prompt-generator
+  - One command generates complete production pipeline
+  - Verification step: script → user approval → i2v prompts
+  - Supports modifications and regenerations
+  - Handles batching (multiple scripts in one session)
+  - Reference: workflow-guide.md (decision trees, time estimates, examples)
+- **Workflow:** Generate → Verify → Convert → Deliver
+- **How to use:** Just ask "Generate complete reel content"
+
+---
+
 ## Production Pipeline
 
+**Option 1: Full Pipeline (Recommended)**
+- Just ask: "Generate complete reel content"
+- script-to-video orchestrator handles everything
+- Get: script + verification + i2v prompts (all in one)
+
+**Option 2: Step-by-Step**
 1. **sensual-reels skill** → 60-sec script + concept
-2. **i2v-prompt-generator skill** → Image + video prompts (8-10 segments)
-3. **i2v AI model** (siena LoRA) → Generate video clips
-4. **Assemble & post** → Final Instagram Reel
+2. Review & modify as needed
+3. **i2v-prompt-generator skill** → Image + video prompts (8-10 segments)
+4. **i2v AI model** (siena LoRA) → Generate video clips
+5. **Assemble & post** → Final Instagram Reel
 
 ---
 
