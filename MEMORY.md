@@ -77,19 +77,41 @@
 
 ---
 
+### instagram-auto-reply Skill (2026-02-13)
+- **Location:** C:\Users\mohit\.openclaw\workspace\instagram-auto-reply/
+- **Packaged:** instagram-auto-reply.skill
+- **GitHub:** https://github.com/sienadrayy/content-skill
+- **Features:**
+  - Auto-monitors latest 3 posts for unreplied comments
+  - Personalized replies based on comment content
+  - Randomized reply vibes: sensual/flirty, grateful/appreciative, playful/teasing
+  - Handles emoji-only comments with personalized text
+  - Filters out spam and negative comments
+  - Hourly automatic + manual trigger option
+  - Engagement report after each run
+  - References: reply-templates.md (vibe examples and personalization)
+- **Workflow:** Monitor → Find unreplied → Craft personalized → Auto-send
+- **How to use:** "Check and reply to comments" (manual) or runs hourly automatically
+
+---
+
 ## Production Pipeline
 
-**Option 1: Full Pipeline (Recommended)**
-- Just ask: "Generate complete reel content"
-- script-to-video orchestrator handles everything
-- Get: script + verification + i2v prompts (all in one)
-
-**Option 2: Step-by-Step**
+**Content Creation:**
 1. **sensual-reels skill** → 60-sec script + concept
-2. Review & modify as needed
+2. Review & approve script
 3. **i2v-prompt-generator skill** → Image + video prompts (8-10 segments)
-4. **i2v AI model** (siena LoRA) → Generate video clips
-5. **Assemble & post** → Final Instagram Reel
+4. Auto-send to WhatsApp (+447876137368)
+5. **i2v AI model** (siena LoRA) → Generate video clips
+6. **Assemble & post** → Final Instagram Reel
+
+**Engagement Automation:**
+- **instagram-auto-reply skill** → Monitor comments → Auto-reply personalized
+  - Runs hourly + manual trigger
+  - Randomized vibes (sensual, grateful, playful)
+  - Handles emoji comments with text
+  - Filters spam/negative
+  - Engagement report included
 
 ---
 
