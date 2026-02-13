@@ -27,13 +27,20 @@ IF YES → SKILL: Calls i2v-prompt-generator
 ↓
 i2v-generator: Creates 8-10 image + video prompts
 ↓
-FINAL OUTPUT:
+FINAL OUTPUT (in conversation):
    [Original script]
    [8-10 image prompts]
    [8-10 video prompts]
-   [Ready for i2v model]
 ↓
-USER: Takes output to i2v model
+AUTO-DELIVERY: SKILL sends to WhatsApp
+↓
+WhatsApp: Message sent to Instagram contact (+447876137368)
+   [Complete i2v prompts + formatting]
+↓
+STATUS: ✅ Ready for i2v model
+   - Display in chat
+   - WhatsApp message sent
+   - Team notified on Instagram contact
 ```
 
 ## Response Types & Handling
@@ -199,11 +206,14 @@ START: "Generate complete reel content"
 | sensual-reels script generation | 30 seconds |
 | User verification | 1-2 minutes |
 | i2v-prompt-generator conversion | 30 seconds |
+| WhatsApp auto-delivery | 5 seconds |
 | **Total** | **2-3 minutes** |
 
 **With modifications:** +1-2 minutes per iteration
 
 **With regenerations:** +30 seconds per regeneration
+
+**WhatsApp delivery:** Automatic, no extra time needed
 
 ---
 
@@ -242,7 +252,9 @@ ACTION: "Generate complete reel content"
    ↓ 1 minute: Script appears
    ↓ 1 minute: You approve
    ↓ 30 sec: i2v prompts generated
+   ↓ Auto: Prompts sent to Instagram on WhatsApp ✅
 RESULT: Ready to brief team/start shooting by 7:05 AM
+        Team already has prompts on WhatsApp!
 ```
 
 ### Weekly Batch

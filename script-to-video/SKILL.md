@@ -116,21 +116,32 @@ Video Prompts
 READY FOR i2v MODEL → siena LoRA
 ```
 
+**Step 3 - Auto-Send to WhatsApp:**
+```
+✅ Prompts generated
+📱 Sending to Instagram contact on WhatsApp...
+✅ Message sent to +447876137368
+
+[Complete prompts delivered to WhatsApp]
+```
+
 ---
 
 ## Workflow Variations
 
-### Option 1: Full Auto (Recommended Daily)
+### Option 1: Full Auto (Recommended Daily) ⭐
 ```
 "Generate complete reel content"
-→ Approve → Get i2v prompts
+→ Approve → Get i2v prompts → Auto-sent to Instagram on WhatsApp
 ```
+**Result:** Complete production package delivered directly to team WhatsApp!
 
 ### Option 2: Script First, Review Later
 ```
 "Generate script only"
 → Review script
 → "Convert this script to i2v prompts"
+→ Auto-sent to Instagram WhatsApp
 ```
 
 ### Option 3: Specific Concept
@@ -139,7 +150,19 @@ READY FOR i2v MODEL → siena LoRA
 → Gets script with your concept
 → Approve or modify
 → Convert to i2v prompts
+→ Auto-sent to Instagram WhatsApp
 ```
+
+## Auto-Delivery to WhatsApp
+
+**After i2v prompts are generated**, the skill automatically:
+- ✅ Formats complete prompts
+- ✅ Sends to Instagram contact on WhatsApp (+447876137368)
+- ✅ Message includes all 10 image + video prompts
+- ✅ Ready for team to use with i2v model
+- ✅ No manual copy/paste needed
+
+**Perfect for:** Team collaboration, remote shoots, quick handoff to production crew
 
 ---
 
