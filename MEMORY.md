@@ -32,22 +32,47 @@
 
 ### sensual-reels Skill (2026-02-13)
 - **Location:** C:\Users\mohit\.openclaw\workspace\sensual-reels/
-- **Packaged:** sensual-reels.skill (C:\Users\mohit\.openclaw\workspace\sensual-reels.skill)
+- **Packaged:** sensual-reels.skill
+- **GitHub:** https://github.com/sienadrayy/content-skill
 - **Features:**
   - Auto-generates complete 60-second timeline scripts (no briefs needed)
   - Creates concept ideas (angles, lighting, styling, poses)
   - Provides multiple script variations
-  - Content focused on sensual/revealing aesthetic
+  - Content focused on sensual/revealing aesthetic (8-9/10 intensity)
   - References: sensual-patterns.md + concepts.md library
 - **Daily use:** Perfect for daily content planning
 - **How to use:** Just ask "Generate a script" or "Script for today"
+
+### i2v-prompt-generator Skill (2026-02-13)
+- **Location:** C:\Users\mohit\.openclaw\workspace\i2v-prompt-generator/
+- **Packaged:** i2v-prompt-generator.skill
+- **GitHub:** https://github.com/sienadrayy/content-skill
+- **Features:**
+  - Takes sensual-reels script output as input
+  - Auto-extracts 8-10 key moments from 60-second script
+  - Generates image prompt for each moment (all details: outfit, pose, lighting, bg, "siena" keyword)
+  - Generates 4-second video motion prompt for each moment
+  - Output ready for i2v AI model with siena LoRA
+  - References: image-prompt-language.md + video-prompt-language.md vocabulary guides
+- **Workflow:** sensual-reels script → i2v prompts → AI video generation
+- **How to use:** Paste sensual-reels script, ask "Generate i2v prompts"
+
+---
+
+## Production Pipeline
+
+1. **sensual-reels skill** → 60-sec script + concept
+2. **i2v-prompt-generator skill** → Image + video prompts (8-10 segments)
+3. **i2v AI model** (siena LoRA) → Generate video clips
+4. **Assemble & post** → Final Instagram Reel
 
 ---
 
 ## Notes
 
-- Bramha wants daily content scripts (uses skill everyday)
+- Bramha wants daily content scripts (uses sensual-reels everyday)
 - Prefers timeline format with exact timestamps
 - No CTAs required in scripts
 - Concept auto-generation (doesn't provide context)
-- Focused on maximum visual impact within Instagram guidelines
+- All i2v prompts include "siena" keyword for LoRA model
+- Each i2v video segment = 4 seconds (15 segments per 60-sec video)
