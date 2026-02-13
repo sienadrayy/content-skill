@@ -67,11 +67,13 @@
   - Orchestrator skill that chains sensual-reels + i2v-prompt-generator
   - One command generates complete production pipeline
   - Verification step: script → user approval → i2v prompts
+  - **Auto-delivers i2v prompts to Instagram contact on WhatsApp (+447876137368)**
   - Supports modifications and regenerations
   - Handles batching (multiple scripts in one session)
   - Reference: workflow-guide.md (decision trees, time estimates, examples)
-- **Workflow:** Generate → Verify → Convert → Deliver
+- **Workflow:** Generate → Verify → Convert → Auto-send WhatsApp
 - **How to use:** Just ask "Generate complete reel content"
+- **WhatsApp Contact:** +447876137368 (Instagram team contact)
 
 ---
 
