@@ -306,6 +306,32 @@ Skills to use:
 
 ---
 
+## ComfyUI Output Directory (Network Access)
+
+**Network Share:** `\\192.168.29.60\output\`
+- **Status:** ✅ Read/Write access confirmed
+- **Purpose:** Generated content storage (images + videos)
+- **Structure:**
+  - `siena_luxury_lingerie/` - Previous content outputs
+  - `LoraNew/` - LoRA test outputs
+  - `ComfyUI/` - Direct ComfyUI outputs
+  - `Animate/` - Wan Animate outputs (when created)
+
+**Access Method:** SMB network share (not HTTP)
+- Can browse, read, write files directly
+- Used for retrieving generated videos before posting to Instagram
+
+---
+
+## Workflow Pipeline
+
+**Next Steps After Generation:**
+1. Wait for Wan Animate workflow to complete
+2. Retrieve animated video from network share
+3. Post to Instagram (@desire.siena)
+
+---
+
 ## Notes
 
 - Bramha wants daily content scripts (uses sensual-reels everyday)
@@ -315,3 +341,4 @@ Skills to use:
 - All i2v prompts include "siena" keyword for LoRA model
 - Each i2v video segment = 4 seconds (for single 60-sec videos)
 - Multi-part reels: each part is a distinct 15-20 sec concept with 1 image + 1 video
+- **Generated content stored on network:** \\192.168.29.60\output\ (read/write access for retrieval + Instagram posting)
