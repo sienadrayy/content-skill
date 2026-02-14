@@ -2,8 +2,45 @@
 comfy-wf/
 openclaw/
 
-# Downloads (temporary)
+# Downloads and temporary videos
 wan-animate-reel/downloads/
+wan-animate-reel/test_download.mp4
+downloads/
+*.mp4
+reel*.mp4
+instagram_reel*.mp4
+
+# Test and debug files (root level only)
+/analyze_workflow.py
+/check_*.py
+/complete_reel_test.py
+/copy_workflow.py
+/create_test_workflow.py
+/debug_*.py
+/enhance_video_prompts.py
+/fetch_remote_workflow.py
+/find_*.py
+/generate_complete_reel.py
+/list_all_nodes.py
+/modify_*.py
+/package_skill.py
+/run_*.py
+/test_*.py
+/update_*.py
+/verify_*.py
+Flux*.json
+Images_workflow*.json
+Reel*.json
+Skyreels*.json
+Video*.json
+Wan*.json
+natural*.json
+siena_test*.json
+siena_valentine*.json
+video_wan*.json
+wanvideo*.json
+image_qwen*.json
+test_workflow*.json
 
 # Python
 __pycache__/
@@ -24,3 +61,5 @@ Thumbs.db
 .env
 *.log
 temp/
+temp_base64.txt
+*.txt
