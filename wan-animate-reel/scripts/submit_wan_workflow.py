@@ -29,34 +29,80 @@ def load_workflow() -> dict:
     except json.JSONDecodeError as e:
         raise Exception(f"Invalid JSON in workflow: {e}")
 
-def submit_workflow(video_path: str) -> str:
+def upload_video_to_comfyui(video_path: str) -> str:
     """
-    Submit workflow to ComfyUI with video path
+    Upload video to ComfyUI server
     
     Args:
         video_path: Path to video file
         
     Returns:
-        Prompt ID from ComfyUI
+        Filename from ComfyUI (as returned by /upload endpoint)
     """
-    # Verify video exists
     if not os.path.exists(video_path):
         raise Exception(f"Video file not found: {video_path}")
     
-    # Convert to absolute path
-    abs_video_path = os.path.abspath(video_path)
+    print(f"📤 Uploading video to ComfyUI...")
+    print(f"   File: {video_path}")
     
+    # Read video file
+    with open(video_path, 'rb') as f:
+        video_data = f.read()
+    
+    # Prepare multipart upload
+    boundary = '----WebKitFormBoundary7MA4YWxkTrZu0gW'
+    body = (
+        f'--{boundary}\r\n'
+        f'Content-Disposition: form-data; name="image"; filename="{os.path.basename(video_path)}"\r\n'
+        f'Content-Type: video/mp4\r\n\r\n'
+    ).encode() + video_data + f'\r\n--{boundary}--\r\n'.encode()
+    
+    req = urllib.request.Request(
+        f"{COMFYUI_SERVER}/upload/image",
+        data=body,
+        headers={
+            "Content-Type": f"multipart/form-data; boundary={boundary}"
+        }
+    )
+    
+    try:
+        with urllib.request.urlopen(req) as response:
+            result = json.loads(response.read().decode('utf-8'))
+            
+            if "name" not in result:
+                raise Exception(f"No filename in upload response: {result}")
+            
+            filename = result["name"]
+            print(f"✅ Upload complete!")
+            print(f"   Filename: {filename}")
+            return filename
+            
+    except urllib.error.URLError as e:
+        raise Exception(f"Failed to upload to ComfyUI: {e}")
+    except json.JSONDecodeError as e:
+        raise Exception(f"Invalid response from ComfyUI: {e}")
+
+def submit_workflow(video_filename: str) -> str:
+    """
+    Submit workflow to ComfyUI with uploaded video filename
+    
+    Args:
+        video_filename: Filename returned from ComfyUI upload
+        
+    Returns:
+        Prompt ID from ComfyUI
+    """
     print(f"📤 Loading Wan Animate workflow...")
     workflow = load_workflow()
     
-    # Modify Node 218 (VHS_LoadVideo) with video path
-    # Node 218 input: "video" field
+    # Modify Node 218 (VHS_LoadVideo) with uploaded video filename
+    # Node 218 input: "video" field (now expects filename, not path)
     if "218" not in workflow:
         raise Exception("Node 218 not found in workflow")
     
-    workflow["218"]["inputs"]["video"] = abs_video_path
+    workflow["218"]["inputs"]["video"] = video_filename
     
-    print(f"🎬 Setting video path: {abs_video_path}")
+    print(f"🎬 Setting video filename: {video_filename}")
     
     # Check ComfyUI server availability
     print(f"🔌 Connecting to ComfyUI at {COMFYUI_SERVER}...")
@@ -137,16 +183,29 @@ def wait_for_completion(prompt_id: str, timeout: int = 3600) -> dict:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Submit Wan Animate workflow")
-    parser.add_argument("--video", required=True, help="Path to video file")
+    parser.add_argument("--video", required=True, help="Path to video file (will be uploaded)")
     parser.add_argument("--wait", action="store_true", help="Wait for completion")
     parser.add_argument("--timeout", type=int, default=3600, help="Timeout in seconds")
     
     args = parser.parse_args()
     
     try:
-        prompt_id = submit_workflow(args.video)
+        # Step 1: Upload video
+        print(f"\n{'='*60}")
+        print(f"STEP 1: Upload Video to ComfyUI")
+        print(f"{'='*60}")
+        video_filename = upload_video_to_comfyui(args.video)
+        
+        # Step 2: Submit workflow with uploaded filename
+        print(f"\n{'='*60}")
+        print(f"STEP 2: Submit Workflow")
+        print(f"{'='*60}")
+        prompt_id = submit_workflow(video_filename)
         
         if args.wait:
+            print(f"\n{'='*60}")
+            print(f"STEP 3: Wait for Completion")
+            print(f"{'='*60}")
             result = wait_for_completion(prompt_id, args.timeout)
             print(f"\n🎉 Output ready in ComfyUI!")
         else:

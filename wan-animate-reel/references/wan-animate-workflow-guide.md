@@ -9,15 +9,42 @@ This workflow takes a video input and uses Wan Video (version 2.2) to re-animate
 
 ---
 
+## Pre-Submission: Video Upload
+
+Before the workflow runs, videos must be uploaded to ComfyUI:
+
+**Request:**
+```
+POST http://192.168.29.60:8188/upload/image
+Content-Type: multipart/form-data
+
+[Binary video data]
+```
+
+**Response:**
+```json
+{
+  "name": "siena_120260214_155631_mp4",
+  "subfolder": "uploads",
+  "type": "upload"
+}
+```
+
+The returned `"name"` is used for Node 218's video field.
+
+---
+
 ## Processing Pipeline
 
-### 1. Video Loading (Node 218)
-**Type:** VHS_LoadVideo  
-**Input:** Video file path (modified at runtime)  
+### 1. Video Upload & Loading (Node 218)
+**Type:** VHS_LoadVideo (Upload type)
+**Input:** Video filename (from ComfyUI upload endpoint)  
 **Output:** Video frames
 
 ```
-Video file → Load → Extract frames (0 fps = source rate by default)
+1. Local video file → Upload to ComfyUI /upload/image endpoint
+2. Get returned filename → Modify Node 218 video field
+3. ComfyUI loads video → Extract frames (0 fps = source rate)
 ```
 
 ### 2. Frame Extraction & Interrogation (Nodes 217, 197)
@@ -201,19 +228,30 @@ named siena without any makeup
 
 ## Runtime Modification
 
-**Only Node 218 is modified at runtime:**
+**Workflow Input Processing:**
+
+1. **Local Download:** Instagram Reel → `./downloads/reel_YYYYMMDD_HHMMSS.mp4`
+2. **Upload to ComfyUI:** POST to `/upload/image` → Returns JSON with `"name"` field
+3. **Modify Node 218:** Use returned filename
+
+**Node 218 Runtime Modification:**
 
 ```json
 "218": {
   "inputs": {
-    "video": "<VIDEO_PATH_HERE>",
+    "video": "<FILENAME_FROM_UPLOAD>",
     "force_rate": 0,
     "custom_width": 0,
     "custom_height": 0,
     "format": "AnimateDiff"
-  }
+  },
+  "class_type": "VHS_LoadVideo"
 }
 ```
+
+**Example:**
+- Upload returns: `{ "name": "siena_120260214_155631_mp4" }`
+- Node 218 video field set to: `"siena_120260214_155631_mp4"`
 
 All other nodes remain locked with their pre-configured values.
 

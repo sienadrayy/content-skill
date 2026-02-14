@@ -26,10 +26,12 @@ python run_wan_animate_reel.py --url "https://www.instagram.com/reel/ABC123def45
 - `--url` (required): Full Instagram Reel URL
 
 **What happens:**
-1. Downloads Reel video to `./downloads/`
-2. Extracts first frame and interrogates character
-3. Generates new animated video with motion transfer
-4. Outputs to ComfyUI's output directory
+1. Downloads Reel video to `./downloads/` locally
+2. Uploads video to ComfyUI server via `/upload/image` endpoint
+3. Submits Wan Animate workflow with uploaded video filename
+4. Extracts first frame and interrogates character
+5. Generates new animated video with motion transfer
+6. Outputs to ComfyUI's output directory
 
 **Output:**
 - Video saved to ComfyUI output folder (path shown after completion)
