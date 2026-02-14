@@ -98,13 +98,16 @@
 - **Workflow:** Monitor → Find unreplied → Craft personalized → Auto-send
 - **How to use:** "Check and reply to comments" (manual) or runs hourly automatically
 
-### wan-animate-reel Skill (2026-02-14)
+### wan-animate-reel Skill (2026-02-14) ✅ TESTED & WORKING
 - **Location:** C:\Users\mohit\.openclaw\workspace\wan-animate-reel/
 - **Packaged:** wan-animate-reel.skill
 - **Invocation:** `/wan <instagram_reel_url>` (standalone command)
 - **Server:** http://192.168.29.60:8188 (Wan Video 2.2 animation)
+- **Status:** ✅ Download, Upload, Submit, Animate all working
 - **Features:**
   - Downloads Instagram Reels using yt-dlp
+  - Uploads to ComfyUI /upload/image endpoint
+  - Submits Wan Animate V3 API workflow
   - Extracts character via interrogation
   - Detects pose and face from video
   - Animates character with Wan Video 2.2 (pose-preserving)
@@ -113,17 +116,19 @@
   - Standalone skill (no mixing with other skills)
 - **Scripts:**
   - `download_instagram_reel.py` - yt-dlp Instagram downloader
-  - `submit_wan_workflow.py` - ComfyUI workflow submission
+  - `submit_wan_workflow.py` - ComfyUI upload + workflow submission
   - `run_wan_animate_reel.py` - Main orchestrator
-- **Workflow:**
+- **Complete Workflow:**
   1. Download Reel → Local video file
-  2. Load into Wan Animate workflow
-  3. Extract frame + interrogate character
-  4. Detect pose/face
-  5. Generate animation with motion transfer
-  6. Interpolate frames for smoothness
-  7. Export MP4
-- **How to use:** `python run_wan_animate_reel.py --url "https://www.instagram.com/reel/ABC123/"` OR simply: `/wan <url>`
+  2. Upload to ComfyUI → Get filename
+  3. Submit Wan Animate workflow with filename
+  4. Extract frame + interrogate character
+  5. Detect pose/face
+  6. Generate animation with motion transfer
+  7. Interpolate frames for smoothness
+  8. Export MP4 to ComfyUI output folder
+- **How to use:** `python run_wan_animate_reel.py --url "https://www.instagram.com/reel/ABC123/"` OR: `/wan <url>`
+- **Output:** Video saved to ComfyUI output directory (typically `Animate/` subfolder)
 
 ---
 
