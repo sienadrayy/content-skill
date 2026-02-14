@@ -1,0 +1,56 @@
+{
+  "name": "wan-animate-reel",
+  "version": "1.0.0",
+  "description": "Download Instagram Reels and animate with Wan Video character motion transfer",
+  "author": "Bramha",
+  "license": "MIT",
+  "created": "2026-02-14",
+  "tags": ["video", "instagram", "animation", "wan", "comfyui", "character"],
+  "entry_points": {
+    "main": "scripts/run_wan_animate_reel.py"
+  },
+  "commands": {
+    "wan <url>": {
+      "description": "Download Instagram Reel and animate with Wan Video",
+      "usage": "wan https://www.instagram.com/reel/ABC123/",
+      "handler": "scripts/run_wan_animate_reel.py",
+      "args": {
+        "url": {
+          "required": true,
+          "type": "string",
+          "description": "Instagram Reel URL"
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "yt-dlp": "^2024.0.0",
+    "python": "^3.7"
+  },
+  "config": {
+    "comfyui_server": "http://192.168.29.60:8188",
+    "workflow_path": "C:\\Users\\mohit\\.openclaw\\workspace\\comfy-wf\\openclaw\\Wan Animate character replacement V3 API.json",
+    "downloads_dir": "./downloads"
+  },
+  "features": [
+    "Instagram Reel downloader (yt-dlp)",
+    "Pose and face detection",
+    "Character interrogation",
+    "Wan Video 2.2 animation",
+    "Frame interpolation (RIFE)",
+    "H.264 MP4 export"
+  ],
+  "installation": [
+    "pip install yt-dlp"
+  ],
+  "usage_examples": [
+    {
+      "command": "python run_wan_animate_reel.py --url 'https://www.instagram.com/reel/ABC123def456/'",
+      "description": "Download a Reel and animate it"
+    }
+  ],
+  "documentation": "SKILL.md",
+  "references": [
+    "references/wan-animate-workflow-guide.md"
+  ]
+}

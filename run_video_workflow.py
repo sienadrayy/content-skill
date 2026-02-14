@@ -14,7 +14,7 @@ SERVER_URL = "http://192.168.29.60:8188"
 
 def load_workflow():
     """Load the workflow from file"""
-    with open("openclaw/Videos_workflow.json", "r", encoding="utf-8") as f:
+    with open("comfy-wf/openclaw/Videos_workflow.json", "r", encoding="utf-8") as f:
         return json.load(f)
 
 def modify_workflow(workflow, name, video_prompts):

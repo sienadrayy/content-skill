@@ -156,11 +156,14 @@ Output saved with Node 500 (Name) prefix
 
 ## File Locations
 
-- Workflows: `C:\Users\mohit\.openclaw\workspace\openclaw/`
+- Workflows: `C:\Users\mohit\.openclaw\workspace\comfy-wf\openclaw/`
+  - `Images_workflow.json` - Image generation workflow
+  - `Videos_workflow.json` - Video generation workflow
 - Scripts: `C:\Users\mohit\.openclaw\workspace/`
   - `run_image_workflow.py` - Image generation
   - `run_video_workflow.py` - Video generation
   - `run_dual_workflow.py` - Orchestrator (recommended)
+  - `generate_complete_reel.py` - Master orchestrator with verification
 - Git repo: `C:\Users\mohit\.openclaw\workspace\comfy-wf/` (read-only)
 - Server: `http://192.168.29.60:8188`
 

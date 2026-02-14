@@ -19,12 +19,11 @@ Every time you ask for a script, you get:
 
 ## Quick Start
 
-**Just ask:** "Generate a script" or "Script for today"
+**Just ask:** "Generate a script" or "Script for today" or "3 part shower" 
 
-You'll receive:
-
+### Single Script
 ```
-TIMELINE SCRIPT
+TIMELINE SCRIPT (60 seconds)
 [0-2s] Hook description
 [2-15s] Build phase
 [15-45s] Main moment
@@ -37,6 +36,43 @@ CONCEPT
 - Lighting: [mood and setup]
 - Poses: [key moments and movements]
 - Vibe: [overall energy]
+```
+
+### Multi-Part Scripts (e.g., "3 parts")
+When you say "3 parts", you get **3 SEPARATE scripts** (each 15-20 sec for distinct image/video)
+
+**CRITICAL:** "3 parts" = 3 INDEPENDENT scripts, not 1 script divided into 3 sections.
+- Each part is a distinct concept/moment
+- Each part generates 1 image + 1 video (4 seconds)
+- Each part should be visually different but thematically connected
+
+```
+PART 1 SCRIPT (15-20 sec)
+[0-3s] Hook
+[3-15s] Build
+[15-20s] Peak moment
+Concept: [distinct moment 1]
+Styling/Angle/Lighting: [specific to part 1]
+
+PART 2 SCRIPT (15-20 sec)
+[0-3s] Hook
+[3-15s] Build
+[15-20s] Peak moment
+Concept: [distinct moment 2]
+Styling/Angle/Lighting: [specific to part 2]
+
+PART 3 SCRIPT (15-20 sec)
+[0-3s] Hook
+[3-15s] Build
+[15-20s] Peak moment
+Concept: [distinct moment 3]
+Styling/Angle/Lighting: [specific to part 3]
+
+OUTPUT:
+- 3 separate image prompts (one per part)
+- 3 separate video prompts (one per part)
+- 3 images total
+- 3 videos total (4 sec each)
 ```
 
 ## Sensual Content Standards

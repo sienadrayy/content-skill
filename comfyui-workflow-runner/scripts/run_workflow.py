@@ -28,7 +28,7 @@ class ComfyUIRunner:
         if not path.exists():
             raise FileNotFoundError(f"Workflow file not found: {workflow_path}")
         
-        with open(path, 'r') as f:
+        with open(path, 'r', encoding='utf-8') as f:
             return json.load(f)
     
     def _convert_workflow_format(self, workflow: Dict[str, Any]) -> Dict[str, Any]:

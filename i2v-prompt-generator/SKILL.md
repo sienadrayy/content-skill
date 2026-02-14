@@ -1,6 +1,8 @@
 ---
 name: i2v-prompt-generator
 description: Convert sensual-reels scripts into image-to-video (i2v) model prompts. Automatically extracts 8-10 key moments from a 60-second timeline script, generates detailed image prompts with outfit, pose, lighting, expression and background details (including "siena" keyword), and corresponding 4-second video motion prompts. Output format optimized for i2v AI generation with LoRA model. Use when: (1) Converting sensual-reels script to i2v prompts, (2) Generating image+video prompt pairs for AI video generation, (3) Creating structured prompts for multi-clip sensual video content.
+
+**⚠️ CRITICAL:** See `references/prompt-output-format.md` for EXACT output format before showing prompts to user. NO tags, NO headers, NO blank lines between prompts.
 ---
 
 # i2v Prompt Generator 🎬
