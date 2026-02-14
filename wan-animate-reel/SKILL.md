@@ -1,18 +1,24 @@
 # Wan Animate Reel Skill
 
-Download Instagram Reels and animate them with Wan Video character motion transfer.
+**Download Instagram Reels and animate them with Wan Video character motion transfer.**
+
+Complete workflow: Instagram URL → Download → Upload to ComfyUI → Animate → Output video
 
 ## Setup
 
-1. **Ensure ComfyUI server is running** at `http://192.168.29.60:8188`
+1. **ComfyUI server must be running** at `http://192.168.29.60:8188`
+   - Ensure Wan Video 2.2 models are loaded
+   - Server must be accessible from this machine
 
-2. **Install dependencies** (yt-dlp for Instagram downloads):
+2. **Install dependencies** (if not already installed):
    ```bash
    pip install yt-dlp
    ```
 
-3. **ComfyUI must have Wan Video models loaded**
-   - Workflow references: `C:\Users\mohit\.openclaw\workspace\comfy-wf\openclaw\Wan Animate character replacement V3 API.json`
+3. **Workflow file** (read-only reference):
+   ```
+   C:\Users\mohit\.openclaw\workspace\comfy-wf\openclaw\Wan Animate character replacement V3 API.json
+   ```
 
 ## Usage
 
@@ -25,16 +31,38 @@ python run_wan_animate_reel.py --url "https://www.instagram.com/reel/ABC123def45
 **Parameters:**
 - `--url` (required): Full Instagram Reel URL
 
-**What happens:**
-1. Downloads Reel video to `./downloads/` locally
-2. Uploads video to ComfyUI server via `/upload/image` endpoint
-3. Submits Wan Animate workflow with uploaded video filename
-4. Extracts first frame and interrogates character
-5. Generates new animated video with motion transfer
-6. Outputs to ComfyUI's output directory
+**Execution Steps:**
 
-**Output:**
-- Video saved to ComfyUI output folder (path shown after completion)
+```
+1. DOWNLOAD
+   └─ Instagram Reel → Local MP4 file (./downloads/)
+
+2. UPLOAD
+   └─ Local MP4 → ComfyUI /upload/image endpoint
+   └─ Returns: Filename for workflow
+
+3. SUBMIT
+   └─ Workflow + uploaded filename → ComfyUI /prompt endpoint
+   └─ Returns: Prompt ID for tracking
+
+4. ANIMATE (ComfyUI processes)
+   └─ Load video → Extract frame
+   └─ Interrogate character
+   └─ Detect pose + face
+   └─ Generate animation with motion transfer
+   └─ Interpolate frames (RIFE 2x smoothness)
+   └─ Export MP4
+
+5. OUTPUT
+   └─ Animated video saved to ComfyUI output directory
+```
+
+**Output Location:**
+- Video saved to: `D:\ComfyUI_windows_portable\ComfyUI\output\Animate\` (or configured output dir)
+- Filename: Based on workflow settings (Node 118 prefix)
+
+**Monitoring:**
+- ComfyUI UI: `http://192.168.29.60:8188` (watch real-time progress)
 
 ---
 
@@ -43,12 +71,12 @@ python run_wan_animate_reel.py --url "https://www.instagram.com/reel/ABC123def45
 ### Wan Animate Character Replacement V3 API
 
 **Input:**
-- Base video file (extracted from Instagram Reel)
+- Video filename (uploaded to ComfyUI via /upload/image endpoint)
 
 **Processing Pipeline:**
 
 ```
-Load Video (Node 194)
+Load Video (Node 218)
     ↓
 Extract First Frame (Node 217)
     ├─ Resize to 544x960 (Node 123)
@@ -100,17 +128,27 @@ Video Export (Node 118)
 ## Workflow Flow
 
 **What gets modified at runtime:**
-- **Node 194** → Input video path (from Instagram download)
+- **Node 218** → Video filename (from ComfyUI upload response)
 
 **Everything else:** Pre-configured and locked (Siena character, motion transfer, output settings)
+
+**Runtime Sequence:**
+1. Local video file downloaded
+2. Uploaded to ComfyUI `/upload/image` endpoint
+3. Returned filename inserted into Node 218
+4. Workflow submitted to ComfyUI
+5. ComfyUI processes entire animation pipeline
+6. Output saved to configured directory
 
 ## Status
 
 - ✅ Instagram Reel downloader (yt-dlp)
-- ✅ ComfyUI workflow submission
+- ✅ ComfyUI video upload handler (/upload/image)
+- ✅ Dynamic workflow node modification
+- ✅ Workflow submission & execution
 - ✅ Motion transfer + character animation
 - ✅ Frame interpolation for smoothness
-- ⏳ Real-time progress polling (future enhancement)
+- ✅ Real-time monitoring via ComfyUI UI
 
 ## File Locations
 

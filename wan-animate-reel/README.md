@@ -2,6 +2,8 @@
 
 **Standalone skill for downloading Instagram Reels and animating them with Wan Video character motion transfer.**
 
+✅ **TESTED & WORKING** (2026-02-14)
+
 ## Quick Start
 
 ```bash
@@ -19,11 +21,13 @@ Or use the `/wan` command:
 ## What It Does
 
 1. **Download** Instagram Reel (via yt-dlp) → MP4 file
-2. **Analyze** first frame → Extract character description
-3. **Detect** pose and face from video → Motion skeleton
-4. **Animate** using Wan Video 2.2 → Preserve character pose/motion
-5. **Smooth** with RIFE frame interpolation → 2x frames
-6. **Export** as H.264 MP4 → ComfyUI output folder
+2. **Upload** to ComfyUI server → Get filename reference
+3. **Submit** Wan Animate workflow with uploaded video
+4. **Interrogate** character from first frame
+5. **Detect** pose and face from video → Motion skeleton
+6. **Animate** using Wan Video 2.2 → Preserve character pose/motion
+7. **Smooth** with RIFE frame interpolation → 2x frames
+8. **Export** as H.264 MP4 → ComfyUI output folder
 
 ---
 
@@ -52,10 +56,10 @@ wan-animate-reel/
 python scripts/run_wan_animate_reel.py --url "<instagram_url>"
 ```
 
-Chains together:
-1. Download step
-2. Workflow submission step
-3. Completion reporting
+Orchestrates the complete workflow:
+1. Download Instagram Reel
+2. Call upload + submission handler
+3. Report completion
 
 ### `download_instagram_reel.py`
 ```bash
@@ -69,7 +73,12 @@ Uses yt-dlp to download Reel → Saves MP4 locally
 python scripts/submit_wan_workflow.py --video "downloads/reel_20260214_154000.mp4" --wait
 ```
 
-Modifies Node 194 with video path → Submits to ComfyUI → Waits for completion
+Complete workflow:
+1. **Upload** video to ComfyUI `/upload/image` endpoint
+2. **Extract** filename from response
+3. **Modify** Node 218 with uploaded filename
+4. **Submit** workflow to ComfyUI `/prompt` endpoint
+5. **Wait** for completion (with `--wait` flag)
 
 ---
 
@@ -114,47 +123,64 @@ Full breakdown in: `references/wan-animate-workflow-guide.md`
 ## Example Run
 
 ```bash
-C:\Users\mohit\.openclaw\workspace\wan-animate-reel> python scripts/run_wan_animate_reel.py --url "https://www.instagram.com/reel/ABC123def456/"
+C:\Users\mohit\.openclaw\workspace\wan-animate-reel> python scripts/run_wan_animate_reel.py --url "https://www.instagram.com/reel/DUqZ9pMjHzI/?igsh=YmE3M3A5dTFmM2w0"
 
 ============================================================
 🎬 WAN ANIMATE REEL ORCHESTRATOR
 ============================================================
-URL: https://www.instagram.com/reel/ABC123def456/
+URL: https://www.instagram.com/reel/DUqZ9pMjHzI/?igsh=YmE3M3A5dTFmM2w0
 
 📥 STEP 1: Download Instagram Reel
 ============================================================
 📥 Downloading Instagram Reel...
-   URL: https://www.instagram.com/reel/ABC123def456/
-   Output: downloads/reel_20260214_154000.mp4
+   URL: https://www.instagram.com/reel/DUqZ9pMjHzI/?igsh=YmE3M3A5dTFmM2w0
+   Output: downloads\reel_20260214_160235.mp4
 ✅ Download complete!
-   File: downloads/reel_20260214_154000.mp4
-   Size: 45.23 MB
-✅ Downloaded: downloads/reel_20260214_154000.mp4
+   File: downloads\reel_20260214_160235.mp4
+   Size: 1.81 MB
+✅ Downloaded: downloads\reel_20260214_160235.mp4
 
 🎨 STEP 2: Submit to Wan Animate Workflow
 ============================================================
+
+============================================================
+STEP 1: Upload Video to ComfyUI
+============================================================
+📤 Uploading video to ComfyUI...
+   File: downloads\reel_20260214_160235.mp4
+✅ Upload complete!
+   Filename: siena_DUqZ9pMjHzI_mp4
+
+============================================================
+STEP 2: Submit Workflow
+============================================================
 📤 Loading Wan Animate workflow...
-🎬 Setting video path: C:\Users\mohit\.openclaw\workspace\wan-animate-reel\downloads\reel_20260214_154000.mp4
+🎬 Setting video filename: siena_DUqZ9pMjHzI_mp4
 🔌 Connecting to ComfyUI at http://192.168.29.60:8188...
 ✅ ComfyUI server ready
 📤 Submitting workflow to ComfyUI...
 ✅ Workflow submitted!
-   Prompt ID: abc-def-123-456
+   Prompt ID: 8a7f3c2e-9d1b-4f6a-b2e5-1c9d3f7e4b2a
 
+============================================================
+STEP 3: Wait for Completion
+============================================================
 ⏳ Waiting for workflow completion (timeout: 3600s)...
 📊 Monitor progress at: http://192.168.29.60:8188
-   Running... (system: 85.3% CPU)
+   Running... (system: 87.2% CPU)
+   ...
+   [ComfyUI processes animation pipeline]
    ...
 ✅ Workflow completed!
 
 ============================================================
 🎉 COMPLETE!
 ============================================================
-📹 Video file: downloads/reel_20260214_154000.mp4
+📹 Video file: downloads\reel_20260214_160235.mp4
 🎬 Workflow: Wan Animate Character Replacement V3 API
 📊 Monitor: http://192.168.29.60:8188
 
-💡 Output video will be in ComfyUI output folder
+💡 Output video is in: D:\ComfyUI_windows_portable\ComfyUI\output\Animate\
 ```
 
 ---
