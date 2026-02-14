@@ -59,21 +59,26 @@
 
 ---
 
-### script-to-video Skill (2026-02-13)
-- **Location:** C:\Users\mohit\.openclaw\workspace\script-to-video/
-- **Packaged:** script-to-video.skill
-- **GitHub:** https://github.com/sienadrayy/content-skill
+### comfyui-workflow-runner Skill (2026-02-14)
+- **Location:** C:\Users\mohit\.openclaw\workspace\comfyui-workflow-runner/
+- **Packaged:** comfyui-workflow-runner.skill
+- **Server:** http://192.168.29.60:8188 (Qwen + Wan video generation)
 - **Features:**
-  - Orchestrator skill that chains sensual-reels + i2v-prompt-generator
-  - One command generates complete production pipeline
-  - Verification step: script → user approval → i2v prompts
-  - **Auto-delivers i2v prompts to Instagram contact on WhatsApp (+447876137368)**
-  - Supports modifications and regenerations
-  - Handles batching (multiple scripts in one session)
-  - Reference: workflow-guide.md (decision trees, time estimates, examples)
-- **Workflow:** Generate → Verify → Convert → Auto-send WhatsApp
-- **How to use:** Just ask "Generate complete reel content"
-- **WhatsApp Contact:** +447876137368 (Instagram team contact)
+  - Run Images workflow: Generate sensual images from prompts
+  - Run Videos workflow: Convert images to smooth videos
+  - Dual-run orchestration: Submit both workflows with 5-sec gap
+  - Modifiable nodes: 443 (image prompts), 436 (video prompts), 500 (name/prefix)
+  - Separate scripts for independent or combined execution
+  - Python stdlib only (no external dependencies)
+- **Scripts:**
+  - `run_image_workflow.py` - Images only
+  - `run_video_workflow.py` - Videos only
+  - `run_dual_workflow.py` - Complete pipeline (recommended)
+- **Workflow:**
+  1. Images: Node 443 (prompts) + Node 500 (name) → submit → generate
+  2. [5 sec wait]
+  3. Videos: Node 436 (prompts) + Node 500 (name) → submit → convert
+- **How to use:** `python run_dual_workflow.py --name "test" --image-prompts "Siena..." --video-prompts "Direct eye contact..."`
 
 ---
 
@@ -97,13 +102,29 @@
 
 ## Production Pipeline
 
-**Content Creation:**
-1. **sensual-reels skill** → 60-sec script + concept
-2. Review & approve script
-3. **i2v-prompt-generator skill** → Image + video prompts (8-10 segments)
-4. Auto-send to WhatsApp (+447876137368)
-5. **i2v AI model** (siena LoRA) → Generate video clips
-6. **Assemble & post** → Final Instagram Reel
+**Complete Reel Generation (NEW - replaces WhatsApp send):**
+
+```
+generate_complete_reel.py (Master Orchestrator)
+    ↓
+1. sensual-reels skill → Generate 60-sec timeline script
+    ↓
+2. i2v-prompt-generator skill → Extract image + video prompts (8-10 segments)
+    ↓
+3. comfyui-workflow-runner skill → Generate images + videos
+    ├─ Run Images workflow (5 min)
+    ├─ [5 sec gap]
+    └─ Run Videos workflow (10+ min)
+    ↓
+Output: ComfyUI/output/{name}/[Images/ + Videos/]
+    ↓
+Download & Post to Instagram @desire.siena
+```
+
+**How to use (one command):**
+```bash
+python generate_complete_reel.py --concept "rain" --name "siena_rain_reel"
+```
 
 **Engagement Automation:**
 - **instagram-auto-reply skill** → Monitor comments → Auto-reply personalized
