@@ -164,13 +164,20 @@ Output saved with Node 500 (Name) prefix
 - Git repo: `C:\Users\mohit\.openclaw\workspace\comfy-wf/` (read-only)
 - Server: `http://192.168.29.60:8188`
 
-## Master Orchestrator
+## Master Orchestrator with Verification ⭐ CRITICAL WORKFLOW
 
-**New in production:** `generate_complete_reel.py` chains everything together:
+**New in production:** `generate_complete_reel.py` chains everything together WITH USER VERIFICATION:
 
 ```
-Script Generation → I2V Prompt Extraction → ComfyUI Workflows
-(sensual-reels)    (i2v-prompt-generator)   (comfyui-runner)
+Script Generation 
+    ↓
+[USER VERIFICATION] ← Script shown, waiting for approval/changes
+    ↓
+I2V Prompt Extraction
+    ↓
+[USER VERIFICATION] ← Image + Video prompts shown, waiting for approval/changes
+    ↓
+ComfyUI Dual Workflows (only after approval)
 ```
 
 **Single Command for Complete Reel:**
@@ -181,15 +188,83 @@ python generate_complete_reel.py --concept "rain" --name "siena_rain_reel"
 **Parameters:**
 - `--concept` (optional): Content concept for script (default: "rain")
 - `--name` (optional): Output directory name (default: "siena_reel")
-- `--image-prompts` (optional): Override image prompts (skip generator)
-- `--video-prompts` (optional): Override video prompts (skip generator)
+- `--image-prompts` (optional): Skip verification, use provided prompts
+- `--video-prompts` (optional): Skip verification, use provided prompts
 
-**What it does:**
-1. Calls sensual-reels skill → Generates 60-sec timeline script
-2. Calls i2v-prompt-generator → Extracts image + video prompts from script
-3. Submits to ComfyUI dual workflows (replaces old WhatsApp send)
-4. Images generated first, videos follow with 5-sec gap
-5. Outputs ready in ComfyUI/output/{name}/
+**Workflow (WITH VERIFICATION):**
+
+1. **STEP 1: Script Generation**
+   - Calls sensual-reels skill → Generates 60-sec timeline script
+   - Shows script to user
+   - User reviews and confirms (Y/N, or provides feedback)
+   - If changes needed: Return to sensual-reels or accept edited version
+
+2. **STEP 2: Script Verification Checkpoint**
+   - Script displayed in full
+   - User must approve before proceeding
+   - User can request modifications or regeneration
+   - Only on approval: continue to Step 3
+
+3. **STEP 3: Prompt Extraction**
+   - Calls i2v-prompt-generator → Extracts image + video prompts from script
+   - Creates detailed image prompts (3-10 segments based on script)
+   - Creates detailed video prompts (motion-heavy, no cross-refs, standalone)
+
+4. **STEP 4: Prompt Verification Checkpoint**
+   - All image prompts displayed in full
+   - All video prompts displayed in full
+   - User must approve before submitting
+   - User can request modifications:
+     - More motion detail
+     - Different lighting specs
+     - Pose adjustments
+     - Standalone vs cross-ref fixes
+   - Only on approval: continue to Step 5
+
+5. **STEP 5: ComfyUI Submission**
+   - Submits to ComfyUI dual workflows (replaces old WhatsApp send)
+   - Images workflow submitted first
+   - 5-second gap
+   - Videos workflow submitted second
+   - Both run in parallel
+   - Outputs ready in ComfyUI/output/{name}/
+
+**Verification Checkpoint Format:**
+
+```
+====================================================================
+SCRIPT VERIFICATION CHECKPOINT
+====================================================================
+[FULL SCRIPT DISPLAYED HERE]
+
+APPROVE? (yes/no/modify)
+```
+
+```
+====================================================================
+PROMPT VERIFICATION CHECKPOINT
+====================================================================
+
+IMAGE PROMPTS (total: 3):
+[Image 1 full prompt]
+[Image 2 full prompt]
+[Image 3 full prompt]
+
+VIDEO PROMPTS (total: 3):
+[Video 1 full prompt]
+[Video 2 full prompt]
+[Video 3 full prompt]
+
+APPROVE? (yes/no/modify)
+```
+
+**CRITICAL RULES:**
+- ❌ Never submit to ComfyUI without user verification
+- ❌ Never skip script review checkpoint
+- ❌ Never skip prompt review checkpoint
+- ✅ Always show full scripts/prompts before proceeding
+- ✅ Always wait for explicit user approval
+- ✅ Always allow modifications before submission
 
 ---
 
