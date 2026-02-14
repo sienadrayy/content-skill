@@ -10,6 +10,10 @@ import argparse
 import subprocess
 from pathlib import Path
 
+# Fix Unicode encoding on Windows
+if sys.platform == 'win32':
+    sys.stdout.reconfigure(encoding='utf-8')
+
 SCRIPT_DIR = Path(__file__).parent
 DOWNLOADS_DIR = SCRIPT_DIR.parent / "downloads"
 

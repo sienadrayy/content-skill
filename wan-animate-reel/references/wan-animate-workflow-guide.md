@@ -11,13 +11,13 @@ This workflow takes a video input and uses Wan Video (version 2.2) to re-animate
 
 ## Processing Pipeline
 
-### 1. Video Loading (Node 194)
-**Type:** VHS_LoadVideoPath  
+### 1. Video Loading (Node 218)
+**Type:** VHS_LoadVideo  
 **Input:** Video file path (modified at runtime)  
 **Output:** Video frames
 
 ```
-Video file → Load → Extract frames (16 fps by default)
+Video file → Load → Extract frames (0 fps = source rate by default)
 ```
 
 ### 2. Frame Extraction & Interrogation (Nodes 217, 197)
@@ -201,13 +201,15 @@ named siena without any makeup
 
 ## Runtime Modification
 
-**Only Node 194 is modified at runtime:**
+**Only Node 218 is modified at runtime:**
 
 ```json
-"194": {
+"218": {
   "inputs": {
     "video": "<VIDEO_PATH_HERE>",
-    "force_rate": 16,
+    "force_rate": 0,
+    "custom_width": 0,
+    "custom_height": 0,
     "format": "AnimateDiff"
   }
 }

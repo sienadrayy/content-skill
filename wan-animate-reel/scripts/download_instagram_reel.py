@@ -10,6 +10,10 @@ import argparse
 from pathlib import Path
 from datetime import datetime
 
+# Fix Unicode encoding on Windows
+if sys.platform == 'win32':
+    sys.stdout.reconfigure(encoding='utf-8')
+
 def download_instagram_reel(url: str, output_dir: str = "downloads") -> str:
     """
     Download Instagram Reel using yt-dlp

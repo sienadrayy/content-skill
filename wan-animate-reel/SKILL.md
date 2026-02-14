@@ -82,7 +82,7 @@ Video Export (Node 118)
 
 | Node ID | Type | Purpose |
 |---------|------|---------|
-| **194** | VHS_LoadVideoPath | Input video path (runtime modified) |
+| **218** | VHS_LoadVideo | Input video path (runtime modified) |
 | 217 | ImageFromBatch | Extract first frame |
 | 123 | ImageResizeKJv2 | Resize to 544x960 |
 | 148 | PoseAndFaceDetection | Detect body/face pose |

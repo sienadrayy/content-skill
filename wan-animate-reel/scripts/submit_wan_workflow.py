@@ -12,6 +12,10 @@ import time
 import argparse
 from pathlib import Path
 
+# Fix Unicode encoding on Windows
+if sys.platform == 'win32':
+    sys.stdout.reconfigure(encoding='utf-8')
+
 COMFYUI_SERVER = "http://192.168.29.60:8188"
 WORKFLOW_PATH = r"C:\Users\mohit\.openclaw\workspace\comfy-wf\openclaw\Wan Animate character replacement V3 API.json"
 
@@ -45,12 +49,12 @@ def submit_workflow(video_path: str) -> str:
     print(f"📤 Loading Wan Animate workflow...")
     workflow = load_workflow()
     
-    # Modify Node 194 (VHS_LoadVideoPath) with video path
-    # Node 194 input: "video" field
-    if "194" not in workflow:
-        raise Exception("Node 194 not found in workflow")
+    # Modify Node 218 (VHS_LoadVideo) with video path
+    # Node 218 input: "video" field
+    if "218" not in workflow:
+        raise Exception("Node 218 not found in workflow")
     
-    workflow["194"]["inputs"]["video"] = abs_video_path
+    workflow["218"]["inputs"]["video"] = abs_video_path
     
     print(f"🎬 Setting video path: {abs_video_path}")
     
