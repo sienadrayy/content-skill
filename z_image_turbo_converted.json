@@ -1,0 +1,11 @@
+{
+  "58": {
+    "inputs": {
+      "value": "Siena is standing in garden"
+    },
+    "class_type": "PrimitiveStringMultiline",
+    "_meta": {
+      "title": "Prompt"
+    }
+  }
+}
