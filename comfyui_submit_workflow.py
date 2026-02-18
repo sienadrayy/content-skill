@@ -49,9 +49,9 @@ def load_and_convert_workflow(workflow_path):
                     print(f"  Skipping custom node {node_id} ({node_type})")
                     continue
                 
-                # Skip preview/debug nodes
-                if node_type in ['PreviewImage', 'PreviewAny', 'easy showAnything', 'easy XYInputs', 'easy dynamicCast']:
-                    print(f"  Skipping preview node {node_id} ({node_type})")
+                # Skip only UI-debug nodes, keep preview/output nodes (they're needed!)
+                if node_type in ['easy XYInputs', 'easy dynamicCast']:
+                    print(f"  Skipping debug node {node_id} ({node_type})")
                     continue
                 
                 api_node = {
@@ -85,6 +85,39 @@ def load_and_convert_workflow(workflow_path):
             except Exception as e:
                 print(f"  Warning: Error processing node {node.get('id')}: {e}")
                 continue
+        
+        # Filter out nodes with broken input references
+        print(f"  Validating node references...")
+        valid_nodes = {}
+        max_iterations = 5
+        iteration = 0
+        
+        while iteration < max_iterations:
+            iteration += 1
+            broken_nodes = set()
+            
+            for node_id, node_data in api_workflow.items():
+                if node_id in broken_nodes:
+                    continue
+                
+                inputs = node_data.get('inputs', {})
+                
+                # Check each input
+                for inp_name, inp_value in inputs.items():
+                    # If input is a node reference [node_id, output_index]
+                    if isinstance(inp_value, list) and len(inp_value) >= 1:
+                        ref_node_id = str(inp_value[0])
+                        if ref_node_id not in api_workflow:
+                            broken_nodes.add(node_id)
+                            print(f"    Removing node {node_id} (depends on missing node {ref_node_id})")
+                            break
+            
+            if not broken_nodes:
+                break
+            
+            # Remove broken nodes
+            for node_id in broken_nodes:
+                del api_workflow[node_id]
         
         return api_workflow
     
