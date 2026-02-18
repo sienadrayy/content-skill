@@ -1,0 +1,18 @@
+{
+  "9": {
+    "inputs": {
+      "images": [
+        "62",
+        0
+      ],
+      "filename_prefix": "z-image"
+    },
+    "class_type": "SaveImage"
+  },
+  "58": {
+    "inputs": {
+      "value": "Siena is standing in garden"
+    },
+    "class_type": "PrimitiveStringMultiline"
+  }
+}

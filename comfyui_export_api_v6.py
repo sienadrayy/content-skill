@@ -198,18 +198,29 @@ class ComfyUIExporter:
                 widget_inputs.append(name)
         return widget_inputs
     
-    def _resolve_link(self, link_id: int) -> Optional[Tuple[int, int]]:
+    def _resolve_link(self, link_id: int, visited: set = None) -> Optional[Tuple[int, int]]:
+        if visited is None:
+            visited = set()
+        if link_id in visited:
+            return None  # Circular reference
+        visited.add(link_id)
+        
         if link_id not in self.links:
             return None
         link = self.links[link_id]
         src, slot = link[1], link[2]
-        if src in self.bypassed:
-            node = self.nodes.get(src)
-            if node:
-                for inp in node.get('inputs', []):
-                    if inp.get('link'):
-                        return self._resolve_link(inp['link'])
+        node = self.nodes.get(src)
+        
+        if not node:
             return None
+        
+        # Follow through bypassed nodes and Reroute nodes
+        if src in self.bypassed or node.get('type') == 'Reroute':
+            for inp in node.get('inputs', []):
+                if inp.get('link'):
+                    return self._resolve_link(inp['link'], visited)
+            return None
+        
         return (src, slot)
     
     def export(self) -> Dict[str, Dict[str, Any]]:

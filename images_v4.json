@@ -1,0 +1,540 @@
+{
+  "442": {
+    "inputs": {
+      "Multi_prompts": [
+        "443",
+        0
+      ],
+      "prefix": "body_text",
+      "suffix": ""
+    },
+    "class_type": "CreaPrompt List",
+    "_meta": {
+      "title": "CreaPrompt List"
+    }
+  },
+  "506": {
+    "inputs": {},
+    "class_type": "easy showAnything",
+    "_meta": {
+      "title": "Number Of Extend"
+    }
+  },
+  "520": {
+    "inputs": {
+      "anything": [
+        "505",
+        1
+      ]
+    },
+    "class_type": "easy showAnything",
+    "_meta": {
+      "title": "Current Loop"
+    }
+  },
+  "507": {
+    "inputs": {
+      "list_input": [
+        "442",
+        0
+      ],
+      "index": [
+        "505",
+        1
+      ]
+    },
+    "class_type": "StringFromList",
+    "_meta": {
+      "title": "StringFromList"
+    }
+  },
+  "444": {
+    "inputs": {
+      "list_input": [
+        "442",
+        0
+      ],
+      "index": 0
+    },
+    "class_type": "StringFromList",
+    "_meta": {
+      "title": "StringFromList"
+    }
+  },
+  "521": {
+    "inputs": {
+      "source": [
+        "507",
+        0
+      ]
+    },
+    "class_type": "PreviewAny",
+    "_meta": {
+      "title": "PreviewAny"
+    }
+  },
+  "508": {
+    "inputs": {},
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "PreviewImage"
+    }
+  },
+  "505": {
+    "inputs": {
+      "initial_value1": [
+        "444",
+        0
+      ],
+      "total": [
+        "444",
+        1
+      ]
+    },
+    "class_type": "easy forLoopStart",
+    "_meta": {
+      "title": "easy forLoopStart"
+    }
+  },
+  "509": {
+    "inputs": {
+      "flow": [
+        "505",
+        0
+      ]
+    },
+    "class_type": "easy forLoopEnd",
+    "_meta": {
+      "title": "easy forLoopEnd"
+    }
+  },
+  "524": {
+    "inputs": {
+      "value": [
+        "509",
+        0
+      ]
+    },
+    "class_type": "FL_UnloadAllModels",
+    "_meta": {
+      "title": "FL_UnloadAllModels"
+    }
+  },
+  "523": {
+    "inputs": {
+      "images": [
+        "509",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "PreviewImage"
+    }
+  },
+  "443": {
+    "inputs": {
+      "value": "Close-up portrait of siena in warm golden bedroom lamp light, confident direct eye contact, bare shoulders visible, champagne silk robe draped elegantly, subtle lip parting, intimate sensual expression, soft golden tones, professional cinematic photography\nMedium shot of siena, golden light catching her shoulders, silk robe sliding to reveal collarbone and upper chest, hand tracing shoulder slowly, confident posture, bare skin glowing, luxury bedroom setting, warm champagne lighting, fine art photography\nFull body of siena seated on edge of bed, champagne silk robe partially open, chest open and confident, golden bedroom light illuminating curves, sensual seated pose, luxury intimate setting, warm golden rim lighting, cinematic photography\nSeated siena mid-body-roll, shoulders rotating back, chest fully open, confident direct eye contact maintained, silk robe flowing, curves emphasized through deliberate posing, golden light catching skin, peak sensual moment, professional glamorous photography\nClose-up of siena's torso during pose transition, hand near collarbone, bare shoulders and chest, silk robe draped sensually, golden warm lighting, intimate confidence, luxury aesthetic, professional photography\nSiena over-shoulder glance back, 45\u00b0 angle showing back and side profile, knowing smile, hair positioned elegantly, bare shoulders prominent, golden light catching silhouette, sensual engagement moment, cinematic photography\nClose-up face of siena with intense eye contact, hand near neck/collarbone area, confident expression with subtle lip bite, golden warm lighting on face, intimate connection energy, professional beauty photography\nExtreme close-up of siena's face, direct to camera, peak confidence expression, eye contact intense and magnetic, warm golden light catching eyes and lips, sensual power moment, intimate yet commanding presence, cinematic portrait\nMedium shot siena seated, returning to face-forward pose after over-shoulder look, direct camera engagement, confident smile, collarbone visible, warm luxury lighting, @desire.siena branding moment, professional photography\nClose-up face of siena, frozen on power moment, intense confident gaze, slight lip engagement, golden warm lighting, username overlay ready, ultimate sensual confidence captured, professional cinematic quality"
+    },
+    "class_type": "PrimitiveStringMultiline",
+    "_meta": {
+      "title": "Image Prompts"
+    }
+  },
+  "500": {
+    "inputs": {
+      "value": "robe"
+    },
+    "class_type": "PrimitiveStringMultiline",
+    "_meta": {
+      "title": "Name"
+    }
+  },
+  "519": {
+    "inputs": {},
+    "class_type": "Fast Groups Bypasser (rgthree)",
+    "_meta": {
+      "title": "Fast Groups Bypasser (rgthree)"
+    }
+  },
+  "537": {
+    "inputs": {
+      "text": ""
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIPTextEncode"
+    }
+  },
+  "538": {
+    "inputs": {
+      "vae_name": "ae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "VAELoader"
+    }
+  },
+  "539": {
+    "inputs": {},
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIPTextEncode"
+    }
+  },
+  "540": {
+    "inputs": {},
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIPTextEncode"
+    }
+  },
+  "541": {
+    "inputs": {},
+    "class_type": "ConditioningZeroOut",
+    "_meta": {
+      "title": "ConditioningZeroOut"
+    }
+  },
+  "542": {
+    "inputs": {
+      "vae_name": "qwen_image_vae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "VAELoader"
+    }
+  },
+  "543": {
+    "inputs": {
+      "clip_name": "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+      "type": "qwen_image",
+      "device": "default"
+    },
+    "class_type": "CLIPLoader",
+    "_meta": {
+      "title": "CLIPLoader"
+    }
+  },
+  "544": {
+    "inputs": {
+      "clip_name": "qwen_3_4b.safetensors",
+      "type": "lumina2",
+      "device": "default"
+    },
+    "class_type": "CLIPLoader",
+    "_meta": {
+      "title": "CLIPLoader"
+    }
+  },
+  "545": {
+    "inputs": {
+      "unet_name": "qwen-image-2512-Q5_1.gguf"
+    },
+    "class_type": "UnetLoaderGGUF",
+    "_meta": {
+      "title": "UnetLoaderGGUF"
+    }
+  },
+  "546": {
+    "inputs": {},
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "PreviewImage"
+    }
+  },
+  "548": {
+    "inputs": {},
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAEDecode"
+    }
+  },
+  "549": {
+    "inputs": {
+      "purge_cache": true,
+      "purge_models": true
+    },
+    "class_type": "LayerUtility: PurgeVRAM V2",
+    "_meta": {
+      "title": "LayerUtility: PurgeVRAM V2"
+    }
+  },
+  "550": {
+    "inputs": {
+      "unet_name": "z_image_turbo_bf16.safetensors",
+      "weight_dtype": "default"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "UNETLoader"
+    }
+  },
+  "551": {
+    "inputs": {
+      "sage_attention": "auto",
+      "allow_compile": true
+    },
+    "class_type": "PathchSageAttentionKJ",
+    "_meta": {
+      "title": "PathchSageAttentionKJ"
+    }
+  },
+  "552": {
+    "inputs": {
+      "enable_fp16_accumulation": true
+    },
+    "class_type": "ModelPatchTorchSettings",
+    "_meta": {
+      "title": "ModelPatchTorchSettings"
+    }
+  },
+  "553": {
+    "inputs": {
+      "shift": 5.000000000000001
+    },
+    "class_type": "ModelSamplingAuraFlow",
+    "_meta": {
+      "title": "ModelSamplingAuraFlow"
+    }
+  },
+  "554": {
+    "inputs": {
+      "sage_attention": "auto",
+      "allow_compile": true
+    },
+    "class_type": "PathchSageAttentionKJ",
+    "_meta": {
+      "title": "PathchSageAttentionKJ"
+    }
+  },
+  "555": {
+    "inputs": {
+      "width": 1888,
+      "height": 1264,
+      "batch_size": 1
+    },
+    "class_type": "EmptySD3LatentImage",
+    "_meta": {
+      "title": "EmptySD3LatentImage"
+    }
+  },
+  "556": {
+    "inputs": {
+      "enable_fp16_accumulation": true
+    },
+    "class_type": "ModelPatchTorchSettings",
+    "_meta": {
+      "title": "ModelPatchTorchSettings"
+    }
+  },
+  "557": {
+    "inputs": {
+      "shift": 7
+    },
+    "class_type": "ModelSamplingAuraFlow",
+    "_meta": {
+      "title": "ModelSamplingAuraFlow"
+    }
+  },
+  "558": {
+    "inputs": {},
+    "class_type": "VAEEncode",
+    "_meta": {
+      "title": "VAEEncode"
+    }
+  },
+  "559": {
+    "inputs": {},
+    "class_type": "Image Comparer (rgthree)",
+    "_meta": {
+      "title": "Image Comparer (rgthree)"
+    }
+  },
+  "560": {
+    "inputs": {
+      "lora_name": "hdd\\zimage\\z-image-detailer.safetensors",
+      "strength_model": 0.1
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoraLoaderModelOnly"
+    }
+  },
+  "561": {
+    "inputs": {
+      "lora_name": "hdd\\zimage\\deedee_amateur_photography_zimage_base_and_turbo_v1.safetensors",
+      "strength_model": 0.3
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoraLoaderModelOnly"
+    }
+  },
+  "562": {
+    "inputs": {
+      "lora_name": "qwen\\qwen-desire_000001500.safetensors",
+      "strength_model": 1.0000000000000002
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoraLoaderModelOnly"
+    }
+  },
+  "563": {
+    "inputs": {
+      "lora_name": "hdd\\qwen\\Qwen-Image-2512-Lightning-8steps-V1.0-fp32.safetensors",
+      "strength_model": 1
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoraLoaderModelOnly"
+    }
+  },
+  "564": {
+    "inputs": {
+      "lora_name": "hdd\\zimage\\z-image-desire_copy_000003000.safetensors",
+      "strength_model": 1
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoraLoaderModelOnly"
+    }
+  },
+  "565": {
+    "inputs": {
+      "add_noise": "enable",
+      "noise_seed": 128210903125407,
+      "steps": 10,
+      "cfg": 1.2,
+      "sampler_name": "res_2s",
+      "scheduler": "beta",
+      "start_at_step": 6,
+      "end_at_step": 10,
+      "return_with_leftover_noise": "disable"
+    },
+    "class_type": "KSamplerAdvanced",
+    "_meta": {
+      "title": "ZKSampler (Advanced)"
+    }
+  },
+  "566": {
+    "inputs": {
+      "seed": 1028022827751786,
+      "steps": 8,
+      "cfg": 1,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 1
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "QwenKSampler"
+    }
+  },
+  "567": {
+    "inputs": {
+      "delimiter": ", ",
+      "clean_whitespace": "true"
+    },
+    "class_type": "Text Concatenate",
+    "_meta": {
+      "title": "Text Concatenate"
+    }
+  },
+  "568": {
+    "inputs": {},
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "SaveImage"
+    }
+  },
+  "569": {
+    "inputs": {
+      "text_c": [
+        "505",
+        0
+      ],
+      "delimiter": "/",
+      "clean_whitespace": "true"
+    },
+    "class_type": "Text Concatenate",
+    "_meta": {
+      "title": "Text Concatenate"
+    }
+  },
+  "570": {
+    "inputs": {},
+    "class_type": "Int2String",
+    "_meta": {
+      "title": "Int2String"
+    }
+  },
+  "571": {
+    "inputs": {},
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAEDecode"
+    }
+  },
+  "572": {
+    "inputs": {
+      "text": [
+        "500",
+        0
+      ]
+    },
+    "class_type": "Text Multiline",
+    "_meta": {
+      "title": "Text Multiline"
+    }
+  },
+  "573": {
+    "inputs": {
+      "lora_name": "hdd\\qwen\\Qwen-Image-2512_LoRa_by-AI_Characters_STYLE_SmartphoneSnapshotPhotoReality_v10_TRIGGER$amtr snapshot photo$.safetensors",
+      "strength_model": 0.5
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoraLoaderModelOnly"
+    }
+  },
+  "574": {
+    "inputs": {
+      "longer_edge": 2048
+    },
+    "class_type": "ResizeImagesByLongerEdge",
+    "_meta": {
+      "title": "ResizeImagesByLongerEdge"
+    }
+  },
+  "575": {
+    "inputs": {
+      "width": 1264,
+      "height": 1888,
+      "batch_size": 1
+    },
+    "class_type": "EmptySD3LatentImage",
+    "_meta": {
+      "title": "EmptySD3LatentImage"
+    }
+  },
+  "576": {
+    "inputs": {
+      "text": "Images"
+    },
+    "class_type": "Text Multiline",
+    "_meta": {
+      "title": "Text Multiline"
+    }
+  },
+  "577": {
+    "inputs": {
+      "text": "\nEditorial style portrait of siena , high angle, The fashionable woman has smooth brown hair, Realistic skin texture, fabric and hair. Canon EOS 5D, 50mm, f4. Natural sunlight photography\n\nGraceful at 5\u20199 with flowing hair, a sculpted 36D-26-36 silhouette, she embodies Nordic elegance with a sensual edge.\n\nRealism, amtr snapshot photo"
+    },
+    "class_type": "Text Multiline",
+    "_meta": {
+      "title": "Text Multiline"
+    }
+  }
+}

@@ -1,0 +1,203 @@
+{
+  "issues": [
+    "Node 101 references missing node 27",
+    "Node 102 references missing node 30",
+    "Node 105 references missing node 37",
+    "Node 106 references missing node 36",
+    "Node 106 references missing node 8",
+    "Node 108 references missing node 3",
+    "Node 112 references missing node 35"
+  ],
+  "api_workflow": {
+    "9": {
+      "inputs": {
+        "images": [
+          "108",
+          0
+        ],
+        "filename_prefix": "z-image"
+      },
+      "class_type": "SaveImage"
+    },
+    "58": {
+      "inputs": {
+        "value": "Siena is standing in garden"
+      },
+      "class_type": "PrimitiveStringMultiline"
+    },
+    "100": {
+      "inputs": {
+        "vae_name": "ae.safetensors"
+      },
+      "class_type": "VAELoader"
+    },
+    "101": {
+      "inputs": {
+        "conditioning": [
+          "27",
+          0
+        ]
+      },
+      "class_type": "ConditioningZeroOut"
+    },
+    "102": {
+      "inputs": {
+        "clip": [
+          "30",
+          0
+        ],
+        "text": [
+          "58",
+          0
+        ]
+      },
+      "class_type": "CLIPTextEncode"
+    },
+    "103": {
+      "inputs": {
+        "width": 1536,
+        "height": 2048,
+        "batch_size": 1
+      },
+      "class_type": "EmptySD3LatentImage"
+    },
+    "104": {
+      "inputs": {
+        "clip_name": "qwen_3_4b.safetensors",
+        "type": "lumina2",
+        "device": "default"
+      },
+      "class_type": "CLIPLoader"
+    },
+    "105": {
+      "inputs": {
+        "images": [
+          "37",
+          0
+        ],
+        "longer_edge": 2048
+      },
+      "class_type": "ResizeImagesByLongerEdge"
+    },
+    "106": {
+      "inputs": {
+        "upscale_model": [
+          "36",
+          0
+        ],
+        "image": [
+          "8",
+          0
+        ]
+      },
+      "class_type": "ImageUpscaleWithModel"
+    },
+    "107": {
+      "inputs": {
+        "model_name": "4x_foolhardy_Remacri.safetensors"
+      },
+      "class_type": "UpscaleModelLoader"
+    },
+    "108": {
+      "inputs": {
+        "samples": [
+          "3",
+          0
+        ],
+        "vae": [
+          "100",
+          0
+        ]
+      },
+      "class_type": "VAEDecode"
+    },
+    "109": {
+      "inputs": {
+        "unet_name": "z_image_turbo_bf16.safetensors",
+        "weight_dtype": "default"
+      },
+      "class_type": "UNETLoader"
+    },
+    "110": {
+      "inputs": {
+        "model": [
+          "109",
+          0
+        ],
+        "sage_attention": "auto",
+        "allow_compile": true
+      },
+      "class_type": "PathchSageAttentionKJ"
+    },
+    "111": {
+      "inputs": {
+        "model": [
+          "110",
+          0
+        ],
+        "enable_fp16_accumulation": true
+      },
+      "class_type": "ModelPatchTorchSettings"
+    },
+    "112": {
+      "inputs": {
+        "model": [
+          "35",
+          0
+        ],
+        "lora_name": "hdd\\zimage\\deedee_amateur_photography_zimage_base_and_turbo_v1.safetensors",
+        "strength_model": 0.5
+      },
+      "class_type": "LoraLoaderModelOnly"
+    },
+    "113": {
+      "inputs": {
+        "model": [
+          "111",
+          0
+        ],
+        "lora_name": "z-image-desire.safetensors",
+        "strength_model": 1
+      },
+      "class_type": "LoraLoaderModelOnly"
+    },
+    "114": {
+      "inputs": {
+        "model": [
+          "112",
+          0
+        ],
+        "shift": 7
+      },
+      "class_type": "ModelSamplingAuraFlow"
+    },
+    "115": {
+      "inputs": {
+        "model": [
+          "114",
+          0
+        ],
+        "positive": [
+          "102",
+          0
+        ],
+        "negative": [
+          "101",
+          0
+        ],
+        "latent_image": [
+          "103",
+          0
+        ],
+        "seed": 1104920579925311,
+        "steps": "randomize",
+        "cfg": 9,
+        "sampler_name": 1.2,
+        "scheduler": "res_2s",
+        "denoise": "beta"
+      },
+      "class_type": "KSampler"
+    }
+  },
+  "nodes_count": 18
+}

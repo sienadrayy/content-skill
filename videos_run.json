@@ -1,0 +1,931 @@
+{
+  "438": {
+    "inputs": {
+      "Multi_prompts": [
+        "436",
+        0
+      ],
+      "prefix": "",
+      "suffix": "Cinematic scenes, high quality photography, photorealistic"
+    },
+    "class_type": "CreaPrompt List",
+    "_meta": {
+      "title": "CreaPrompt List"
+    }
+  },
+  "439": {
+    "inputs": {
+      "list_input": [
+        "438",
+        0
+      ],
+      "index": 0
+    },
+    "class_type": "StringFromList",
+    "_meta": {
+      "title": "StringFromList"
+    }
+  },
+  "512": {
+    "inputs": {
+      "text_a": [
+        "517",
+        0
+      ],
+      "text_b": [
+        "500",
+        0
+      ],
+      "text_c": [
+        "513",
+        0
+      ],
+      "delimiter": "/",
+      "clean_whitespace": "true"
+    },
+    "class_type": "Text Concatenate",
+    "_meta": {
+      "title": "Text Concatenate"
+    }
+  },
+  "516": {
+    "inputs": {
+      "initial_value1": [
+        "534",
+        0
+      ],
+      "directory": [
+        "512",
+        0
+      ],
+      "start_index": 0,
+      "limit": -1
+    },
+    "class_type": "easy loadImagesForLoop",
+    "_meta": {
+      "title": "easy loadImagesForLoop"
+    }
+  },
+  "409": {
+    "inputs": {
+      "anything": [
+        "516",
+        1
+      ]
+    },
+    "class_type": "easy showAnything",
+    "_meta": {
+      "title": "Current Loop"
+    }
+  },
+  "517": {
+    "inputs": {
+      "text": "D:/ComfyUI_windows_portable/ComfyUI/output"
+    },
+    "class_type": "Text Multiline",
+    "_meta": {
+      "title": "Text Multiline"
+    }
+  },
+  "440": {
+    "inputs": {
+      "list_input": [
+        "438",
+        0
+      ],
+      "index": [
+        "516",
+        1
+      ]
+    },
+    "class_type": "StringFromList",
+    "_meta": {
+      "title": "StringFromList"
+    }
+  },
+  "522": {
+    "inputs": {
+      "source": [
+        "440",
+        0
+      ]
+    },
+    "class_type": "PreviewAny",
+    "_meta": {
+      "title": "PreviewAny"
+    }
+  },
+  "19": {
+    "inputs": {
+      "images": [
+        "657",
+        0
+      ],
+      "filename_prefix": [
+        "658",
+        0
+      ],
+      "frame_rate": 24,
+      "loop_count": 0,
+      "format": "video/h264-mp4",
+      "pix_fmt": "yuv420p",
+      "crf": 16,
+      "save_metadata": false,
+      "trim_to_audio": false,
+      "pingpong": false,
+      "save_output": true,
+      "videopreview": {
+        "paused": false,
+        "hidden": false,
+        "params": {
+          "score": "0",
+          "filename": "0_00002.mp4",
+          "workflow": "0_00002.png",
+          "fullpath": "D:\\ComfyUI_windows_portable\\ComfyUI\\output\\robe\\Videos\\0_00002.mp4",
+          "format": "video/h264-mp4",
+          "subfolder": "robe\\Videos",
+          "label": "Normal",
+          "type": "output",
+          "frame_rate": 24
+        }
+      }
+    },
+    "class_type": "VHS_VideoCombine",
+    "_meta": {
+      "title": "VHS_VideoCombine"
+    }
+  },
+  "420": {
+    "inputs": {
+      "flow": [
+        "516",
+        0
+      ],
+      "initial_value1": [
+        "535",
+        0
+      ]
+    },
+    "class_type": "easy forLoopEnd",
+    "_meta": {
+      "title": "easy forLoopEnd"
+    }
+  },
+  "436": {
+    "inputs": {
+      "value": "Direct eye contact, slow blink at 1.5 second mark, confident sensual expression held for full 4 seconds, warm golden lighting preserved, no body movement, camera fixed, fade to next segment\nSmooth camera pan down from face to shoulders over 3 seconds, revealing body gradually, siena maintains confident eye contact as much as visible, warm golden lighting consistent, ends on shoulder reveal, cut to next\nFixed camera, siena transitions from standing/leaning to seated position on bed edge over 2 seconds, then holds confident seated pose for final 2 seconds, warm lighting maintained, chest open throughout, continuous to next\nSlow body roll rotation from right side to front to left side over full 4 seconds, sensual fluid motion, camera stays fixed, curves emphasized through deliberate movement, eye contact maintained where visible, golden lighting catches motion, fade to next\nHand traces from shoulder down toward collarbone slowly over 2 seconds, sensual deliberate motion, siena's expression intensifies, then returns to pose for final 2 seconds with enhanced eye contact, warm light preserved, smooth transition\nSlow 180\u00b0 rotation over 4 seconds, reveal back and side profile emphasizing silhouette, camera fixed, allow body movement to show curves, return to facing camera at end, light catches body during rotation, hard cut to next\nHold confident over-shoulder pose for 3 seconds with minimal movement, knowing smile maintained, subtle natural hair shift/adjustment, warm lighting consistent, in final second add slight head movement for engagement, dissolve to next\nSlow zoom into extreme close-up of face over 2 seconds, maintain direct eye contact throughout, final 2 seconds hold intense gaze with confidence building, warm light on face, eye contact deepens, cut to power moment\nReturn to forward-facing pose from over-shoulder position, smooth transition over 1 second, hold confident centered pose for remaining 3 seconds, direct camera engagement, warm golden lighting constant, breathing subtly visible, continuous flow\nHold final power moment pose with zero movement, intense direct eye contact maintained, confident expression frozen for full 4 seconds, warm golden lighting perfec"
+    },
+    "class_type": "PrimitiveStringMultiline",
+    "_meta": {
+      "title": "VIdeo Prompts"
+    }
+  },
+  "411": {
+    "inputs": {
+      "anything": [
+        "439",
+        1
+      ]
+    },
+    "class_type": "easy showAnything",
+    "_meta": {
+      "title": "Number Of Extend"
+    }
+  },
+  "530": {
+    "inputs": {
+      "text": "D:/ComfyUI_windows_portable/ComfyUI/output"
+    },
+    "class_type": "Text Multiline",
+    "_meta": {
+      "title": "Text Multiline"
+    }
+  },
+  "513": {
+    "inputs": {
+      "text": "Images"
+    },
+    "class_type": "Text Multiline",
+    "_meta": {
+      "title": "Text Multiline"
+    }
+  },
+  "533": {
+    "inputs": {
+      "text": "D:/ComfyUI_windows_portable/ComfyUI/output"
+    },
+    "class_type": "Text Multiline",
+    "_meta": {
+      "title": "Text Multiline"
+    }
+  },
+  "531": {
+    "inputs": {
+      "text": "Images/0_00001_.png"
+    },
+    "class_type": "Text Multiline",
+    "_meta": {
+      "title": "Text Multiline"
+    }
+  },
+  "532": {
+    "inputs": {
+      "text_a": [
+        "533",
+        0
+      ],
+      "text_b": [
+        "500",
+        0
+      ],
+      "text_c": [
+        "531",
+        0
+      ],
+      "delimiter": "/",
+      "clean_whitespace": "true"
+    },
+    "class_type": "Text Concatenate",
+    "_meta": {
+      "title": "Text Concatenate"
+    }
+  },
+  "534": {
+    "inputs": {
+      "image": [
+        "532",
+        0
+      ]
+    },
+    "class_type": "LoadImageFromPath",
+    "_meta": {
+      "title": "LoadImageFromPath"
+    }
+  },
+  "500": {
+    "inputs": {
+      "value": "robe"
+    },
+    "class_type": "PrimitiveStringMultiline",
+    "_meta": {
+      "title": "Name"
+    }
+  },
+  "529": {
+    "inputs": {
+      "text_a": [
+        "530",
+        0
+      ],
+      "text_b": [
+        "500",
+        0
+      ],
+      "text_c": [
+        "500",
+        0
+      ],
+      "delimiter": "/",
+      "clean_whitespace": "true"
+    },
+    "class_type": "Text Concatenate",
+    "_meta": {
+      "title": "Text Concatenate"
+    }
+  },
+  "525": {
+    "inputs": {
+      "images": [
+        "420",
+        0
+      ],
+      "filename_prefix": [
+        "529",
+        0
+      ],
+      "frame_rate": 24,
+      "loop_count": 0,
+      "format": "video/h264-mp4",
+      "pix_fmt": "yuv420p",
+      "crf": 16,
+      "save_metadata": false,
+      "trim_to_audio": false,
+      "pingpong": false,
+      "save_output": true,
+      "videopreview": {
+        "paused": false,
+        "hidden": false,
+        "params": {
+          "score": "0",
+          "filename": "201120_00011.mp4",
+          "workflow": "201120_00011.png",
+          "fullpath": "D:\\ComfyUI_windows_portable\\ComfyUI\\temp\\Valentine\\2026-02-13\\201120_00011.mp4",
+          "format": "video/h264-mp4",
+          "subfolder": "Valentine\\2026-02-13",
+          "label": "Normal",
+          "type": "temp",
+          "frame_rate": 32
+        }
+      }
+    },
+    "class_type": "VHS_VideoCombine",
+    "_meta": {
+      "title": "VHS_VideoCombine"
+    }
+  },
+  "535": {
+    "inputs": {
+      "images_A": [
+        "516",
+        5
+      ],
+      "images_B": [
+        "657",
+        0
+      ],
+      "merge_strategy": "match A",
+      "scale_method": "nearest-exact",
+      "crop": "disabled"
+    },
+    "class_type": "VHS_MergeImages",
+    "_meta": {
+      "title": "VHS_MergeImages"
+    }
+  },
+  "578": {
+    "inputs": {
+      "model": [
+        "641",
+        0
+      ],
+      "sage_attention": "auto",
+      "allow_compile": false
+    },
+    "class_type": "PathchSageAttentionKJ",
+    "_meta": {
+      "title": "\u4f4e\u566a\u58f0-Patch Sage Attention KJ"
+    }
+  },
+  "579": {
+    "inputs": {
+      "model": [
+        "642",
+        0
+      ],
+      "sage_attention": "auto",
+      "allow_compile": false
+    },
+    "class_type": "PathchSageAttentionKJ",
+    "_meta": {
+      "title": "\u9ad8\u566a\u58f0-Patch Sage Attention KJ"
+    }
+  },
+  "584": {
+    "inputs": {
+      "model": [
+        "579",
+        0
+      ],
+      "enable_fp16_accumulation": true
+    },
+    "class_type": "ModelPatchTorchSettings",
+    "_meta": {
+      "title": "ModelPatchTorchSettings"
+    }
+  },
+  "585": {
+    "inputs": {
+      "model": [
+        "578",
+        0
+      ],
+      "enable_fp16_accumulation": true
+    },
+    "class_type": "ModelPatchTorchSettings",
+    "_meta": {
+      "title": "ModelPatchTorchSettings"
+    }
+  },
+  "593": {
+    "inputs": {
+      "vae_name": "wan_2.1_vae_fp32.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "VAELoader"
+    }
+  },
+  "594": {
+    "inputs": {
+      "clip_name": "umt5_xxl_fp8_e4m3fn_scaled.safetensors",
+      "type": "wan",
+      "device": "default"
+    },
+    "class_type": "CLIPLoader",
+    "_meta": {
+      "title": "CLIPLoader"
+    }
+  },
+  "596": {
+    "inputs": {
+      "model": [
+        "598",
+        0
+      ],
+      "lora_name": "hdd\\Wan\\Wan2.2-Fun-A14B-InP-low-noise-HPS2.1.safetensors",
+      "strength_model": 0.5000000000000001
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoraLoaderModelOnly"
+    }
+  },
+  "597": {
+    "inputs": {
+      "model": [
+        "632",
+        0
+      ],
+      "lora_name": "hdd\\Wan\\Wan2.2-Fun-A14B-InP-high-noise-MPS.safetensors",
+      "strength_model": 0.5
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoraLoaderModelOnly"
+    }
+  },
+  "598": {
+    "inputs": {},
+    "class_type": "wanBlockSwap",
+    "_meta": {
+      "title": "wanBlockSwap"
+    }
+  },
+  "600": {
+    "inputs": {},
+    "class_type": "wanBlockSwap",
+    "_meta": {
+      "title": "wanBlockSwap"
+    }
+  },
+  "606": {
+    "inputs": {
+      "shift": 5.000000000000001
+    },
+    "class_type": "ModelSamplingSD3",
+    "_meta": {
+      "title": "ModelSamplingSD3"
+    }
+  },
+  "611": {
+    "inputs": {
+      "batch_size": 1
+    },
+    "class_type": "WanImageToVideo",
+    "_meta": {
+      "title": "WanImageToVideo"
+    }
+  },
+  "617": {
+    "inputs": {
+      "shift": 5.000000000000001
+    },
+    "class_type": "ModelSamplingSD3",
+    "_meta": {
+      "title": "ModelSamplingSD3"
+    }
+  },
+  "621": {
+    "inputs": {
+      "samples": [
+        "623",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAEDecode"
+    }
+  },
+  "622": {
+    "inputs": {
+      "model": [
+        "606",
+        0
+      ],
+      "add_noise": "enable",
+      "noise_seed": 437449800720225,
+      "cfg": 1,
+      "sampler_name": "euler",
+      "scheduler": "normal",
+      "start_at_step": 0,
+      "return_with_leftover_noise": "enable"
+    },
+    "class_type": "KSamplerAdvanced",
+    "_meta": {
+      "title": "KSamplerAdvanced"
+    }
+  },
+  "623": {
+    "inputs": {
+      "add_noise": "disable",
+      "noise_seed": 214,
+      "cfg": 1,
+      "sampler_name": "lcm",
+      "scheduler": "normal",
+      "end_at_step": 10000,
+      "return_with_leftover_noise": "disable"
+    },
+    "class_type": "KSamplerAdvanced",
+    "_meta": {
+      "title": "KSamplerAdvanced"
+    }
+  },
+  "624": {
+    "inputs": {
+      "value": 6
+    },
+    "class_type": "INTConstant",
+    "_meta": {
+      "title": "INTConstant"
+    }
+  },
+  "625": {
+    "inputs": {
+      "value": 2
+    },
+    "class_type": "INTConstant",
+    "_meta": {
+      "title": "INTConstant"
+    }
+  },
+  "627": {
+    "inputs": {
+      "aspect_ratio": "original",
+      "proportional_width": 1,
+      "proportional_height": 1,
+      "fit": "crop",
+      "method": "lanczos",
+      "round_to_multiple": "16",
+      "scale_to_side": "longest",
+      "background_color": "#000000"
+    },
+    "class_type": "LayerUtility: ImageScaleByAspectRatio V2",
+    "_meta": {
+      "title": "LayerUtility: ImageScaleByAspectRatio V2"
+    }
+  },
+  "632": {
+    "inputs": {
+      "model": [
+        "600",
+        0
+      ],
+      "lora_name": "hdd\\Wan\\wan21-lightx2v-i2v-14b-480p-cfg-step-distill-rank32-bf16.safetensors",
+      "strength_model": 2.0000000000000004
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoraLoaderModelOnly"
+    }
+  },
+  "637": {
+    "inputs": {
+      "unet_name": "Wan2.2-I2V-A14B-HighNoise-Q5_K_M.gguf"
+    },
+    "class_type": "UnetLoaderGGUF",
+    "_meta": {
+      "title": "UnetLoaderGGUF"
+    }
+  },
+  "638": {
+    "inputs": {
+      "unet_name": "Wan2.2-I2V-A14B-LowNoise-Q5_K_M.gguf"
+    },
+    "class_type": "UnetLoaderGGUF",
+    "_meta": {
+      "title": "UnetLoaderGGUF"
+    }
+  },
+  "639": {
+    "inputs": {
+      "model": [
+        "638",
+        0
+      ],
+      "lora_name": "Wan\\low_noise_model.safetensors",
+      "strength_model": 1
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoraLoaderModelOnly"
+    }
+  },
+  "640": {
+    "inputs": {
+      "model": [
+        "637",
+        0
+      ],
+      "lora_name": "Wan\\high_noise_model.safetensors",
+      "strength_model": 1.2
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoraLoaderModelOnly"
+    }
+  },
+  "641": {
+    "inputs": {
+      "model": [
+        "644",
+        0
+      ],
+      "lora_name": "hdd\\Wan\\WAN2.2_SmartphoneSnapshotPhotoReality_v5_by-AI_Characters_TRIGGER$amateur photo$_low_noise.safetensors",
+      "strength_model": 0.8
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoraLoaderModelOnly"
+    }
+  },
+  "642": {
+    "inputs": {
+      "model": [
+        "643",
+        0
+      ],
+      "lora_name": "hdd\\Wan\\WAN2.2_SmartphoneSnapshotPhotoReality_v5_by-AI_Characters_TRIGGER$amateur photo$_high_noise.safetensors",
+      "strength_model": 0.8
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoraLoaderModelOnly"
+    }
+  },
+  "643": {
+    "inputs": {
+      "model": [
+        "597",
+        0
+      ],
+      "lora_name": "hdd\\Wan\\desire_wan_000000250_high_noise.safetensors",
+      "strength_model": 1
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoraLoaderModelOnly"
+    }
+  },
+  "644": {
+    "inputs": {
+      "model": [
+        "596",
+        0
+      ],
+      "lora_name": "hdd\\Wan\\desire_wan_000000500_low_noise.safetensors",
+      "strength_model": 1
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoraLoaderModelOnly"
+    }
+  },
+  "645": {
+    "inputs": {
+      "text": "\u8272\u8c03\u8273\u4e3d\uff0c\u8fc7\u66dd\uff0c\u9759\u6001\uff0c\u7ec6\u8282\u6a21\u7cca\u4e0d\u6e05\uff0c\u5b57\u5e55\uff0c\u98ce\u683c\uff0c\u4f5c\u54c1\uff0c\u753b\u4f5c\uff0c\u753b\u9762\uff0c\u9759\u6b62\uff0c\u6574\u4f53\u53d1\u7070\uff0c\u6700\u5dee\u8d28\u91cf\uff0c\u4f4e\u8d28\u91cf\uff0cJPEG\u538b\u7f29\u6b8b\u7559\uff0c\u4e11\u964b\u7684\uff0c\u6b8b\u7f3a\u7684\uff0c\u591a\u4f59\u7684\u624b\u6307\uff0c\u753b\u5f97\u4e0d\u597d\u7684\u624b\u90e8\uff0c\u753b\u5f97\u4e0d\u597d\u7684\u8138\u90e8\uff0c\u7578\u5f62\u7684\uff0c\u6bc1\u5bb9\u7684\uff0c\u5f62\u6001\u7578\u5f62\u7684\u80a2\u4f53\uff0c\u624b\u6307\u878d\u5408\uff0c\u9759\u6b62\u4e0d\u52a8\u7684\u753b\u9762\uff0c\u6742\u4e71\u7684\u80cc\u666f\uff0c\u4e09\u6761\u817f\uff0c\u80cc\u666f\u4eba\u5f88\u591a\uff0c\u5012\u7740\u8d70, censored, mosaic censoring, bar censor, pixelated, glowing, bloom, blurry, day, out of focus, low detail, bad anatomy, ugly, overexposed, underexposed, distorted face, extra limbs, cartoonish, 3d render artifacts, duplicate people, unnatural lighting, bad composition, missing shadows, low resolution, poorly textured, glitch, noise, grain, static, motionless, still frame, overall grayish, worst quality, low quality, JPEG compression artifacts, subtitles, stylized, artwork, painting, illustration, cluttered background, many people in background, three legs, walking backward, zoom out, zoom in, mouth speaking, moving mouth, talking, speaking, mute speaking, unnatural skin tone, discolored eyelid, red eyelids, red upper eyelids, no red eyeshadow, closed eyes, no wide-open innocent eyes, poorly drawn hands, extra fingers, fused fingers, poorly drawn face, deformed, disfigured, malformed limbs, thighs, fog, mist, voluminous eyelashes, blush,"
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIPTextEncode"
+    }
+  },
+  "646": {
+    "inputs": {
+      "image": [
+        "655",
+        0
+      ],
+      "width": 540,
+      "height": 960,
+      "interpolation": "lanczos",
+      "method": "fill / crop",
+      "condition": "always",
+      "multiple_of": 0
+    },
+    "class_type": "ImageResize+",
+    "_meta": {
+      "title": "ImageResize+"
+    }
+  },
+  "647": {
+    "inputs": {
+      "text": [
+        "648",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIPTextEncode"
+    }
+  },
+  "648": {
+    "inputs": {
+      "text_a": [
+        "649",
+        0
+      ],
+      "text_b": [
+        "440",
+        0
+      ],
+      "delimiter": ", ",
+      "clean_whitespace": "true"
+    },
+    "class_type": "Text Concatenate",
+    "_meta": {
+      "title": "Text Concatenate"
+    }
+  },
+  "649": {
+    "inputs": {
+      "text": "amateur photo image taken using iphone of a young beautiful white woman named siena without any makeup"
+    },
+    "class_type": "Text Multiline",
+    "_meta": {
+      "title": "Text Multiline"
+    }
+  },
+  "650": {
+    "inputs": {
+      "Number": "5"
+    },
+    "class_type": "Int",
+    "_meta": {
+      "title": "Seconds"
+    }
+  },
+  "651": {
+    "inputs": {
+      "a": [
+        "650",
+        0
+      ],
+      "expression": "(a * 16) + 1"
+    },
+    "class_type": "MathExpression|pysssss",
+    "_meta": {
+      "title": "MathExpression|pysssss"
+    }
+  },
+  "652": {
+    "inputs": {
+      "Int": [
+        "516",
+        1
+      ]
+    },
+    "class_type": "Int2String",
+    "_meta": {
+      "title": "Int2String"
+    }
+  },
+  "653": {
+    "inputs": {
+      "image": [
+        "516",
+        2
+      ],
+      "width": 1088,
+      "height": 1920,
+      "upscale_method": "lanczos",
+      "keep_proportion": "crop",
+      "pad_color": "0, 0, 0",
+      "crop_position": "center",
+      "divisible_by": 16,
+      "device": "cpu"
+    },
+    "class_type": "ImageResizeKJv2",
+    "_meta": {
+      "title": "ImageResizeKJv2"
+    }
+  },
+  "654": {
+    "inputs": {
+      "images": [
+        "653",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "PreviewImage"
+    }
+  },
+  "655": {
+    "inputs": {
+      "anything": [
+        "621",
+        0
+      ],
+      "purge_cache": true,
+      "purge_models": true
+    },
+    "class_type": "LayerUtility: PurgeVRAM V2",
+    "_meta": {
+      "title": "LayerUtility: PurgeVRAM V2"
+    }
+  },
+  "656": {
+    "inputs": {
+      "text": "Videos"
+    },
+    "class_type": "Text Multiline",
+    "_meta": {
+      "title": "Text Multiline"
+    }
+  },
+  "657": {
+    "inputs": {
+      "anything": [
+        "646",
+        0
+      ],
+      "purge_cache": true,
+      "purge_models": true
+    },
+    "class_type": "LayerUtility: PurgeVRAM V2",
+    "_meta": {
+      "title": "LayerUtility: PurgeVRAM V2"
+    }
+  },
+  "658": {
+    "inputs": {
+      "text_a": [
+        "500",
+        0
+      ],
+      "text_b": [
+        "656",
+        0
+      ],
+      "text_c": [
+        "652",
+        0
+      ],
+      "delimiter": "/",
+      "clean_whitespace": "true"
+    },
+    "class_type": "Text Concatenate",
+    "_meta": {
+      "title": "Text Concatenate"
+    }
+  },
+  "659": {
+    "inputs": {
+      "Number": "960"
+    },
+    "class_type": "Int",
+    "_meta": {
+      "title": "Int"
+    }
+  },
+  "660": {
+    "inputs": {
+      "images": [
+        "655",
+        0
+      ],
+      "frame_rate": 16,
+      "loop_count": 0,
+      "filename_prefix": "%date:yyyy-MM-dd%/wan22_",
+      "format": "video/h264-mp4",
+      "pix_fmt": "yuv420p",
+      "crf": 19,
+      "save_metadata": false,
+      "trim_to_audio": false,
+      "pingpong": false,
+      "save_output": false,
+      "videopreview": {
+        "paused": false,
+        "hidden": false,
+        "params": {
+          "score": "0",
+          "filename": "wan22__00005.mp4",
+          "workflow": "wan22__00005.png",
+          "fullpath": "D:\\ComfyUI_windows_portable\\ComfyUI\\temp\\2026-02-13\\wan22__00005.mp4",
+          "format": "video/h264-mp4",
+          "subfolder": "2026-02-13",
+          "label": "Normal",
+          "type": "temp",
+          "frame_rate": 16
+        }
+      }
+    },
+    "class_type": "VHS_VideoCombine",
+    "_meta": {
+      "title": "VHS_VideoCombine"
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "35": {
+    "inputs": {},
+    "class_type": "MarkdownNote",
+    "_meta": {
+      "title": "Model link"
+    }
+  },
+  "58": {
+    "inputs": {
+      "value": "In the heavy midnight stillness, she arches waist-up in fever-close frame against cool silk sheets, slowly dragging chilled champagne flute along her sternum, wearing only a razor-thin black lace choker and a single loose satin ribbon tied loosely around her torso\u2014ribbon parted wide by the arch to bare the full, flushed inner swells, shadowed undersides, and taut midriff skin prickling from the icy glass trail, beads of condensation racing down cleavage to pool hot in navel then drip lower, lace edges rasping softly against pebbled peaks beneath as ribbon shifts with each shallow gasp, the sharp chill biting burning flesh while warm breath fogs the glass, scent of champagne and her own thick musk saturating the air, devour-you.\n\nGraceful at 5\u20199 with flowing hair, a sculpted 36D-26-36 silhouette, she embodies Nordic elegance with a sensual edge."
+    },
+    "class_type": "PrimitiveStringMultiline",
+    "_meta": {
+      "title": "Prompt"
+    }
+  },
+  "57": {
+    "inputs": {
+      "text": [
+        "58",
+        0
+      ],
+      "width": 1536,
+      "height": 2048
+    },
+    "class_type": "f2fdebf6-dfaf-43b6-9eb2-7f70613cfdc1",
+    "_meta": {
+      "title": "f2fdebf6-dfaf-43b6-9eb2-7f70613cfdc1"
+    }
+  },
+  "9": {
+    "inputs": {
+      "images": [
+        "57",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "SaveImage"
+    }
+  }
+}

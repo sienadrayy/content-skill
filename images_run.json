@@ -1,0 +1,167 @@
+{
+  "442": {
+    "inputs": {
+      "Multi_prompts": [
+        "443",
+        0
+      ],
+      "prefix": "body_text",
+      "suffix": ""
+    },
+    "class_type": "CreaPrompt List",
+    "_meta": {
+      "title": "CreaPrompt List"
+    }
+  },
+  "506": {
+    "inputs": {
+      "anything": [
+        "444",
+        1
+      ]
+    },
+    "class_type": "easy showAnything",
+    "_meta": {
+      "title": "Number Of Extend"
+    }
+  },
+  "520": {
+    "inputs": {
+      "anything": [
+        "505",
+        1
+      ]
+    },
+    "class_type": "easy showAnything",
+    "_meta": {
+      "title": "Current Loop"
+    }
+  },
+  "507": {
+    "inputs": {
+      "list_input": [
+        "442",
+        0
+      ],
+      "index": [
+        "505",
+        1
+      ]
+    },
+    "class_type": "StringFromList",
+    "_meta": {
+      "title": "StringFromList"
+    }
+  },
+  "444": {
+    "inputs": {
+      "list_input": [
+        "442",
+        0
+      ],
+      "index": 0
+    },
+    "class_type": "StringFromList",
+    "_meta": {
+      "title": "StringFromList"
+    }
+  },
+  "521": {
+    "inputs": {
+      "source": [
+        "507",
+        0
+      ]
+    },
+    "class_type": "PreviewAny",
+    "_meta": {
+      "title": "PreviewAny"
+    }
+  },
+  "508": {
+    "inputs": {
+      "images": [
+        "499",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "PreviewImage"
+    }
+  },
+  "505": {
+    "inputs": {
+      "initial_value1": [
+        "444",
+        0
+      ],
+      "total": [
+        "444",
+        1
+      ]
+    },
+    "class_type": "easy forLoopStart",
+    "_meta": {
+      "title": "easy forLoopStart"
+    }
+  },
+  "509": {
+    "inputs": {
+      "flow": [
+        "505",
+        0
+      ],
+      "initial_value1": [
+        "499",
+        0
+      ]
+    },
+    "class_type": "easy forLoopEnd",
+    "_meta": {
+      "title": "easy forLoopEnd"
+    }
+  },
+  "524": {
+    "inputs": {
+      "value": [
+        "509",
+        0
+      ]
+    },
+    "class_type": "FL_UnloadAllModels",
+    "_meta": {
+      "title": "FL_UnloadAllModels"
+    }
+  },
+  "523": {
+    "inputs": {
+      "images": [
+        "509",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "PreviewImage"
+    }
+  },
+  "443": {
+    "inputs": {
+      "value": "Close-up portrait of siena in warm golden bedroom lamp light, confident direct eye contact, bare shoulders visible, champagne silk robe draped elegantly, subtle lip parting, intimate sensual expression, soft golden tones, professional cinematic photography\nMedium shot of siena, golden light catching her shoulders, silk robe sliding to reveal collarbone and upper chest, hand tracing shoulder slowly, confident posture, bare skin glowing, luxury bedroom setting, warm champagne lighting, fine art photography\nFull body of siena seated on edge of bed, champagne silk robe partially open, chest open and confident, golden bedroom light illuminating curves, sensual seated pose, luxury intimate setting, warm golden rim lighting, cinematic photography\nSeated siena mid-body-roll, shoulders rotating back, chest fully open, confident direct eye contact maintained, silk robe flowing, curves emphasized through deliberate posing, golden light catching skin, peak sensual moment, professional glamorous photography\nClose-up of siena's torso during pose transition, hand near collarbone, bare shoulders and chest, silk robe draped sensually, golden warm lighting, intimate confidence, luxury aesthetic, professional photography\nSiena over-shoulder glance back, 45\u00b0 angle showing back and side profile, knowing smile, hair positioned elegantly, bare shoulders prominent, golden light catching silhouette, sensual engagement moment, cinematic photography\nClose-up face of siena with intense eye contact, hand near neck/collarbone area, confident expression with subtle lip bite, golden warm lighting on face, intimate connection energy, professional beauty photography\nExtreme close-up of siena's face, direct to camera, peak confidence expression, eye contact intense and magnetic, warm golden light catching eyes and lips, sensual power moment, intimate yet commanding presence, cinematic portrait\nMedium shot siena seated, returning to face-forward pose after over-shoulder look, direct camera engagement, confident smile, collarbone visible, warm luxury lighting, @desire.siena branding moment, professional photography\nClose-up face of siena, frozen on power moment, intense confident gaze, slight lip engagement, golden warm lighting, username overlay ready, ultimate sensual confidence captured, professional cinematic quality"
+    },
+    "class_type": "PrimitiveStringMultiline",
+    "_meta": {
+      "title": "Image Prompts"
+    }
+  },
+  "500": {
+    "inputs": {
+      "value": "robe"
+    },
+    "class_type": "PrimitiveStringMultiline",
+    "_meta": {
+      "title": "Name"
+    }
+  }
+}

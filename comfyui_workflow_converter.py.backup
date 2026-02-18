@@ -1,0 +1,438 @@
+#!/usr/bin/env python3
+"""
+ComfyUI Workflow Converter - UI Format to API Format
+
+This script converts ComfyUI workflows from UI format (LiteGraph/frontend format)
+to API format (backend-compatible dictionary format) that can be sent to the 
+ComfyUI server for execution.
+
+This implementation is based on the exact TypeScript source code from ComfyUI's frontend:
+- Source: ComfyUI_frontend/src/utils/executionUtil.ts (graphToPrompt function)
+- Source: ComfyUI_frontend/src/utils/litegraphUtil.ts (compressWidgetInputSlots function)
+
+UI Format Structure:
+  {
+    "nodes": [{...}, {...}],     # Nodes with positions, UI metadata
+    "links": [[...], [...], ...], # Connection links between nodes
+    "extra": {...},               # Canvas metadata (zoom, pan)
+    ...
+  }
+
+API Format Structure:
+  {
+    "node_id": {
+      "inputs": {...},            # Input values and connections
+      "class_type": "NodeType",   # Node type/class name
+      "_meta": {"title": "..."}   # Metadata (ignored by backend)
+    },
+    ...
+  }
+
+Usage:
+  python comfyui_workflow_converter.py <input.json> [output.json]
+
+Example:
+  python comfyui_workflow_converter.py ui_workflow.json api_workflow.json
+"""
+
+import json
+import sys
+import os
+from typing import Any, Dict, List, Optional, Set, Tuple, Union
+from pathlib import Path
+
+
+class ComfyWorkflowConverter:
+    """
+    Converts ComfyUI workflows from UI format to API format.
+    
+    This class replicates the exact conversion logic from ComfyUI's frontend
+    executionUtil.ts, specifically the graphToPrompt() function.
+    """
+    
+    # Complete node input definitions in INPUT_TYPES order for accurate widget mapping
+    # Format: {"node_type": [("input_name", can_have_link, has_control_widget), ...]}
+    # can_have_link indicates if the input can receive a connection in the UI
+    # has_control_widget indicates if there's an extra UI widget (like control_after_generate)
+    COMMON_NODE_INPUTS = {
+        "CheckpointLoaderSimple": [("ckpt_name", False, False)],
+        "CheckpointLoader": [("ckpt_name", False, False), ("clip_skip", False, False)],
+        "CLIPLoader": [("clip_name", False, False), ("type", False, False), ("device", False, False)],
+        "CLIPTextEncode": [("text", True, False), ("clip", True, False)],
+        "VAELoader": [("vae_name", False, False)],
+        "EmptyLatentImage": [("width", False, False), ("height", False, False), ("batch_size", False, False)],
+        "EmptySD3LatentImage": [("width", False, False), ("height", False, False), ("batch_size", False, False)],
+        # KSampler: model, seed (with control_after_generate), steps, cfg, sampler_name, scheduler, positive, negative, latent_image, denoise
+        "KSampler": [
+            ("model", True, False), ("seed", False, True), ("steps", False, False), ("cfg", False, False), 
+            ("sampler_name", False, False), ("scheduler", False, False), ("positive", True, False), 
+            ("negative", True, False), ("latent_image", True, False), ("denoise", False, False)
+        ],
+        # KSamplerAdvanced: model, add_noise, noise_seed (with control_after_generate), steps, ...
+        "KSamplerAdvanced": [
+            ("model", True, False), ("add_noise", False, False), ("noise_seed", False, True), ("steps", False, False),
+            ("cfg", False, False), ("sampler_name", False, False), ("scheduler", False, False), ("positive", True, False),
+            ("negative", True, False), ("latent_image", True, False), ("start_at_step", False, False), 
+            ("end_at_step", False, False), ("return_with_leftover_noise", False, False)
+        ],
+        "PrimitiveString": [("string", False, False)],
+        "PrimitiveStringMultiline": [("value", False, False)],
+        "PrimitiveNumber": [("number", False, False)],
+        "PrimitiveBoolean": [("value", False, False)],
+        "PrimitiveInt": [("value", False, False)],
+        "PrimitiveFloat": [("value", False, False)],
+        "SaveImage": [("images", True, False), ("filename_prefix", False, False)],
+        "LoadImage": [("image", False, False)],
+        "VAEDecode": [("samples", True, False), ("vae", True, False)],
+        "VAEEncode": [("pixels", True, False), ("vae", True, False)],
+        "UNETLoader": [("unet_name", False, False), ("weight_dtype", False, False)],
+        # LoraLoaderModelOnly: model, lora_name, strength_model
+        "LoraLoaderModelOnly": [("model", True, False), ("lora_name", False, False), ("strength_model", False, False)],
+        # LoraLoader: model, lora_name, strength_model, clip, strength_clip
+        "LoraLoader": [("model", True, False), ("lora_name", False, False), ("strength_model", False, False), ("clip", True, False), ("strength_clip", False, False)],
+    }
+    
+    def __init__(self, workflow: Dict[str, Any]):
+        """
+        Initialize converter with a UI format workflow.
+        
+        Args:
+            workflow: Dictionary containing the UI format workflow
+        """
+        self.workflow = workflow
+        self.nodes = workflow.get('nodes', [])
+        self.links = workflow.get('links', [])
+        self._build_link_map()
+        self._build_node_map()
+    
+    def _build_link_map(self) -> None:
+        """Build a map of link IDs to link data for O(1) lookup."""
+        self.link_map: Dict[int, List[Any]] = {}
+        for link in self.links:
+            # Link format: [id, source_node, source_slot, target_node, target_slot, type]
+            link_id = link[0]
+            self.link_map[link_id] = link
+    
+    def _build_node_map(self) -> None:
+        """Build a map of node IDs to node data for O(1) lookup."""
+        self.node_map: Dict[int, Dict[str, Any]] = {}
+        for node in self.nodes:
+            node_id = node['id']
+            self.node_map[node_id] = node
+    
+    def compute_execution_order(self) -> List[Dict[str, Any]]:
+        """
+        Compute execution order of nodes using topological sort.
+        
+        This ensures nodes are processed in dependency order, where nodes are
+        executed after all their inputs are available.
+        
+        Returns:
+            List of nodes in execution order
+        """
+        # Build adjacency list and in-degree count for topological sort
+        in_degree: Dict[int, int] = {}
+        adjacency: Dict[int, List[int]] = {}
+        
+        # Initialize all nodes
+        for node in self.nodes:
+            node_id = node['id']
+            in_degree[node_id] = 0
+            adjacency[node_id] = []
+        
+        # Build edges based on links
+        for link in self.links:
+            # Link format: [id, source_node, source_slot, target_node, target_slot, type]
+            source_node = link[1]
+            target_node = link[3]
+            
+            if target_node in adjacency:
+                adjacency[source_node].append(target_node)
+                in_degree[target_node] += 1
+        
+        # Kahn's algorithm for topological sort
+        queue = [node_id for node_id in in_degree if in_degree[node_id] == 0]
+        execution_order = []
+        
+        while queue:
+            # Sort for deterministic order
+            queue.sort()
+            node_id = queue.pop(0)
+            
+            execution_order.append(self.node_map[node_id])
+            
+            for neighbor in adjacency[node_id]:
+                in_degree[neighbor] -= 1
+                if in_degree[neighbor] == 0:
+                    queue.append(neighbor)
+        
+        return execution_order
+    
+    def get_input_names_for_node(self, node_type: str) -> List[Tuple[str, bool, bool]]:
+        """
+        Get input names and metadata for a node type.
+        
+        Returns the ordered list of inputs for a node type from INPUT_TYPES,
+        along with metadata about each input.
+        
+        Args:
+            node_type: The type/class of the node
+            
+        Returns:
+            List of (input_name, can_have_link, has_control_widget) tuples
+        """
+        return self.COMMON_NODE_INPUTS.get(node_type, [])
+    
+    def convert_to_api_format(self) -> Dict[str, Dict[str, Any]]:
+        """
+        Convert workflow to API format.
+        
+        This is the main conversion function that replicates graphToPrompt() from executionUtil.ts.
+        
+        Algorithm:
+        1. Get nodes in execution order using topological sort
+        2. For each non-muted node:
+           a. Build a map of input slots by name for quick lookup
+           b. For each input in the node's INPUT_TYPES (in order):
+              - If it has a slot with a link, use the connection
+              - If it has a slot but no link, use next widget_value
+              - If no slot, use next widget_value
+           c. This correctly maps widget values in order of INPUT_TYPES
+        3. Remove inputs pointing to muted/removed nodes
+        
+        Returns:
+            API format workflow: {node_id: {inputs: {...}, class_type: "...", _meta: {...}}, ...}
+        """
+        output: Dict[str, Dict[str, Any]] = {}
+        
+        # Get execution order
+        execution_order = self.compute_execution_order()
+        
+        # Process each node in execution order
+        for node in execution_order:
+            node_id = node['id']
+            node_type = node['type']
+            
+            # Skip muted (mode=2) or bypassed (mode=4) nodes
+            # These are nodes that shouldn't be executed
+            mode = node.get('mode', 0)
+            if mode == 2 or mode == 4:  # LGraphEventMode.NEVER or BYPASS
+                continue
+            
+            inputs: Dict[str, Any] = {}
+            input_slots = node.get('inputs', [])
+            widgets_values = node.get('widgets_values', [])
+            
+            # Build a map of input slots by name for O(1) lookup
+            input_slots_map: Dict[str, Dict[str, Any]] = {}
+            for slot in input_slots:
+                input_slots_map[slot['name']] = slot
+            
+            # Get the expected input definitions for this node type (in INPUT_TYPES order)
+            input_definitions = self.get_input_names_for_node(node_type)
+            
+            # Track which widget values we've used
+            widget_value_index = 0
+            
+            # Process each input in the order defined by INPUT_TYPES
+            for input_def in input_definitions:
+                input_name = input_def[0]
+                can_have_link = input_def[1]
+                has_control_widget = input_def[2] if len(input_def) > 2 else False
+                
+                # Check if this input has a slot in the UI
+                if input_name in input_slots_map:
+                    slot = input_slots_map[input_name]
+                    link_id = slot.get('link')
+                    
+                    if link_id is not None and link_id in self.link_map:
+                        # This input is connected to another node's output
+                        link = self.link_map[link_id]
+                        source_node = link[1]
+                        source_slot = link[2]
+                        inputs[input_name] = [str(source_node), source_slot]
+                    elif widget_value_index < len(widgets_values):
+                        # This input has no connection, use the next widget value
+                        value = widgets_values[widget_value_index]
+                        widget_value_index += 1
+                        
+                        # If the value is an array, wrap it to avoid confusion with node links
+                        if isinstance(value, list):
+                            inputs[input_name] = {'__value__': value}
+                        else:
+                            inputs[input_name] = value
+                        
+                        # If this input has a control widget (like control_after_generate),
+                        # skip the next widget value as it's UI-only metadata
+                        if has_control_widget and widget_value_index < len(widgets_values):
+                            widget_value_index += 1
+                else:
+                    # This input doesn't have a slot, so it can only be a widget value
+                    if widget_value_index < len(widgets_values):
+                        value = widgets_values[widget_value_index]
+                        widget_value_index += 1
+                        
+                        # If the value is an array, wrap it
+                        if isinstance(value, list):
+                            inputs[input_name] = {'__value__': value}
+                        else:
+                            inputs[input_name] = value
+                        
+                        # If this input has a control widget, skip it
+                        if has_control_widget and widget_value_index < len(widgets_values):
+                            widget_value_index += 1
+            
+            # Create the output node entry
+            output[str(node_id)] = {
+                'inputs': inputs,
+                'class_type': node_type,
+                '_meta': {
+                    'title': node.get('title', node_type)
+                }
+            }
+        
+        # Remove inputs connected to removed (muted/bypassed) nodes
+        # This ensures the API format only contains valid connections
+        for node_entry in output.values():
+            node_inputs = node_entry['inputs']
+            inputs_to_remove = []
+            
+            for input_name, input_value in node_inputs.items():
+                # Check if this is a node connection [node_id, slot]
+                if isinstance(input_value, list) and len(input_value) == 2:
+                    source_node_id = input_value[0]
+                    # If source node was removed/muted, remove this input
+                    if source_node_id not in output:
+                        inputs_to_remove.append(input_name)
+            
+            for input_name in inputs_to_remove:
+                del node_inputs[input_name]
+        
+        return output
+
+
+def load_workflow(file_path: str) -> Dict[str, Any]:
+    """
+    Load a workflow from a JSON file.
+    
+    Args:
+        file_path: Path to the workflow JSON file
+        
+    Returns:
+        The loaded workflow dictionary
+        
+    Raises:
+        FileNotFoundError: If the file doesn't exist
+        json.JSONDecodeError: If the file is not valid JSON
+    """
+    with open(file_path, 'r', encoding='utf-8') as f:
+        return json.load(f)
+
+
+def save_workflow(workflow: Dict[str, Any], file_path: str) -> None:
+    """
+    Save a workflow to a JSON file.
+    
+    Args:
+        workflow: The workflow dictionary to save
+        file_path: Path where to save the workflow
+    """
+    with open(file_path, 'w', encoding='utf-8') as f:
+        json.dump(workflow, f, indent=2)
+
+
+def convert_workflow(input_path: str, output_path: Optional[str] = None) -> Dict[str, Any]:
+    """
+    Convert a UI format workflow to API format.
+    
+    Args:
+        input_path: Path to the UI format workflow JSON file
+        output_path: Optional path to save the API format workflow
+        
+    Returns:
+        The API format workflow dictionary
+        
+    Raises:
+        FileNotFoundError: If input file doesn't exist
+        json.JSONDecodeError: If input file is not valid JSON
+    """
+    print(f"Loading workflow from: {input_path}")
+    
+    # Load the UI format workflow
+    workflow = load_workflow(input_path)
+    
+    nodes = workflow.get('nodes', [])
+    links = workflow.get('links', [])
+    print(f"Found {len(nodes)} nodes")
+    print(f"Found {len(links)} links")
+    
+    # Create converter and convert
+    converter = ComfyWorkflowConverter(workflow)
+    
+    print("Computing execution order...")
+    execution_order = converter.compute_execution_order()
+    order_ids = [node['id'] for node in execution_order]
+    print(f"Execution order: {order_ids}")
+    
+    print("Converting to API format...")
+    api_format = converter.convert_to_api_format()
+    
+    print(f"Converted {len(api_format)} nodes to API format")
+    
+    # Save if output path provided
+    if output_path:
+        print(f"Saving API format workflow to: {output_path}")
+        save_workflow(api_format, output_path)
+        print(f"Successfully saved to: {output_path}")
+    
+    return api_format
+
+
+def main():
+    """Main entry point for the script."""
+    if len(sys.argv) < 2:
+        print("ComfyUI Workflow Converter - UI Format to API Format")
+        print()
+        print("Usage: python comfyui_workflow_converter.py <input.json> [output.json]")
+        print()
+        print("Arguments:")
+        print("  input.json   Path to the UI format workflow file")
+        print("  output.json  Path to save the API format workflow (optional)")
+        print()
+        print("Examples:")
+        print("  python comfyui_workflow_converter.py workflow.json")
+        print("  python comfyui_workflow_converter.py workflow.json api_format.json")
+        print()
+        print("Documentation:")
+        print("  See the script docstring for format details and conversion logic.")
+        sys.exit(1)
+    
+    input_path = sys.argv[1]
+    output_path = sys.argv[2] if len(sys.argv) > 2 else None
+    
+    # Generate output path if not provided
+    if not output_path:
+        input_file = Path(input_path)
+        output_path = str(input_file.parent / f"{input_file.stem}_api.json")
+    
+    try:
+        api_format = convert_workflow(input_path, output_path)
+        print()
+        print("[SUCCESS] Conversion completed successfully!")
+        print(f"Output file: {output_path}")
+        return 0
+    except FileNotFoundError as e:
+        print(f"[ERROR] File not found: {e}")
+        sys.exit(1)
+    except json.JSONDecodeError as e:
+        print(f"[ERROR] Invalid JSON file: {e}")
+        sys.exit(1)
+    except Exception as e:
+        print(f"[ERROR] Conversion failed: {e}")
+        import traceback
+        traceback.print_exc()
+        sys.exit(1)
+
+
+if __name__ == '__main__':
+    sys.exit(main())

@@ -1,0 +1,467 @@
+{
+  "576": {
+    "inputs": {},
+    "class_type": "Note",
+    "_meta": {
+      "title": "Note"
+    }
+  },
+  "577": {
+    "inputs": {
+      "vae_name": "qwen_image_vae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "VAELoader"
+    }
+  },
+  "578": {
+    "inputs": {
+      "clip_name": "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+      "type": "qwen_image",
+      "device": "default"
+    },
+    "class_type": "CLIPLoader",
+    "_meta": {
+      "title": "CLIPLoader"
+    }
+  },
+  "580": {
+    "inputs": {
+      "width": 1264,
+      "height": 1888,
+      "batch_size": 1
+    },
+    "class_type": "EmptySD3LatentImage",
+    "_meta": {
+      "title": "EmptySD3LatentImage"
+    }
+  },
+  "581": {
+    "inputs": {
+      "width": 1888,
+      "height": 1264,
+      "batch_size": 1
+    },
+    "class_type": "EmptySD3LatentImage",
+    "_meta": {
+      "title": "EmptySD3LatentImage"
+    }
+  },
+  "588": {
+    "inputs": {
+      "unet_name": "qwen-image-2512-Q5_1.gguf"
+    },
+    "class_type": "UnetLoaderGGUF",
+    "_meta": {
+      "title": "UnetLoaderGGUF"
+    }
+  },
+  "590": {
+    "inputs": {
+      "model": [
+        "588",
+        0
+      ],
+      "lora_name": 1
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoraLoaderModelOnly"
+    }
+  },
+  "589": {
+    "inputs": {
+      "model": [
+        "590",
+        0
+      ],
+      "lora_name": 0.75
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoraLoaderModelOnly"
+    }
+  },
+  "591": {
+    "inputs": {
+      "model": [
+        "589",
+        0
+      ],
+      "lora_name": 1.0000000000000002
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoraLoaderModelOnly"
+    }
+  },
+  "592": {
+    "inputs": {
+      "clip": [
+        "578",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIPTextEncode"
+    }
+  },
+  "594": {
+    "inputs": {
+      "text": "In the soft amber glow of early evening filtering through half-drawn silk curtains in a vintage Parisian apartment, she stands waist-up in intimate close frame, body turned slightly toward the camera as if caught mid-breath, wearing a barely-there crimson satin corset with razor-thin spaghetti straps and a heart-stoppingly deep plunge that exposes the smooth inner curves of her breasts, fabric clinging damply to her skin from the warm air, one hand resting lightly on the velvet chaise behind her, ribs rising and falling visibly, throat exposed, collarbones catching liquid light, slow-burn.\n\nEditorial style portrait, high angle, The fashionable woman has smooth brown hair, Realistic skin texture, fabric and hair. Canon EOS 5D, 50mm, f4. Natural sunlight photography\n\nGraceful at 5\u20199 with flowing hair, a sculpted 36D-26-36 silhouette, she embodies Nordic elegance with a sensual edge.\n\nRealism, amtr snapshot photo"
+    },
+    "class_type": "Text Multiline",
+    "_meta": {
+      "title": "Text Multiline"
+    }
+  },
+  "593": {
+    "inputs": {
+      "clip": [
+        "578",
+        0
+      ],
+      "text": [
+        "594",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIPTextEncode"
+    }
+  },
+  "603": {
+    "inputs": {
+      "clip_name": "qwen_3_4b.safetensors",
+      "type": "lumina2",
+      "device": "default"
+    },
+    "class_type": "CLIPLoader",
+    "_meta": {
+      "title": "CLIPLoader"
+    }
+  },
+  "604": {
+    "inputs": {
+      "vae_name": "ae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "VAELoader"
+    }
+  },
+  "607": {
+    "inputs": {
+      "clip": [
+        "603",
+        0
+      ],
+      "text": [
+        "594",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIPTextEncode"
+    }
+  },
+  "608": {
+    "inputs": {
+      "conditioning": [
+        "607",
+        0
+      ]
+    },
+    "class_type": "ConditioningZeroOut",
+    "_meta": {
+      "title": "ConditioningZeroOut"
+    }
+  },
+  "639": {
+    "inputs": {},
+    "class_type": "Note",
+    "_meta": {
+      "title": "Note"
+    }
+  },
+  "642": {
+    "inputs": {
+      "unet_name": "z_image_turbo_bf16.safetensors",
+      "weight_dtype": "default"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "UNETLoader"
+    }
+  },
+  "643": {
+    "inputs": {
+      "model": [
+        "642",
+        0
+      ],
+      "sage_attention": true
+    },
+    "class_type": "PathchSageAttentionKJ",
+    "_meta": {
+      "title": "PathchSageAttentionKJ"
+    }
+  },
+  "644": {
+    "inputs": {
+      "model": [
+        "643",
+        0
+      ]
+    },
+    "class_type": "ModelPatchTorchSettings",
+    "_meta": {
+      "title": "ModelPatchTorchSettings"
+    }
+  },
+  "646": {
+    "inputs": {
+      "model": [
+        "644",
+        0
+      ],
+      "lora_name": 1
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoraLoaderModelOnly"
+    }
+  },
+  "647": {
+    "inputs": {
+      "model": [
+        "591",
+        0
+      ],
+      "sage_attention": true
+    },
+    "class_type": "PathchSageAttentionKJ",
+    "_meta": {
+      "title": "PathchSageAttentionKJ"
+    }
+  },
+  "648": {
+    "inputs": {
+      "model": [
+        "647",
+        0
+      ]
+    },
+    "class_type": "ModelPatchTorchSettings",
+    "_meta": {
+      "title": "ModelPatchTorchSettings"
+    }
+  },
+  "579": {
+    "inputs": {
+      "model": [
+        "648",
+        0
+      ]
+    },
+    "class_type": "ModelSamplingAuraFlow",
+    "_meta": {
+      "title": "ModelSamplingAuraFlow"
+    }
+  },
+  "575": {
+    "inputs": {
+      "model": [
+        "579",
+        0
+      ],
+      "positive": [
+        "593",
+        0
+      ],
+      "negative": [
+        "592",
+        0
+      ],
+      "latent_image": [
+        "580",
+        0
+      ],
+      "seed": "euler",
+      "steps": "simple",
+      "cfg": 1
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "QwenKSampler"
+    }
+  },
+  "633": {
+    "inputs": {
+      "samples": [
+        "575",
+        0
+      ],
+      "vae": [
+        "577",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAEDecode"
+    }
+  },
+  "634": {
+    "inputs": {
+      "images": [
+        "633",
+        0
+      ]
+    },
+    "class_type": "PreviewImage",
+    "_meta": {
+      "title": "PreviewImage"
+    }
+  },
+  "641": {
+    "inputs": {
+      "anything": [
+        "633",
+        0
+      ],
+      "purge_cache": true
+    },
+    "class_type": "LayerUtility: PurgeVRAM V2",
+    "_meta": {
+      "title": "LayerUtility: PurgeVRAM V2"
+    }
+  },
+  "637": {
+    "inputs": {
+      "images": [
+        "641",
+        0
+      ]
+    },
+    "class_type": "ResizeImagesByLongerEdge",
+    "_meta": {
+      "title": "ResizeImagesByLongerEdge"
+    }
+  },
+  "596": {
+    "inputs": {
+      "pixels": [
+        "637",
+        0
+      ],
+      "vae": [
+        "604",
+        0
+      ]
+    },
+    "class_type": "VAEEncode",
+    "_meta": {
+      "title": "VAEEncode"
+    }
+  },
+  "645": {
+    "inputs": {
+      "lora_name": 0.3
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoraLoaderModelOnly"
+    }
+  },
+  "601": {
+    "inputs": {
+      "model": [
+        "645",
+        0
+      ]
+    },
+    "class_type": "ModelSamplingAuraFlow",
+    "_meta": {
+      "title": "ModelSamplingAuraFlow"
+    }
+  },
+  "611": {
+    "inputs": {
+      "model": [
+        "601",
+        0
+      ],
+      "positive": [
+        "607",
+        0
+      ],
+      "negative": [
+        "608",
+        0
+      ],
+      "latent_image": [
+        "596",
+        0
+      ],
+      "add_noise": 1.2,
+      "noise_seed": "res_2s",
+      "steps": "beta",
+      "cfg": 6,
+      "sampler_name": 10,
+      "scheduler": "disable"
+    },
+    "class_type": "KSamplerAdvanced",
+    "_meta": {
+      "title": "ZKSampler (Advanced)"
+    }
+  },
+  "609": {
+    "inputs": {
+      "samples": [
+        "611",
+        0
+      ],
+      "vae": [
+        "604",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAEDecode"
+    }
+  },
+  "612": {
+    "inputs": {
+      "image_a": [
+        "637",
+        0
+      ],
+      "image_b": [
+        "609",
+        0
+      ]
+    },
+    "class_type": "Image Comparer (rgthree)",
+    "_meta": {
+      "title": "Image Comparer (rgthree)"
+    }
+  },
+  "638": {
+    "inputs": {
+      "images": [
+        "609",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "SaveImage"
+    }
+  }
+}
