@@ -1,0 +1,228 @@
+{
+  "438": {
+    "inputs": {
+      "Multi_prompts": "body_text",
+      "prefix": "",
+      "suffix": "Cinematic scenes, high quality photography, photorealistic"
+    },
+    "class_type": "CreaPrompt List",
+    "_meta": {
+      "title": ""
+    }
+  },
+  "439": {
+    "inputs": {
+      "list_input": [
+        "438",
+        0
+      ],
+      "index": 0
+    },
+    "class_type": "StringFromList",
+    "_meta": {
+      "title": ""
+    }
+  },
+  "512": {
+    "inputs": {
+      "text_a": [
+        "517",
+        0
+      ],
+      "text_b": [
+        "500",
+        0
+      ],
+      "text_c": [
+        "513",
+        0
+      ],
+      "delimiter": "/",
+      "clean_whitespace": "true"
+    },
+    "class_type": "Text Concatenate",
+    "_meta": {
+      "title": ""
+    }
+  },
+  "516": {
+    "inputs": {
+      "initial_value1": [
+        "534",
+        0
+      ],
+      "directory": "",
+      "start_index": 0,
+      "limit": -1
+    },
+    "class_type": "easy loadImagesForLoop",
+    "_meta": {
+      "title": ""
+    }
+  },
+  "409": {
+    "inputs": {
+      "anything": [
+        "516",
+        1
+      ]
+    },
+    "class_type": "easy showAnything",
+    "_meta": {
+      "title": "Current Loop"
+    }
+  },
+  "517": {
+    "inputs": {
+      "text": "D:/ComfyUI_windows_portable/ComfyUI/output"
+    },
+    "class_type": "Text Multiline",
+    "_meta": {
+      "title": ""
+    }
+  },
+  "440": {
+    "inputs": {
+      "list_input": [
+        "438",
+        0
+      ],
+      "index": 0
+    },
+    "class_type": "StringFromList",
+    "_meta": {
+      "title": ""
+    }
+  },
+  "522": {
+    "inputs": {
+      "source": [
+        "440",
+        0
+      ]
+    },
+    "class_type": "PreviewAny",
+    "_meta": {
+      "title": ""
+    }
+  },
+  "436": {
+    "inputs": {
+      "value": "Siena is standing in garden"
+    },
+    "class_type": "PrimitiveStringMultiline",
+    "_meta": {
+      "title": "VIdeo Prompts"
+    }
+  },
+  "411": {
+    "inputs": {
+      "anything": [
+        "439",
+        1
+      ]
+    },
+    "class_type": "easy showAnything",
+    "_meta": {
+      "title": "Number Of Extend"
+    }
+  },
+  "530": {
+    "inputs": {
+      "text": "D:/ComfyUI_windows_portable/ComfyUI/output"
+    },
+    "class_type": "Text Multiline",
+    "_meta": {
+      "title": ""
+    }
+  },
+  "513": {
+    "inputs": {
+      "text": "Images"
+    },
+    "class_type": "Text Multiline",
+    "_meta": {
+      "title": ""
+    }
+  },
+  "533": {
+    "inputs": {
+      "text": "D:/ComfyUI_windows_portable/ComfyUI/output"
+    },
+    "class_type": "Text Multiline",
+    "_meta": {
+      "title": ""
+    }
+  },
+  "531": {
+    "inputs": {
+      "text": "Images/0_00001_.png"
+    },
+    "class_type": "Text Multiline",
+    "_meta": {
+      "title": ""
+    }
+  },
+  "532": {
+    "inputs": {
+      "text_a": [
+        "533",
+        0
+      ],
+      "text_b": [
+        "500",
+        0
+      ],
+      "text_c": [
+        "531",
+        0
+      ],
+      "delimiter": "/",
+      "clean_whitespace": "true"
+    },
+    "class_type": "Text Concatenate",
+    "_meta": {
+      "title": ""
+    }
+  },
+  "534": {
+    "inputs": {
+      "image": "D:\\ComfyUI_windows_portable\\ComfyUI\\output\\ComfyUI_00001_.png"
+    },
+    "class_type": "LoadImageFromPath",
+    "_meta": {
+      "title": ""
+    }
+  },
+  "500": {
+    "inputs": {
+      "value": "robe"
+    },
+    "class_type": "PrimitiveStringMultiline",
+    "_meta": {
+      "title": "Name"
+    }
+  },
+  "529": {
+    "inputs": {
+      "text_a": [
+        "530",
+        0
+      ],
+      "text_b": [
+        "500",
+        0
+      ],
+      "text_c": [
+        "500",
+        0
+      ],
+      "delimiter": "/",
+      "clean_whitespace": "true"
+    },
+    "class_type": "Text Concatenate",
+    "_meta": {
+      "title": ""
+    }
+  }
+}
