@@ -2,12 +2,13 @@
 """
 ComfyUI Export API v6 - Correct Group Node Expansion based on ComfyUI source
 
-WIDGET VALUE MAPPING:
-- widgets_values array contains values for ALL inputs with widget=yes, in slot order
-- This includes inputs that now have links (link overrides widget value)
-- Must iterate through node.inputs, consume value for each widget slot
-- Only SET the value if slot has no link (link takes precedence)
-- Control widgets (fixed/randomize/increment/decrement) are UI-only, skip them
+WIDGET VALUE MAPPING (matching ComfyUI's graphToPrompt):
+- widgets_values array maps to WIDGET NAMES from server /object_info, NOT input slots
+- Order: widgets are created per server definition order (required, then optional)
+- Use _get_widget_inputs() to get widget names in creation order
+- Map widgets_values[i] to widget_names[i] (accounting for control_after_generate)
+- For inputs with links: link OVERWRITES widget value (add links after widgets)
+- control_after_generate: skip the following value ('fixed'/'randomize'/etc.)
 
 SUBGRAPH EXPANSION:
 - definitions.subgraphs contains group node definitions
@@ -183,19 +184,33 @@ class ComfyUIExporter:
             
             print(f"  Expanded {group_id}: +{len(inner_nodes)} nodes")
     
-    def _get_widget_inputs(self, node_type: str) -> List[str]:
+    def _get_widget_inputs(self, node_type: str) -> List[Tuple[str, bool]]:
+        """Get widget input names with control_after_generate flag.
+        
+        Returns list of (name, has_control) tuples in creation order.
+        Connection-only inputs (MODEL, VAE, forceInput, etc.) are excluded.
+        """
         if node_type not in self.node_defs:
             return []
         widget_inputs = []
         input_def = self.node_defs[node_type].get('input', {})
         for cat in ['required', 'optional']:
             for name, spec in input_def.get(cat, {}).items():
-                if isinstance(spec, list) and spec and isinstance(spec[0], str):
-                    if spec[0].upper() in ['MODEL', 'VAE', 'CLIP', 'CONDITIONING', 'LATENT', 
-                                           'IMAGE', 'MASK', 'CONTROL_NET', 'SIGMAS', 'SAMPLER', 
-                                           'NOISE', 'GUIDER', 'UPSCALE_MODEL', '*']:
+                if isinstance(spec, list) and spec:
+                    # Check if this is a connection-only type
+                    if isinstance(spec[0], str) and spec[0].upper() in [
+                        'MODEL', 'VAE', 'CLIP', 'CONDITIONING', 'LATENT', 
+                        'IMAGE', 'MASK', 'CONTROL_NET', 'SIGMAS', 'SAMPLER', 
+                        'NOISE', 'GUIDER', 'UPSCALE_MODEL', '*'
+                    ]:
                         continue
-                widget_inputs.append(name)
+                    # Check for forceInput (connection-only despite having widget type)
+                    opts = spec[1] if len(spec) > 1 and isinstance(spec[1], dict) else {}
+                    if opts.get('forceInput', False):
+                        continue
+                    # Check for control_after_generate
+                    has_control = opts.get('control_after_generate', False)
+                    widget_inputs.append((name, has_control))
         return widget_inputs
     
     def _resolve_link(self, link_id: int, visited: set = None) -> Optional[Tuple[int, int]]:
@@ -243,59 +258,33 @@ class ComfyUIExporter:
                         inputs[inp['name']] = [str(resolved[0]), resolved[1]]
             
             wv = node.get('widgets_values', [])
-            node_inputs = node.get('inputs', [])
             
             if isinstance(wv, dict):
+                # VHS and some nodes use dict format - keys are widget names
                 for k, v in wv.items():
                     if k not in connected:
-                        inputs[k] = v
+                        inputs[k] = {'__value__': v} if isinstance(v, list) else v
             elif isinstance(wv, list):
-                # widgets_values contains values for ALL widget inputs (even those with links)
-                # We consume values for all widget inputs, but only SET for unlinked ones
+                # Map widgets_values using server definition order
+                # This is how ComfyUI does it: widget values map to widget names by creation order
+                widget_defs = self._get_widget_inputs(ntype)
                 idx = 0
-                for inp in node_inputs:
-                    inp_name = inp.get('name')
-                    has_widget = 'widget' in inp
-                    has_link = inp.get('link') is not None
+                for name, has_control in widget_defs:
+                    if idx >= len(wv):
+                        break
                     
-                    # Consume widget value if this is a widget input
-                    if has_widget:
-                        if idx < len(wv):
-                            v = wv[idx]
+                    v = wv[idx]
+                    idx += 1
+                    
+                    # Skip control_after_generate value if present
+                    if has_control and idx < len(wv):
+                        ctrl = wv[idx]
+                        if isinstance(ctrl, str) and ctrl in ['fixed', 'increment', 'decrement', 'randomize']:
                             idx += 1
-                            
-                            # Skip control_after_generate values
-                            while isinstance(v, str) and v in ['fixed', 'increment', 'decrement', 'randomize']:
-                                if idx < len(wv):
-                                    v = wv[idx]
-                                    idx += 1
-                                else:
-                                    v = None
-                                    break
-                            
-                            # Only set value if no link (link takes precedence)
-                            if not has_link and inp_name not in inputs and v is not None:
-                                inputs[inp_name] = {'__value__': v} if isinstance(v, list) else v
-                
-                # Fallback: use server definitions for nodes without widget slots
-                if not node_inputs or not any('widget' in inp for inp in node_inputs):
-                    widget_names = self._get_widget_inputs(ntype)
-                    idx = 0
-                    for name in widget_names:
-                        if name in inputs or name in connected:
-                            continue
-                        if idx < len(wv):
-                            v = wv[idx]
-                            idx += 1
-                            while isinstance(v, str) and v in ['fixed', 'increment', 'decrement', 'randomize']:
-                                if idx < len(wv):
-                                    v = wv[idx]
-                                    idx += 1
-                                else:
-                                    v = None
-                                    break
-                            if v is not None:
-                                inputs[name] = {'__value__': v} if isinstance(v, list) else v
+                    
+                    # Only set value if not connected (link takes precedence, handled above)
+                    if name not in connected and name not in inputs:
+                        inputs[name] = {'__value__': v} if isinstance(v, list) else v
             
             output[str(nid)] = {
                 'inputs': inputs,
