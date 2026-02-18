@@ -30,13 +30,13 @@ Complete workflow: Instagram URL → Download → Upload to ComfyUI → Animate 
    pip install yt-dlp
    ```
 
-3. **Workflow files** (read-only reference):
+3. **Workflow files** (network drive, API format):
    ```
    Image API:
-   C:\Users\mohit\.openclaw\workspace\comfy-wf\openclaw\Wan Animate character replacement V3 - Image API.json
+   \\192.168.29.60\workflows\Wan Animate character replacement V3 - Image API.json
    
    Video API:
-   C:\Users\mohit\.openclaw\workspace\comfy-wf\openclaw\Wan Animate character replacement V3 - Video API.json
+   \\192.168.29.60\workflows\Wan Animate character replacement V3 - Video API.json
    ```
 
 ## Usage
@@ -211,15 +211,16 @@ Video Export
 
 ## File Locations
 
-- **Workflows** (read-only):
-  - Image API: `C:\Users\mohit\.openclaw\workspace\comfy-wf\openclaw\Wan Animate character replacement V3 - Image API.json`
-  - Video API: `C:\Users\mohit\.openclaw\workspace\comfy-wf\openclaw\Wan Animate character replacement V3 - Video API.json`
-- **Scripts**: `C:\Users\mohit\.openclaw\workspace\skills\wan-animate-reel\scripts\`
+- **Workflows (network drive, API format):**
+  - Image API: `\\192.168.29.60\workflows\Wan Animate character replacement V3 - Image API.json`
+  - Video API: `\\192.168.29.60\workflows\Wan Animate character replacement V3 - Video API.json`
+- **Scripts:** `C:\Users\mohit\.openclaw\workspace\skills\wan-animate-reel\scripts\`
   - `run_wan_animate_reel.py` - Main orchestrator
   - `download_instagram_reel.py` - Instagram downloader
   - `submit_wan_workflow.py` - ComfyUI dual-workflow submission
-- **Downloads**: `C:\Users\mohit\.openclaw\workspace\skills\wan-animate-reel\downloads\`
-- **Server**: `http://192.168.29.60:8188`
+- **Downloads:** `C:\Users\mohit\.openclaw\workspace\skills\wan-animate-reel\downloads\`
+- **Output:** `\\192.168.29.60\output\Animate\`
+- **Server:** `http://192.168.29.60:8188`
 
 ## Direct Examples
 

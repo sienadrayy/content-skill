@@ -18,8 +18,9 @@ if sys.platform == 'win32':
     sys.stdout.reconfigure(encoding='utf-8')
 
 COMFYUI_SERVER = "http://192.168.29.60:8188"
-WORKFLOW_IMAGE_PATH = r"C:\Users\mohit\.openclaw\workspace\comfy-wf\openclaw\Wan Animate character replacement V3 - Image API.json"
-WORKFLOW_VIDEO_PATH = r"C:\Users\mohit\.openclaw\workspace\comfy-wf\openclaw\Wan Animate character replacement V3 - Video API.json"
+WORKFLOWS_DIR = r"\\192.168.29.60\workflows"
+WORKFLOW_IMAGE_PATH = f"{WORKFLOWS_DIR}\\Wan Animate character replacement V3 - Image API.json"
+WORKFLOW_VIDEO_PATH = f"{WORKFLOWS_DIR}\\Wan Animate character replacement V3 - Video API.json"
 
 def load_workflow(workflow_path: str) -> dict:
     """Load workflow from file"""
