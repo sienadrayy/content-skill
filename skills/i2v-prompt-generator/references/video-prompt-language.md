@@ -71,23 +71,25 @@ Every video prompt follows this structure:
 - **Zoom + subject holds** - Camera zooms while subject poses
 - **Track + rotate** - Camera follows while subject rotates
 
-## Speed & Intensity
+## Speed & Intensity - AGGRESSIVE FOCUS
 
-### Movement Speed
-- **Slow** - Takes 3-4 seconds for full motion
-- **Deliberate** - Intentional, controlled pace
-- **Smooth** - Flowing, no jerky movements
-- **Fluid** - Continuous, seamless motion
-- **Moderate** - Medium pace
-- **Flowing** - Natural, graceful speed
-- **Suspended** - Held moment with minimal motion
+### Movement Speed (Updated for Fast Pacing)
+- **Quick** - 0.5-1.5 seconds for motion (for teasing/reveals)
+- **Fast** - 1-2 seconds, snappy and engaging
+- **Medium-fast** - 2-3 seconds, confident purposeful motion
+- **Held** - 2-3 seconds static pose (not slow, just HELD with confidence)
+- **Continuous** - No pause, motion flows into next segment
+- **Rapid pulse** - Quick micro-movements building intensity
 
-### Intensity Levels
-- **Subtle** - Barely noticeable, minimal movement
-- **Gentle** - Soft, delicate motion
-- **Confident** - Strong, assured movement
-- **Sensual** - Smooth, inviting motion
-- **Dynamic** - More energetic, purposeful
+**KEY:** Avoid "slow", "gentle", "subtle" - use FAST, CONFIDENT, INTENSE instead.
+
+### Intensity Levels (Escalating)
+- **Building** - Energy increasing from previous segment
+- **Confident** - Strong, assured, knows-she's-hot movement
+- **Intense** - Direct, powerful, sexual energy
+- **Peak** - Maximum sensual/sexual moment
+- **Dominating** - Commanding camera, ownership energy
+- **Magnetic** - Pulls viewer in, can't look away
 
 ## Duration & Timing
 
@@ -155,55 +157,55 @@ Every video prompt follows this structure:
 - **Highlight maintained** - Key light direction steady
 - **Warm light throughout** - Golden/warm tones preserved
 
-## Complete Video Prompt Examples
+## Complete Video Prompt Examples - AGGRESSIVE & FAST
 
-### Example 1: Eye Contact Hold (Static)
+### Example 1: HOOK - Direct Eye Contact + Lip Bite
 ```
-<Video 1>
-Direct eye contact, slow blink at halfway point, confident expression held throughout 4 seconds, golden warm lighting preserved, no body movement, fade to next segment
+Extreme close-up of siena's face, direct INTENSE eye contact locked with camera, confident expression building, at 1-second mark subtle but VISIBLE lip bite, hold intense stare for remaining 3 seconds, golden warm lighting on face, breathing subtly visible, magnetic and commanding energy, hard cut to next moment
 ```
+*(Fast, immediate impact, specific micro-moment)*
 
-### Example 2: Slow Pan Down
+### Example 2: REVEAL - Quick Pan Down
 ```
-<Video 2>
-Smooth camera pan down from face to shoulders, 3-second duration revealing body, siena maintains confident eye contact as much as visible, warm golden lighting, end on shoulder/chest reveal, cut to next
+Fast camera pan down from close-up face to shoulders/upper chest, motion takes 2 seconds, siena maintains eye contact as long as visible, reveal minimal bikini top in frame, lighting catches exposed skin, ends on collarbone/chest reveal, confident energy maintained, cut to next
 ```
+*(Quick reveal, not slow, specific end point)*
 
-### Example 3: Body Roll
+### Example 3: ESCALATION - Clothing Adjust
 ```
-<Video 3>
-Slow body roll rotation from side to front to side over full 4 seconds, sensual fluid motion, camera fixed, emphasize curves through movement, maintain eye contact/expression where visible, continuous fade to next
+Quick reach toward bikini strap at 0.5-second mark, pull/adjust to show MORE chest and side rib area over next 1.5 seconds, direct eye contact throughout adjustment, return to power pose for final 2 seconds with intensified stare, golden lighting, end STRONG facing camera, hard cut to next
 ```
+*(Fast micro-moment, specific action, escalates)*
 
-### Example 4: Hair Movement
+### Example 4: BUILD - Body Roll with Curves
 ```
-<Video 4>
-Hair flip or toss over 2 seconds, then hold with eye contact and knowing smile for remaining 2 seconds, soft golden lighting catches hair movement, body mostly static, emotional intensity building, dissolve to next
+Smooth but CONFIDENT body roll rotation from side profile to front over 3.5 seconds, camera fixed, movement emphasizes curves and body shape, hand briefly touches collarbone during rotation, intense eye contact when facing camera, golden light catches curves throughout motion, end facing camera with power, cut to next
 ```
+*(Specific motion, curve emphasis, confident energy)*
 
-### Example 5: Sitting to Recline
+### Example 5: PEAK - Intense Stare Hold
 ```
-<Video 5>
-Slow transition from sitting to reclining position over 4 seconds, graceful movement emphasizing body positioning, maintain sensual expression, golden bedroom light consistent, confident throughout, hard cut to next moment
+Freeze on power pose facing camera, INTENSE direct eye contact for full 4 seconds, expression shows peak confidence and sexuality, subtle breathing visible on chest showing minimal coverage, hand near collarbone suggesting recent adjustment, lighting perfect on face and body, magnetic dominating energy, hard cut to power exit
 ```
+*(Static but INTENSE, not boring, specific energy)*
 
-### Example 6: Rotation/Spin
+### Example 6: ENGAGEMENT - Hair Pull Neck Expose
 ```
-<Video 6>
-Slow 180° rotation over 4 seconds, reveal back and sides before returning to front-facing, camera stays fixed, allow body movement to show silhouette, lighting catches curves during rotation, end facing camera, fade to next
+Quick reach toward hair at 0-second mark, pull hair back smoothly over 1.5 seconds to expose neck/collarbone MORE, maintain direct eye contact throughout motion, hand holds hair pulled back for final 2.5 seconds showing neck/throat/collarbone fully, confident knowing smile, golden light hits exposed neck, cut to next moment
 ```
+*(Specific reveal moment, quick motion, escalates coverage)*
 
-### Example 7: Pose Hold
+### Example 7: ESCALATION - 180 Rotation Show-Off
 ```
-<Video 7>
-Hold confident pose for 3 seconds with no motion, subtle natural breathing visible, direct eye contact with knowing smile, warm light, in final second add subtle head tilt or hair adjustment for engagement, cut to next
+Confident 180-degree rotation over 3.5 seconds, start facing camera, rotate to show back/side profile emphasizing curves, camera fixed showing full body, lighting catches silhouette, rotate back to face camera in final second, end with direct intense eye contact and knowing expression, hard cut to next
 ```
+*(Shows body from multiple angles quickly, builds momentum)*
 
-### Example 8: Clothing Adjustment
+### Example 8: POWER EXIT - Hold Peak + Breathing
 ```
-<Video 8>
-Reach and adjust clothing/robe strap or hem slowly over 2 seconds, sensual deliberate motion, return to pose for final 2 seconds with intensified eye contact, lighting maintains warmth, smooth transition to next
+Hold strongest power pose with minimal coverage fully visible, direct camera INTENSE eye contact for 3 seconds, visible breathing showing subtle chest rise/fall (indicates confidence and excitement), in final second add micro-micro-expression (pupils dilating or smile deepening), lighting perfect, magnetic commanding presence, freeze frame or fade to black
 ```
+*(Specific physical details, hold peak moment strong)*
 
 ## Moment-to-Moment Flow Strategy
 
@@ -235,24 +237,34 @@ For smooth multi-segment assembly:
 - ❌ Extreme camera movements (smooth, controlled motions)
 - ❌ Sudden lighting changes (consistency preferred)
 
-## Quick Reference Templates
+## Quick Reference Templates - FAST & SPECIFIC
 
-### Static Pose Segment
+### Hook/Peak Moment (INTENSE Static)
 ```
-[Expression/engagement type] maintained throughout 4 seconds, [eye direction], confident/sensual/playful energy, [lighting preserved], [subtle expression detail if any], [transition cue]
+[Extreme close-up or power pose], INTENSE direct eye contact [specific detail: lip bite/breathing/pupils], [fast micro-moment timing 0-1s], hold [intensity description] for remaining 3 seconds, [lighting detail], [specific emotional detail: magnetic/dominating/commanding], [transition: hard cut]
 ```
+Example: "Extreme close-up face, INTENSE eye contact, lip bite at 1-second mark, hold stare 3 more seconds, golden light, magnetic energy, hard cut"
 
-### Movement Segment
+### Quick Reveal (FAST Motion)
 ```
-Slow [motion type] over 4 seconds, [camera movement if any], [engagement type] maintained, [lighting note], end [final positioning], [transition]
+Fast [motion type] over [specific time: 1.5-2.5s], [camera if applicable], specific action [outfit adjust/hair pull/pan], end with [specific body part revealed], [eye contact maintained], golden lighting, [transition: cut/hard cut]
 ```
+Example: "Quick hair pull over 1.5s, expose neck/collarbone, eye contact throughout, golden light, hard cut"
 
-### Transition Segment
+### Build Movement (CONFIDENT Motion)
 ```
-[Movement connecting current pose to next position], fluid/deliberate motion, 4 seconds, [engagement quality], warm lighting consistent, [final state ready for next segment]
+Smooth [motion type] over [2.5-3.5s], [camera fixed/moving], [specific body emphasis: curves/silhouette], [intensity building], [eye contact detail], end [specific pose state], [transition: cut]
 ```
+Example: "Body roll 3.5s, curves emphasized, eye contact building intensity, end facing camera with power, cut"
 
-### Peak Moment
+### Transition/Escalation (STRATEGIC Motion)
 ```
-[Primary sensual motion/pose], [eye contact and expression], confident/mysterious energy, all elements aligned for maximum impact, 4 seconds, [transition]
+Quick [specific action] at [time mark], motion over [duration], [escalates coverage or intensity], maintain [engagement type], lighting preserved, [final state for next segment], [transition]
 ```
+Example: "Quick strap adjust at 0.5s, motion over 1.5s, escalates chest exposure, intense eye contact, hard cut"
+
+### Peak Hold (MAGNETIC Static)
+```
+Freeze [power pose/strongest angle], INTENSE direct eye contact full 4 seconds, [specific physical detail: breathing visible/hand position/lighting], [micro-expression: pupils/smile deepening], [energy: dominating/magnetic], [transition: hard cut/fade]
+```
+Example: "Freeze power pose, INTENSE eye contact 4s, visible breathing, pupils dilating, dominating energy, hard cut"

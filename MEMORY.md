@@ -6,339 +6,166 @@
 
 ## Bramha (Mohit Soni)
 
-- Goes by **Bramha**
-- Timezone: GMT+5:30 (India)
-- Instagram account: @desire.siena (manages page for sensational model)
-- First contact: 2026-02-13
-- **Active projects:** 
-  - Instagram content creation (20-60 sec sensual Reels)
-  - Daily script writing for modeling content
-  - Content targeting young male audience (18-35)
-- Windows OS user
+- Goes by **Bramha** | Timezone: GMT+5:30 (India)
+- Instagram: @desire.siena (sensual modeling content)
+- First contact: 2026-02-13 | Windows OS user
+- **Active:** Instagram Reels (20-60s), daily scripts, target audience 18-35 male
+- **Preferences:** Hot & revealing (8-9/10 intensity), timeline format, no CTAs, specific timed actions
 
 ---
 
-## Content Creation Preferences
+## Skills Overview
 
-**Instagram Niche:** Sensual/glamorous modeling lifestyle content
-**Target Audience:** Young males (18-35)
-**Tone:** Confident, alluring, sensual, polished
-**Priority:** Hot and revealing content (8-9/10 intensity) while staying Instagram-compliant
-**Format:** 20-60 second video Reels with timeline-based scripts
-
----
-
-## Skills Built
-
-### sensual-reels Skill (2026-02-13)
-- **Location:** C:\Users\mohit\.openclaw\workspace\sensual-reels/
-- **Packaged:** sensual-reels.skill
-- **GitHub:** https://github.com/sienadrayy/content-skill
-- **Features:**
-  - Auto-generates complete 60-second timeline scripts (no briefs needed)
-  - Creates concept ideas (angles, lighting, styling, poses)
-  - Provides multiple script variations
-  - Content focused on sensual/revealing aesthetic (8-9/10 intensity)
-  - References: sensual-patterns.md + concepts.md library
-- **Daily use:** Perfect for daily content planning
-- **How to use:** Just ask "Generate a script" or "Script for today"
-
-### i2v-prompt-generator Skill (2026-02-13)
-- **Location:** C:\Users\mohit\.openclaw\workspace\i2v-prompt-generator/
-- **Packaged:** i2v-prompt-generator.skill
-- **GitHub:** https://github.com/sienadrayy/content-skill
-- **Features:**
-  - Takes sensual-reels script output as input
-  - Auto-extracts 8-10 key moments from 60-second script
-  - Generates image prompt for each moment (all details: outfit, pose, lighting, bg, "siena" keyword)
-  - Generates 4-second video motion prompt for each moment
-  - Output ready for i2v AI model with siena LoRA
-  - References: image-prompt-language.md + video-prompt-language.md vocabulary guides
-- **Workflow:** sensual-reels script → i2v prompts → AI video generation
-- **How to use:** Paste sensual-reels script, ask "Generate i2v prompts"
+| Skill | Location | Purpose |
+|-------|----------|---------|
+| **sensual-reels** | `/sensual-reels/` | Generates 60s timeline scripts (progressive narrative, specific actions) |
+| **i2v-prompt-generator** | `/i2v-prompt-generator/` | Extracts image + video prompts from scripts (8-10 segments, includes "siena" LoRA keyword) |
+| **comfyui-workflow-runner** | `/comfyui-workflow-runner/` | Dual workflow submission to ComfyUI (Image + Video, 5s gap, locked sequence) |
+| **wan-animate-reel** | `/skills/wan-animate-reel/` | Downloads Instagram Reels, applies Wan Animate motion transfer (UUID naming, Node 254) |
+| **instagram-auto-reply** | `/instagram-auto-reply/` | Auto-replies to comments (hourly + manual, randomized vibes) |
 
 ---
 
-### comfyui-workflow-runner Skill (2026-02-14)
-- **Location:** C:\Users\mohit\.openclaw\workspace\comfyui-workflow-runner/
-- **Packaged:** comfyui-workflow-runner.skill
-- **Server:** http://192.168.29.60:8188 (Qwen + Wan video generation)
-- **Features:**
-  - Run Images workflow: Generate sensual images from prompts
-  - Run Videos workflow: Convert images to smooth videos
-  - Dual-run orchestration: Submit both workflows with 5-sec gap
-  - Modifiable nodes: 443 (image prompts), 436 (video prompts), 500 (name/prefix)
-  - Separate scripts for independent or combined execution
-  - Python stdlib only (no external dependencies)
-- **Scripts:**
-  - `run_image_workflow.py` - Images only
-  - `run_video_workflow.py` - Videos only
-  - `run_dual_workflow.py` - Complete pipeline (recommended)
-- **Workflow:**
-  1. Images: Node 443 (prompts) + Node 500 (name) → submit → generate
-  2. [5 sec wait]
-  3. Videos: Node 436 (prompts) + Node 500 (name) → submit → convert
-- **How to use:** `python run_dual_workflow.py --name "test" --image-prompts "Siena..." --video-prompts "Direct eye contact..."`
+## FakeLocation App - COMPLETE (2026-02-18)
+
+**PROJECT STATUS: ✅ 100% COMPLETE - BUILD VERIFIED & SUCCESSFUL**
+
+**All 10 Tasks Delivered:**
+- T1: DirectionsService ✅ | T2: PolylineInterpolator ✅
+- T3: RouteSimulatorService ✅ | T4: RouteConfigurationScreen ✅
+- T5: SimulationMapScreen ✅ | T6-T8: RouteHistory & Persistence ✅
+- T7: RouteSimulationState ✅ | T9: ToastManager ✅
+- T10: CreditTracker ✅ | T11: ViewModel Integration ✅
+
+**Build Output:**
+- Debug: `app-debug.apk` ✅
+- Release: `app-release-unsigned.apk` ✅
+- Zero compilation errors after 3 targeted fixes
+
+**Branch:** t11-viewmodel-integration (ready for merge to main)
+
+**Next:** Device deployment & E2E testing
 
 ---
 
-### instagram-auto-reply Skill (2026-02-13)
-- **Location:** C:\Users\mohit\.openclaw\workspace\instagram-auto-reply/
-- **Packaged:** instagram-auto-reply.skill
-- **GitHub:** https://github.com/sienadrayy/content-skill
-- **Features:**
-  - Auto-monitors latest 3 posts for unreplied comments
-  - Personalized replies based on comment content
-  - Randomized reply vibes: sensual/flirty, grateful/appreciative, playful/teasing
-  - Handles emoji-only comments with personalized text
-  - Filters out spam and negative comments
-  - Hourly automatic + manual trigger option
-  - Engagement report after each run
-  - References: reply-templates.md (vibe examples and personalization)
-- **Workflow:** Monitor → Find unreplied → Craft personalized → Auto-send
-- **How to use:** "Check and reply to comments" (manual) or runs hourly automatically
+## /REEL Command Pipeline (LOCKED)
 
-### wan-animate-reel Skill (2026-02-14) ✅ TESTED & WORKING
-- **Location:** C:\Users\mohit\.openclaw\workspace\wan-animate-reel/
-- **Packaged:** wan-animate-reel.skill
-- **Invocation:** `/wan <instagram_reel_url>` (standalone command)
-- **Server:** http://192.168.29.60:8188 (Wan Video 2.2 animation)
-- **Status:** ✅ Download, Upload, Submit, Animate all working
-- **Features:**
-  - Downloads Instagram Reels using yt-dlp
-  - Uploads to ComfyUI /upload/image endpoint
-  - Submits Wan Animate V3 API workflow
-  - Extracts character via interrogation
-  - Detects pose and face from video
-  - Animates character with Wan Video 2.2 (pose-preserving)
-  - Frame interpolation via RIFE (2x smoothness)
-  - H.264 MP4 export with quality settings
-  - Standalone skill (no mixing with other skills)
-- **Scripts:**
-  - `download_instagram_reel.py` - yt-dlp Instagram downloader
-  - `submit_wan_workflow.py` - ComfyUI upload + workflow submission
-  - `run_wan_animate_reel.py` - Main orchestrator
-- **Complete Workflow:**
-  1. Download Reel → Local video file
-  2. Upload to ComfyUI → Get filename
-  3. Submit Wan Animate workflow with filename
-  4. Extract frame + interrogate character
-  5. Detect pose/face
-  6. Generate animation with motion transfer
-  7. Interpolate frames for smoothness
-  8. Export MP4 to ComfyUI output folder
-- **How to use:** `python run_wan_animate_reel.py --url "https://www.instagram.com/reel/ABC123/"` OR: `/wan <url>`
-- **Output:** Video saved to ComfyUI output directory (typically `Animate/` subfolder)
+**When user says `/reel`:**
 
----
+1. ✅ sensual-reels skill → Generate script(s) → SHOW FOR APPROVAL
+2. ✅ USER VERIFICATION → Review & approve/modify scripts
+3. ✅ i2v-prompt-generator skill → Extract prompts → SHOW FOR APPROVAL
+4. ✅ USER VERIFICATION → Review & approve prompts (format: images stacked, `---`, videos stacked, NO TAGS/HEADERS)
+5. ✅ comfyui-workflow-runner skill → Submit Image → Wait 5s → Submit Video → Parallel execution
+6. ✅ Output in ComfyUI/output/{name}/
 
-## Production Pipeline
-
-### Single Reel
-```
-generate_complete_reel.py --concept "shower" --name "siena_shower"
-    ↓
-1. sensual-reels skill → Generate 1 × 60-sec timeline script
-    ↓
-2. i2v-prompt-generator skill → Extract image + video prompts (8-10 segments)
-    ↓
-3. comfyui-workflow-runner skill → Generate 1 image + 1 video
-    ├─ Image workflow (5 min)
-    ├─ [5 sec gap]
-    └─ Video workflow (10+ min)
-    ↓
-Output: ComfyUI/output/siena_shower/[Images/ + Videos/] (1 image + 1 video)
-```
-
-### Multi-Part Reel (e.g., "3 parts")
-```
-generate_complete_reel.py --concept "3 parts shower" --name "siena_shower_3parts"
-    ↓
-1. sensual-reels skill → Generate 3 SEPARATE scripts (Part 1, 2, 3)
-    → Each script = 15-20 seconds (distinct concept/moment)
-    ↓
-2. USER VERIFICATION (MANDATORY)
-    → Review all 3 scripts
-    → Approve/modify before proceeding
-    ↓
-3. i2v-prompt-generator skill → Extract prompts for EACH part
-    → Part 1: 1 image prompt + 1 video prompt
-    → Part 2: 1 image prompt + 1 video prompt
-    → Part 3: 1 image prompt + 1 video prompt
-    ↓
-4. USER VERIFICATION (MANDATORY)
-    → Review all 6 prompts (3 image + 3 video)
-    → Approve/modify before proceeding
-    ↓
-5. comfyui-workflow-runner skill → Generate 3 × (image + video)
-    Part 1:
-    ├─ Image workflow (5 min)
-    ├─ [5 sec gap]
-    └─ Video workflow (10+ min)
-    
-    Part 2:
-    ├─ Image workflow (5 min)
-    ├─ [5 sec gap]
-    └─ Video workflow (10+ min)
-    
-    Part 3:
-    ├─ Image workflow (5 min)
-    ├─ [5 sec gap]
-    └─ Video workflow (10+ min)
-    ↓
-Output: ComfyUI/output/siena_shower_3parts/
-    ├─ Images/ (3 images)
-    └─ Videos/ (3 videos, 4 sec each)
-```
-
-### KEY CHANGE: "N Parts" Definition
-- **BEFORE:** "3 parts" = 1 script divided into 3 timeline sections
-- **AFTER:** "3 parts" = 3 SEPARATE scripts = 3 images + 3 videos
-- Each part is a distinct concept/moment, not just timeline divisions
-
-### Verification is MANDATORY
-1. User MUST review scripts before prompts are generated
-2. User MUST review prompts before ComfyUI submission
-3. NO --skip-verification flag (removed as of 2026-02-14)
-4. Workflow ABORTS if user doesn't approve
-
-**Engagement Automation:**
-- **instagram-auto-reply skill** → Monitor comments → Auto-reply personalized
-  - Runs hourly + manual trigger
-  - Randomized vibes (sensual, grateful, playful)
-  - Handles emoji comments with text
-  - Filters spam/negative
-  - Engagement report included
-
----
-
-## ⚠️ CRITICAL - DEATH NOTE (2026-02-14)
-
-**DO NOT CREATE COMFYUI SCRIPTS WITHOUT PERMISSION**
-- Bramha has created specific ComfyUI workflow skills
-- DO NOT bypass them by creating wrapper scripts
-- DO NOT modify or create Python scripts for ComfyUI execution
-- ALWAYS use the existing skills as-is
-- If skill needs fixes → ASK FIRST, then fix based on Bramha's direction
-- VIOLATION = deletion
-
-**HOW TO WORK (CORRECT WAY):**
-1. Always verify skills exist and read their SKILL.md
-2. Use skills through their documented entry points
-3. Follow SKILL.md instructions exactly
-4. Never create wrapper/proxy scripts
-
----
-
-## /REEL Command - Complete Content Pipeline
-
-**When user says: `/reel`**
-
-Use `generate_complete_reel.py` parent pipeline which chains ALL 3 skills:
-
-```
-1. sensual-reels skill
-   → Generate script(s) - single or multi-part
-   → STOP: Show to user for approval
-   ↓
-2. USER VERIFICATION MANDATORY
-   → User reviews script(s)
-   → User approves/modifies/rejects
-   ↓
-3. i2v-prompt-generator skill
-   → Extract image + video prompts from scripts
-   → STOP: Show all prompts to user for approval
-   ↓
-4. USER VERIFICATION MANDATORY
-   → User reviews all image + video prompts
-   → User approves/modifies/rejects
-   → Correct format: images stacked, ---, videos stacked (NO TAGS/HEADERS/BLANK LINES)
-   ↓
-5. comfyui-workflow-runner skill
-   → Submit Images workflow (Prompt ID returned)
-   → Wait 5 seconds
-   → Submit Videos workflow (Prompt ID returned)
-   → Both run in parallel
-   ↓
-6. Output ready in ComfyUI/output/{name}/Images/ and Videos/
-```
-
-**Command format:**
+**Format for ComfyUI:**
 ```bash
-python generate_complete_reel.py --concept "3 parts shower" --name "siena_shower_3parts"
+python submit_dual_workflow.py \
+  --name "siena_concept_name" \
+  --image-prompts "prompt1\nprompt2\n..." \
+  --video-prompts "prompt1\nprompt2\n..." \
+  --seconds 6
 ```
 
-**CRITICAL RULES:**
-- ✅ Always show scripts FIRST for approval
-- ✅ Always show prompts SECOND for approval
-- ✅ Never skip verification checkpoints
-- ✅ Never submit to ComfyUI without user approval
-- ❌ Never bypass any step
-- ❌ Never create custom scripts
+**Critical Rules:**
+- ✅ Always show scripts & prompts for approval
+- ✅ Pass prompts as newline-separated strings  
+- ✅ Use submit_dual_workflow.py (generic, never create reel-specific scripts)
+- ❌ Never skip verification | Never mix Node 254 logic into Node 500 | Never reverse workflow order
 
 ---
 
-Skills to use:
-- `comfyui-workflow-runner` skill in `/comfyui-workflow-runner/`
-- `i2v-prompt-generator` skill in `/i2v-prompt-generator/`
-- `sensual-reels` skill in `/sensual-reels/`
-- Parent pipeline: `generate_complete_reel.py`
+## Workflow Preference: Detailed Descriptions (2026-02-16)
+
+**If Bramha sends detailed visual description in reel context:**
+- Treat as **FIRST IMAGE PROMPT** (skip sensual-reels)
+- Proceed to i2v-prompt-generator with description as base
+- Generate remaining prompts (video for that segment + additional images/videos if multi-part)
+- Allows fast-track when Bramha has specific visual direction
 
 ---
 
-## Important Updates (2026-02-14)
+## Key Workflow Distinctions
 
-**CRITICAL WORKFLOW CHANGE:**
-- Verification is now MANDATORY (no skipping)
-- "3 parts" = 3 separate scripts (not 1 script in 3 sections)
-- Each part generates 1 image + 1 video
-- User must approve scripts BEFORE prompts are generated
-- User must approve prompts BEFORE ComfyUI submission
+### System A: Wan Animate (wan-animate-reel skill)
+- **Node:** 254 "Concept Name" (PrimitiveString)
+- **Naming:** Image = UUID plain | Video = UUID_00001_ (with suffix)
+- **Output:** `{uuid}_00001_.png` + `{uuid}_00001__00001_.mp4`
+- **Use:** Downloaded Instagram Reels with motion transfer
+
+### System B: Reel Generation (comfyui-workflow-runner skill)
+- **Nodes:** Image (443) + Video (436), both use Node 500 for output name
+- **Rule:** Node 500 IDENTICAL for both workflows
+- **Output:** `{name}_00001_.png` + `{name}_00001_.mp4`
+- **Use:** Generated content from scripts
+
+⚠️ **NEVER mix these patterns — they are completely different.**
+
+---
+
+## Recent Skill Improvements (2026-02-14)
+
+**sensual-reels:** Complete rebuild focused on NARRATIVE PROGRESSION
+- Added `narrative-progression.md` guide
+- Rebuilt `sensual-patterns.md` (Setup → Progression → Climax → Finale)
+- Specific 60s breakdown: Hook [0-2s], First Reveal [2-8s], Escalation [8-25s], Peak [25-45s], Engagement [45-55s], Exit [55-60s]
+- Script checklist validates 20+ quality gates
+- Result: Fast, engaging, progressive scripts (not vague filler)
+
+**i2v-prompt-generator:** Updated for fast/aggressive pacing
+- Removed "slow/gentle/subtle" language
+- Added "QUICK/FAST/INTENSE/COMMANDING" focus
+- 8 aggressive prompt examples
+- Video prompts escalate to match script intensity
+- Result: Fast, intense videos matched to scripts
+
+---
+
+## Multi-Part Reels
+
+**"3 parts" = 3 SEPARATE scripts (not 1 script in 3 sections)**
+- Each part: 15-20s distinct concept
+- Each part: 1 image + 1 video
+- User verification MANDATORY after scripts AND after prompts
 - Workflow aborts if user doesn't approve
 
-**CRITICAL PROMPT FORMAT:**
-- NO extra tags (no `<Image 1>`, `<Video 1>`, etc.)
-- NO section headers like `**IMAGE PROMPTS:**`
-- NO blank lines between prompts within sections
-- Images stacked together, then `---` separator, then videos stacked together
-- Each prompt is ONE continuous line
-- See: i2v-prompt-generator/references/prompt-output-format.md for example
+---
+
+## Network Access
+
+**ComfyUI Output:** `\\192.168.29.60\output\`
+- Read/Write access ✅
+- Structure: siena_luxury_lingerie/ | LoraNew/ | ComfyUI/ | Animate/
+- SMB network share (direct file access)
 
 ---
 
-## ComfyUI Output Directory (Network Access)
+## Constraints & Critical Rules
 
-**Network Share:** `\\192.168.29.60\output\`
-- **Status:** ✅ Read/Write access confirmed
-- **Purpose:** Generated content storage (images + videos)
-- **Structure:**
-  - `siena_luxury_lingerie/` - Previous content outputs
-  - `LoraNew/` - LoRA test outputs
-  - `ComfyUI/` - Direct ComfyUI outputs
-  - `Animate/` - Wan Animate outputs (when created)
+⚠️ **DEATH NOTE:**
+- DO NOT create ComfyUI scripts without permission
+- Always use existing skills (read SKILL.md first)
+- If skill needs fixes → ASK FIRST
+- VIOLATION = deletion
 
-**Access Method:** SMB network share (not HTTP)
-- Can browse, read, write files directly
-- Used for retrieving generated videos before posting to Instagram
+⚠️ **Reel Generation Rules:**
+- Verification is MANDATORY (no skip-verification flag)
+- Prompt format: NO extra tags, NO headers, NO blank lines within sections
+- Images stacked → `---` → Videos stacked (each prompt = ONE line)
+- See: i2v-prompt-generator/references/prompt-output-format.md
 
----
-
-## Workflow Pipeline
-
-**Next Steps After Generation:**
-1. Wait for Wan Animate workflow to complete
-2. Retrieve animated video from network share
-3. Post to Instagram (@desire.siena)
+⚠️ **ComfyUI Workflow (System B):**
+- Image Workflow FIRST, Video Workflow SECOND (5s gap, NEVER reverse)
+- Node 500 identical for both
+- Video gets --seconds parameter (default 6)
 
 ---
 
 ## Notes
 
-- Bramha wants daily content scripts (uses sensual-reels everyday)
-- Prefers timeline format with exact timestamps
-- No CTAs required in scripts
-- Concept auto-generation (doesn't provide context)
-- All i2v prompts include "siena" keyword for LoRA model
-- Each i2v video segment = 4 seconds (for single 60-sec videos)
-- Multi-part reels: each part is a distinct 15-20 sec concept with 1 image + 1 video
-- **Generated content stored on network:** \\192.168.29.60\output\ (read/write access for retrieval + Instagram posting)
+- Concept auto-generation (no context needed)
+- i2v video segment = 4s (single 60s video) | 1-2s (multi-part)
+- All prompts include "siena" keyword (LoRA model)
+- Timeline format with exact timestamps preferred
+- Generated content for Instagram posting via network share

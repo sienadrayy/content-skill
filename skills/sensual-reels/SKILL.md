@@ -1,21 +1,35 @@
 ---
 name: sensual-reels
-description: Generate complete Instagram Reel scripts and hot, sensual content concepts for modeling and lifestyle content. Creates timeline-based video scripts (20-60 seconds) with cinematic direction and auto-generates concept ideas including angles, styling, lighting, and poses. Perfect for daily content planning—just ask for a script and get ready-to-film direction that maximizes aesthetic impact and engagement. Use when you need: (1) Complete video scripts with timing and direction, (2) Fresh concept ideas (angles, lighting, styling, poses), (3) Multiple variations to choose from, (4) Hot and revealing content optimized for Instagram platform.
+description: Generate Instagram Reel scripts with NARRATIVE PROGRESSION. Creates 60-second scripts showing valuable story progression (GRWM → complete look, Shower → undressing/bathing, Lingerie → trying on, etc.) with scene consistency and specific outfit/makeup state tracking throughout. Perfect for daily content planning—just ask for a concept and get ready-to-film direction with clear narrative arc, not random body movements. Use when you need: (1) Scripts with meaningful progression toward a goal, (2) Scene-consistent scripts (same bathroom/bedroom throughout), (3) Clear outfit/makeup state transitions visible, (4) Hot content that tells a story, not just poses.
 ---
 
-# Sensual Reels 🔥
+# Sensual Reels - NARRATIVE PROGRESSION FOCUSED 🔥
 
-Generate stunning, hot Instagram Reel scripts in seconds. No briefs needed—just ask, and you'll get complete scripts with sensual concepts ready to film.
+Generate Instagram Reel scripts with VALUABLE PROGRESS and scene consistency. Not random body movements—clear narrative arcs showing actual progression.
 
-## How It Works
+## How It Works - NARRATIVE PROGRESSION FOCUSED
 
 Every time you ask for a script, you get:
 
-1. **Timeline Script** - Exactly 60 seconds of cinematic direction with timestamps, movements, and visual cues
-2. **Concept Details** - Angles, lighting, styling, props, and poses designed for maximum visual impact
-3. **Multiple Options** - 2-3 variations so you can pick the vibe that fits
+1. **Timeline Script** - 60 seconds showing CLEAR NARRATIVE PROGRESSION
+   - Setup [0-10s]: Define scene, outfit state, starting action
+   - Progression [10-30s]: Show active change/progress toward goal (makeup being applied, clothes coming off, outfit going on, etc.)
+   - Climax [30-50s]: Peak moment of achieved state (fully ready, fully undressed, fully in outfit, etc.)
+   - Finale [50-60s]: Power confirmation of complete state
 
-**Priority:** Every script prioritizes hot, revealing, sensual content within Instagram's platform guidelines.
+2. **Concept Details** - Scene consistency, outfit progression, and sensual emphasis through purpose
+   - Same scene throughout (not jumping between locations)
+   - Outfit progression clearly visible (starting state → ending state)
+   - Lighting consistency (same color temp throughout)
+   - Poses/movements that show progress (not random camera angles)
+
+3. **Narrative Arc** - Every script tells a complete story
+   - Clear goal (get ready, shower, try on lingerie, etc.)
+   - Visual evidence of progress (makeup visible being applied, water visible cascading, dress visible being put on)
+   - Confidence building throughout
+   - Satisfying conclusion
+
+**Priority:** Every script shows VALUABLE PROGRESS with scene consistency and sensuality through NARRATIVE PURPOSE, not just skin exposure.
 
 ## Quick Start
 
@@ -75,16 +89,33 @@ OUTPUT:
 - 3 videos total (4 sec each)
 ```
 
-## Sensual Content Standards
+## Sensual Content Standards - NARRATIVE PROGRESSION FOCUSED
 
-When generating scripts, always apply the patterns in `references/sensual-patterns.md`. These ensure content is:
+When generating scripts, always apply the patterns in `references/sensual-patterns.md` and `references/narrative-progression.md`. These ensure content is:
 
-✅ **Extremely hot & revealing** (8-9/10 intensity)  
-✅ **Aesthetically stunning** - professional, not trashy  
-✅ **Instagram platform-compliant** - stays within guidelines  
-✅ **Engagement-optimized** - designed to get saves, shares, comments  
+✅ **Narrative-driven** - Clear progression toward a goal (GRWM → ready, Shower → undressing, Lingerie → trying on)  
+✅ **Scene-consistent** - Same location and lighting throughout (not jumping between scenes)  
+✅ **Outfit/State progression** - Visible progression from starting state to final state (makeup visible being applied, clothes visible coming off, etc.)  
+✅ **Action-focused** - Actions that show progress (not just poses) - applying makeup, removing clothes, putting on outfit, etc.  
+✅ **Hot & sensual** (8-9/10 intensity) - Sensuality through purpose and confidence, not just skin exposure  
+✅ **Specific & detailed** - Not vague, every moment has clear purpose in the narrative  
+✅ **Confidence-building** - Expression and energy escalate throughout (from anticipation → focus → confidence → power)  
+✅ **Instagram platform-compliant** - Stays within guidelines  
+✅ **Engagement-optimized** - Tells a story viewers connect with and want to save/share  
 
-See `references/sensual-patterns.md` for detailed guidance on angles, poses, transitions, and styling that maximize visual impact.
+### Key Principles (Feb 2026 Rebuild)
+- **Narrative matters:** Scripts show PROGRESS, not random poses
+- **Scene consistency:** Same bathroom, same bedroom, same shower throughout (not random scene changes)
+- **Outfit progression:** Clear visible progression from state 1 → state 2 → state 3 (not confusing changes)
+- **Specific actions:** "Apply eyeshadow with visible brush motion [5s]" not "sensual movements"
+- **Confidence arc:** Energy and expression build from setup → climax → finale
+- **Quality checklist:** All scripts must pass sensual-patterns.md Script Generation Checklist (narrative gates)
+
+See `references/sensual-patterns.md` and `references/narrative-progression.md` for:
+- Narrative Progression Patterns (Setup → Progression → Climax → Finale structure)
+- Scene Consistency Rules (same location, lighting, outfit progression)
+- Timeline Structure (explicit setup, progression, climax, finale with specific states)
+- Script Generation Checklist (narrative progression quality gates, not body-reveal gates)
 
 ## Concept Library
 

@@ -2,6 +2,35 @@
 
 Run ComfyUI workflows with dynamic input substitution.
 
+## ⚠️ PATTERN - DUAL WORKFLOW SUBMISSION (LOCKED)
+
+**This skill ALWAYS submits TWO workflows in sequence:**
+
+### Workflow Sequence (NEVER CHANGE):
+1. **Submit Image Workflow** (`Images_workflow.json`)
+   - Node 443: Image prompts
+   - Node 500: Output name
+   - Returns: Image Prompt ID
+
+2. **Wait 5 seconds**
+
+3. **Submit Video Workflow** (`Videos_workflow.json`)
+   - Node 436: Video prompts
+   - Node 500: Output name (SAME as Image)
+   - Node 394:396: Seconds per segment
+   - Returns: Video Prompt ID
+
+4. **Both workflows run in parallel** on ComfyUI
+
+### Critical Rules (LOCKED IN):
+- ✅ ALWAYS submit Image first, then Video
+- ✅ ALWAYS wait 5 seconds between submissions
+- ✅ Node 500 MUST be IDENTICAL for both workflows
+- ✅ Video always uses Node 394:396 for seconds (default: 6)
+- ❌ DO NOT change workflow order
+- ❌ DO NOT use different Node 500 values
+- ❌ DO NOT apply Wan Animate logic here
+
 ## Setup
 
 1. **Clone the ComfyUI repo** (read-only):
@@ -13,71 +42,45 @@ Run ComfyUI workflows with dynamic input substitution.
 
 ## Usage
 
-### Option 1: Images Only
+### Dual Workflow Submission ⭐ **RECOMMENDED**
 
 ```bash
-python run_image_workflow.py [--name NAME] [--prompts PROMPTS]
-```
-
-**Example:**
-```bash
-python run_image_workflow.py --name "test" --prompts "Siena is standing in rain"
-```
-
-**Parameters:**
-- `--name` (optional): Name/prefix for output files (default: "test")
-- `--prompts` (optional): Image generation prompts (default: "Siena is standing in rain")
-
-**Output:**
-- Images saved to: `ComfyUI/output/{name}/Images/{index}.png`
-
----
-
-### Option 2: Videos Only
-
-```bash
-python run_video_workflow.py [--name NAME] [--prompts PROMPTS]
-```
-
-**Example:**
-```bash
-python run_video_workflow.py --name "test" --prompts "Direct eye contact, confident sensual expression"
+python submit_dual_workflow.py \
+  --name "siena_shower_routine" \
+  --image-prompts "image prompt 1\nimage prompt 2\n..." \
+  --video-prompts "video prompt 1\nvideo prompt 2\n..." \
+  --seconds 6
 ```
 
 **Parameters:**
-- `--name` (optional): Name/prefix for output files (default: "test")
-- `--prompts` (optional): Video generation prompts (default: "Direct eye contact...")
-
-**What happens:**
-1. Loads pre-generated images from `ComfyUI/output/{name}/Images/`
-2. Converts images to video with motion effects
-3. Outputs MP4 video file
-
-**Output:**
-- Videos saved to: `ComfyUI/output/{name}/Videos/{index}.mp4`
-
----
-
-### Option 3: Images + Videos (Dual Run) ⭐ **RECOMMENDED**
-
-```bash
-python run_dual_workflow.py [--name NAME] [--image-prompts PROMPTS] [--video-prompts PROMPTS]
-```
-
-**Example:**
-```bash
-python run_dual_workflow.py \
-  --name "siena_rain" \
-  --image-prompts "Siena is standing in rain" \
-  --video-prompts "Direct eye contact, confident sensual expression"
-```
-
-**Parameters:**
-- `--name` (optional): Name/prefix for output files (default: "test")
-- `--image-prompts` (optional): Image generation prompts
-- `--video-prompts` (optional): Video generation prompts
+- `--name` (required): Output name/prefix for files
+- `--image-prompts` (required): Image generation prompts (newline-separated)
+- `--video-prompts` (required): Video generation prompts (newline-separated)
+- `--seconds` (optional): Seconds per video segment (default: 6)
 
 **Workflow:**
+1. **Submit Image Workflow**
+   - Node 443: Sets image prompts
+   - Node 500: Sets output name
+   - Returns: Image Prompt ID
+   
+2. **Wait 5 seconds**
+   
+3. **Submit Video Workflow**
+   - Node 436: Sets video prompts
+   - Node 500: Sets output name (same as image)
+   - Node 394:396: Sets seconds per segment (default: 6)
+   - Returns: Video Prompt ID
+
+4. **Both workflows run in parallel** on ComfyUI
+
+**Output:**
+- Images: `ComfyUI/output/{name}/{name}_00001_.png`, etc.
+- Videos: `ComfyUI/output/{name}/{name}_00001_.mp4`, etc.
+
+**Example:**
+
+
 1. Submit Images workflow
 2. Wait 5 seconds
 3. Submit Videos workflow

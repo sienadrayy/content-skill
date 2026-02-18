@@ -50,7 +50,7 @@ def download_instagram_reel(url: str, output_dir: str = "downloads") -> str:
             url
         ]
         
-        result = subprocess.run(cmd, capture_output=True, text=True, check=True)
+        result = subprocess.run(cmd, capture_output=True, text=True, check=True, encoding='utf-8', errors='ignore')
         
         # Verify file exists
         if os.path.exists(output_path):

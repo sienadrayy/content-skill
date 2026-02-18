@@ -8,6 +8,7 @@ import os
 import sys
 import argparse
 import subprocess
+import uuid
 from pathlib import Path
 
 # Fix Unicode encoding on Windows
@@ -37,7 +38,9 @@ def run_command(cmd, description: str) -> str:
             cmd,
             capture_output=True,
             text=True,
-            check=True
+            check=True,
+            encoding='utf-8',
+            errors='ignore'
         )
         
         # Print output
@@ -77,8 +80,8 @@ def download_instagram_reel(url: str) -> str:
     
     raise Exception("Could not extract video path from download output")
 
-def submit_to_wan_workflow(video_path: str) -> str:
-    """Submit video to Wan Animate workflow and return prompt ID"""
+def submit_to_wan_workflow(video_path: str, name: str = None) -> dict:
+    """Submit video to Wan Animate dual workflows (Image + Video)"""
     
     cmd = [
         sys.executable,
@@ -87,19 +90,25 @@ def submit_to_wan_workflow(video_path: str) -> str:
         "--wait"
     ]
     
-    output = run_command(cmd, "Submitting to Wan Animate Workflow")
+    if name:
+        cmd.extend(["--name", name])
     
-    # Extract prompt ID or completion message
+    output = run_command(cmd, "Submitting to Wan Animate Dual Workflows (Image + Video)")
+    
+    # Extract both prompt IDs
     import re
-    prompt_match = re.search(r'Prompt ID: ([a-f0-9\-]+)', output)
-    if prompt_match:
-        return prompt_match.group(1)
+    image_match = re.search(r'Image Prompt ID: ([a-f0-9\-]+)', output)
+    video_match = re.search(r'Video Prompt ID: ([a-f0-9\-]+)', output)
     
-    return output
+    return {
+        "image_prompt_id": image_match.group(1) if image_match else None,
+        "video_prompt_id": video_match.group(1) if video_match else None,
+        "output": output
+    }
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Download Instagram Reel and animate with Wan Video"
+        description="Download Instagram Reel and animate with Wan Video (Image + Video API)"
     )
     parser.add_argument(
         "--url",
@@ -109,30 +118,36 @@ def main():
     
     args = parser.parse_args()
     
+    # Generate random UUID for this run
+    run_name = str(uuid.uuid4())
+    
     try:
         print(f"\n{'='*60}")
         print(f"🎬 WAN ANIMATE REEL ORCHESTRATOR")
         print(f"{'='*60}")
         print(f"URL: {args.url}")
+        print(f"Run ID: {run_name}")
         
         # Step 1: Download
         print(f"\n📥 STEP 1: Download Instagram Reel")
         video_path = download_instagram_reel(args.url)
         print(f"✅ Downloaded: {video_path}")
         
-        # Step 2: Submit to Wan Animate
-        print(f"\n🎨 STEP 2: Submit to Wan Animate Workflow")
-        result = submit_to_wan_workflow(video_path)
-        print(f"✅ Submitted: {result}")
+        # Step 2: Submit to Dual Workflows (Image + Video)
+        print(f"\n🎨 STEP 2: Submit to Wan Animate Dual Workflows")
+        result = submit_to_wan_workflow(video_path, run_name)
         
         # Final status
         print(f"\n{'='*60}")
         print(f"🎉 COMPLETE!")
         print(f"{'='*60}")
+        print(f"Run ID: {run_name}")
         print(f"📹 Video file: {video_path}")
-        print(f"🎬 Workflow: Wan Animate Character Replacement V3 API")
+        print(f"🎬 Workflows: Wan Animate Character Replacement V3 (Image + Video API)")
         print(f"📊 Monitor: http://192.168.29.60:8188")
-        print(f"\n💡 Output video will be in ComfyUI output folder")
+        print(f"Image Prompt ID: {result.get('image_prompt_id')}")
+        print(f"Video Prompt ID: {result.get('video_prompt_id')}")
+        print(f"\n💡 Output files will use prefix: {run_name}_")
         
     except Exception as e:
         print(f"\n{'='*60}")

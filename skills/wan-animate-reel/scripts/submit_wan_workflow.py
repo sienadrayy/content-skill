@@ -10,6 +10,7 @@ import urllib.request
 import urllib.error
 import time
 import argparse
+import uuid
 from pathlib import Path
 
 # Fix Unicode encoding on Windows
@@ -17,17 +18,22 @@ if sys.platform == 'win32':
     sys.stdout.reconfigure(encoding='utf-8')
 
 COMFYUI_SERVER = "http://192.168.29.60:8188"
-WORKFLOW_PATH = r"C:\Users\mohit\.openclaw\workspace\comfy-wf\openclaw\Wan Animate character replacement V3 API.json"
+WORKFLOW_IMAGE_PATH = r"C:\Users\mohit\.openclaw\workspace\comfy-wf\openclaw\Wan Animate character replacement V3 - Image API.json"
+WORKFLOW_VIDEO_PATH = r"C:\Users\mohit\.openclaw\workspace\comfy-wf\openclaw\Wan Animate character replacement V3 - Video API.json"
 
-def load_workflow() -> dict:
+def load_workflow(workflow_path: str) -> dict:
     """Load workflow from file"""
     try:
-        with open(WORKFLOW_PATH, 'r', encoding='utf-8') as f:
+        with open(workflow_path, 'r', encoding='utf-8') as f:
             return json.load(f)
     except FileNotFoundError:
-        raise Exception(f"Workflow file not found: {WORKFLOW_PATH}")
+        raise Exception(f"Workflow file not found: {workflow_path}")
     except json.JSONDecodeError as e:
         raise Exception(f"Invalid JSON in workflow: {e}")
+
+def generate_random_name() -> str:
+    """Generate a random UUID for this run"""
+    return str(uuid.uuid4())
 
 def upload_video_to_comfyui(video_path: str) -> str:
     """
@@ -82,27 +88,53 @@ def upload_video_to_comfyui(video_path: str) -> str:
     except json.JSONDecodeError as e:
         raise Exception(f"Invalid response from ComfyUI: {e}")
 
-def submit_workflow(video_filename: str) -> str:
+def submit_workflow(video_filename: str, name: str, workflow_type: str) -> str:
     """
-    Submit workflow to ComfyUI with uploaded video filename
+    Submit workflow to ComfyUI with uploaded video filename and UUID
     
     Args:
         video_filename: Filename returned from ComfyUI upload
+        name: UUID for this run (sets Node 254 "Conept Name")
+        workflow_type: "image" or "video"
+        
+    Node 254 "Conept Name" values:
+        - Image workflow: Node 254 = {name} (plain UUID)
+        - Video workflow: Node 254 = {name}_00001_ (UUID with suffix)
         
     Returns:
         Prompt ID from ComfyUI
     """
-    print(f"📤 Loading Wan Animate workflow...")
-    workflow = load_workflow()
+    workflow_path = WORKFLOW_IMAGE_PATH if workflow_type == "image" else WORKFLOW_VIDEO_PATH
     
-    # Modify Node 218 (VHS_LoadVideo) with uploaded video filename
-    # Node 218 input: "video" field (now expects filename, not path)
-    if "218" not in workflow:
-        raise Exception("Node 218 not found in workflow")
+    print(f"📤 Loading Wan Animate {workflow_type.upper()} workflow...")
+    workflow = load_workflow(workflow_path)
     
-    workflow["218"]["inputs"]["video"] = video_filename
+    # Find and modify nodes with "video" input and concept name
+    video_set = False
+    concept_name_set = False
     
-    print(f"🎬 Setting video filename: {video_filename}")
+    for node_id, node_data in workflow.items():
+        if isinstance(node_data, dict) and "inputs" in node_data:
+            inputs = node_data["inputs"]
+            
+            # Set video if this node has a video input
+            if "video" in inputs:
+                inputs["video"] = video_filename
+                video_set = True
+                print(f"🎬 Setting video in node {node_id}: {video_filename}")
+            
+            # Set concept name (PrimitiveString with "value" field)
+            if node_data.get("class_type") == "PrimitiveString" and node_data.get("_meta", {}).get("title") == "Conept Name":
+                # For video workflow, append _00001_ suffix
+                concept_value = f"{name}_00001_" if workflow_type == "video" else name
+                inputs["value"] = concept_value
+                concept_name_set = True
+                print(f"📝 Setting concept name in node {node_id}: {concept_value}")
+    
+    if not video_set:
+        print(f"⚠️  Warning: No 'video' input found in {workflow_type} workflow")
+    if not concept_name_set:
+        print(f"⚠️  Warning: No 'Conept Name' node found in {workflow_type} workflow")
     
     # Check ComfyUI server availability
     print(f"🔌 Connecting to ComfyUI at {COMFYUI_SERVER}...")
@@ -113,7 +145,7 @@ def submit_workflow(video_filename: str) -> str:
         raise Exception(f"Cannot reach ComfyUI server at {COMFYUI_SERVER}")
     
     # Submit workflow
-    print(f"📤 Submitting workflow to ComfyUI...")
+    print(f"📤 Submitting {workflow_type.upper()} workflow to ComfyUI...")
     
     payload = json.dumps({"prompt": workflow}).encode('utf-8')
     req = urllib.request.Request(
@@ -130,7 +162,7 @@ def submit_workflow(video_filename: str) -> str:
             if not prompt_id:
                 raise Exception("No prompt_id returned from ComfyUI")
             
-            print(f"✅ Workflow submitted!")
+            print(f"✅ {workflow_type.upper()} workflow submitted!")
             print(f"   Prompt ID: {prompt_id}")
             return prompt_id
             
@@ -182,34 +214,66 @@ def wait_for_completion(prompt_id: str, timeout: int = 3600) -> dict:
     raise Exception(f"Workflow timeout after {timeout}s")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Submit Wan Animate workflow")
+    parser = argparse.ArgumentParser(description="Submit Wan Animate dual workflows (Image + Video)")
     parser.add_argument("--video", required=True, help="Path to video file (will be uploaded)")
+    parser.add_argument("--name", help="Name/prefix for output (optional, defaults to UUID)")
     parser.add_argument("--wait", action="store_true", help="Wait for completion")
     parser.add_argument("--timeout", type=int, default=3600, help="Timeout in seconds")
     
     args = parser.parse_args()
     
     try:
+        # Use provided name or generate random UUID
+        name = args.name if args.name else generate_random_name()
+        print(f"\n📝 Using run ID: {name}")
+        
         # Step 1: Upload video
         print(f"\n{'='*60}")
         print(f"STEP 1: Upload Video to ComfyUI")
         print(f"{'='*60}")
         video_filename = upload_video_to_comfyui(args.video)
         
-        # Step 2: Submit workflow with uploaded filename
+        # Step 2: Submit Image API workflow
         print(f"\n{'='*60}")
-        print(f"STEP 2: Submit Workflow")
+        print(f"STEP 2: Submit Image API Workflow")
         print(f"{'='*60}")
-        prompt_id = submit_workflow(video_filename)
+        image_prompt_id = submit_workflow(video_filename, name, "image")
+        
+        # Step 3: Wait 5 seconds
+        print(f"\n⏳ Waiting 5 seconds before submitting Video API...")
+        time.sleep(5)
+        
+        # Step 4: Submit Video API workflow
+        print(f"\n{'='*60}")
+        print(f"STEP 3: Submit Video API Workflow")
+        print(f"{'='*60}")
+        video_prompt_id = submit_workflow(video_filename, name, "video")
+        
+        # Step 5: Summary
+        print(f"\n{'='*60}")
+        print(f"WORKFLOWS SUBMITTED")
+        print(f"{'='*60}")
+        print(f"Run ID: {name}")
+        print(f"Image Prompt ID: {image_prompt_id}")
+        print(f"Video Prompt ID: {video_prompt_id}")
+        print(f"📊 Monitor: {COMFYUI_SERVER}")
         
         if args.wait:
             print(f"\n{'='*60}")
-            print(f"STEP 3: Wait for Completion")
+            print(f"STEP 5: Wait for Completion")
             print(f"{'='*60}")
-            result = wait_for_completion(prompt_id, args.timeout)
-            print(f"\n🎉 Output ready in ComfyUI!")
+            print(f"⏳ Waiting for both Image and Video workflows to complete...")
+            
+            # Wait for both
+            image_result = wait_for_completion(image_prompt_id, args.timeout)
+            video_result = wait_for_completion(video_prompt_id, args.timeout)
+            
+            print(f"\n🎉 Both workflows complete!")
+            print(f"✅ Image output ready")
+            print(f"✅ Video output ready")
         else:
-            print(f"\n💡 Tip: Use --wait to wait for completion")
+            print(f"\n💡 Both workflows running in parallel on ComfyUI")
+            print(f"💡 Output prefix: {name}_")
             
     except Exception as e:
         print(f"\n❌ Error: {e}")

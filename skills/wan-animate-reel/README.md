@@ -2,12 +2,12 @@
 
 **Standalone skill for downloading Instagram Reels and animating them with Wan Video character motion transfer.**
 
-✅ **TESTED & WORKING** (2026-02-14)
+✅ **TESTED & WORKING** (2026-02-16) - Dual Workflow + UUID Naming
 
 ## Quick Start
 
 ```bash
-# Download a Reel and animate it
+# Download a Reel and animate it (UUID auto-generated)
 python scripts/run_wan_animate_reel.py --url "https://www.instagram.com/reel/ABC123def456/"
 ```
 
@@ -20,14 +20,16 @@ Or use the `/wan` command:
 
 ## What It Does
 
-1. **Download** Instagram Reel (via yt-dlp) → MP4 file
-2. **Upload** to ComfyUI server → Get filename reference
-3. **Submit** Wan Animate workflow with uploaded video
-4. **Interrogate** character from first frame
-5. **Detect** pose and face from video → Motion skeleton
-6. **Animate** using Wan Video 2.2 → Preserve character pose/motion
-7. **Smooth** with RIFE frame interpolation → 2x frames
-8. **Export** as H.264 MP4 → ComfyUI output folder
+1. **Generate** unique UUID for this run
+2. **Download** Instagram Reel (via yt-dlp) → MP4 file
+3. **Upload** to ComfyUI server → Get filename reference
+4. **Submit Image API workflow** with UUID → Extracts character
+5. **Wait 5 seconds**
+6. **Submit Video API workflow** with UUID_00001_ → Animates character
+7. **Both workflows run in parallel:**
+   - Image: Interrogate character from first frame, detect pose/face
+   - Video: Animate using Wan Video 2.2 with motion transfer, RIFE interpolation
+8. **Export** as PNG (image) + H.264 MP4 (video) → ComfyUI output with UUID prefix
 
 ---
 
@@ -57,9 +59,10 @@ python scripts/run_wan_animate_reel.py --url "<instagram_url>"
 ```
 
 Orchestrates the complete workflow:
-1. Download Instagram Reel
-2. Call upload + submission handler
-3. Report completion
+1. **Generate** random UUID for this run
+2. **Download** Instagram Reel via yt-dlp
+3. **Submit** dual workflows (Image API → Video API with 5s gap)
+4. **Report** completion with both Prompt IDs
 
 ### `download_instagram_reel.py`
 ```bash
@@ -70,15 +73,22 @@ Uses yt-dlp to download Reel → Saves MP4 locally
 
 ### `submit_wan_workflow.py`
 ```bash
-python scripts/submit_wan_workflow.py --video "downloads/reel_20260214_154000.mp4" --wait
+python scripts/submit_wan_workflow.py --video "downloads/reel_20260214_154000.mp4"
 ```
 
-Complete workflow:
+Complete dual-workflow submission:
 1. **Upload** video to ComfyUI `/upload/image` endpoint
 2. **Extract** filename from response
-3. **Modify** Node 218 with uploaded filename
-4. **Submit** workflow to ComfyUI `/prompt` endpoint
-5. **Wait** for completion (with `--wait` flag)
+3. **Submit Image API** workflow:
+   - Node 218 = video filename
+   - Node 254 = UUID (plain)
+   - Returns: Image Prompt ID
+4. **Wait 5 seconds**
+5. **Submit Video API** workflow:
+   - Node 218 = video filename  
+   - Node 254 = UUID + "_00001_"
+   - Returns: Video Prompt ID
+6. **Both workflows run in parallel** on ComfyUI
 
 ---
 
